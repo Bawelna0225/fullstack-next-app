@@ -3,6 +3,7 @@ import Image from 'next/image'
 import { Inter } from '@next/font/google'
 import styles from '@/styles/Home.module.css'
 import connection from '../utils/db'
+import Link from 'next/link'
 const inter = Inter({ subsets: ['latin'] })
 
 export default function Home({ data }) {
@@ -14,6 +15,9 @@ export default function Home({ data }) {
 				<meta name="viewport" content="width=device-width, initial-scale=1" />
 				<link rel="icon" href="/favicon.ico" />
 			</Head>
+      <nav>
+        <Link href='loginPage'>Log In</Link>
+      </nav>
 			<main className={styles.main}>
 				<div>
 					<h1>My data from MySQL:</h1>
