@@ -4,9 +4,12 @@ import { Inter } from '@next/font/google'
 import styles from '@/styles/Home.module.css'
 import connection from '../utils/db'
 import Link from 'next/link'
+import Cookies from 'js-cookie';
 const inter = Inter({ subsets: ['latin'] })
 
 export default function Home({ data }) {
+	const token = Cookies.get('token');
+	// console.log(token)
 	return (
 		<>
 			<Head>
@@ -36,6 +39,7 @@ export default function Home({ data }) {
 			</main>
 		</>
 	)
+	
 }
 
 export async function getStaticProps() {

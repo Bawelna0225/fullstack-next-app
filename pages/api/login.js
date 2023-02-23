@@ -22,7 +22,7 @@ export default async function handler(req, res) {
 	}
 
 	// wygenerowanie tokena uwierzytelniającego
-	const token = jwt.sign({ userId: user.id }, 'tajny-klucz', { expiresIn: '1h' })
+	const token = jwt.sign({ userId: user.id }, 'tajny-klucz')
 
 	// zwrócenie tokena i danych użytkownika w odpowiedzi
 	res.status(200).json({ token, user })
