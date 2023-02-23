@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import { useRouter } from 'next/router'
-import { signIn } from 'next-auth/react';
 import Cookies from 'js-cookie'
 
 export default function LoginPage() {
