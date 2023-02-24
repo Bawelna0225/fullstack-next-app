@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import { useRouter } from 'next/router'
-import Cookies from 'js-cookie'
 
 export default function LoginPage() {
 	const [email, setEmail] = useState('')
@@ -19,11 +18,17 @@ export default function LoginPage() {
 		})
 
 		const data = await response.json()
-		if (response.ok) {
-			Cookies.set('token', data.token)
-			Cookies.set('email', data.user.email)
 
-			setLoginStatus(`Logged In ID:${data.user.id} Email:${data.user.email}`)
+		if (response.ok) {
+			// Save the user email in the session
+			sessionStorage.setItem('userEmail', email)
+			// Redirect the user to the home page
+
+			setLoginStatus(`Logging in successful, Welcome ${email}`)
+			setTimeout(() => {
+				router.push('/Home')
+				window.location.href = '/Home'
+			}, 2000)
 		} else {
 			setLoginStatus(`${data.message}`)
 		}

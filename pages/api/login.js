@@ -31,7 +31,7 @@ export default async function handler(req, res) {
 async function fetchUserFromDatabase(email) {
 	// pobranie użytkownika z bazy danych na podstawie adresu email
 
-	const [users, fields] = await connection.promise().query(`SELECT * FROM userdata`)
+	const [users] = await connection.promise().query(`SELECT * FROM userdata`)
 
 	return users.find((user) => user.email === email)
 }
