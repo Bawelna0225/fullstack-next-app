@@ -1,27 +1,22 @@
 import { useEffect, useState } from 'react'
-import { useRouter } from 'next/router'
+import { useSession } from "next-auth/react";
+import Router from "next/router";
 
 const Home = () => {
-	let [authTokens, setAuthTokens] = useState(null)
-	let [userEmail, setUserEmail] = useState(null)
-	const router = useRouter()
+	const { status, data } = useSession();
 
-	useEffect(() => {
-		if (sessionStorage.getItem('userEmail')) {
-			// setAuthTokens(sessionStorage.getItem('authTokens'))
-			setUserEmail(sessionStorage.getItem('userEmail'))
-		} else {
-			// setAuthTokens(null)
-			setUserEmail(null)
-			router.push('/loginPage')
-		}
-	})
+  useEffect(() => {
+    if (status === "unauthenticated") Router.replace("/auth/signin");
+  }, [status]);
 
-	return (
-		<div>
-			<p>Welcome, {userEmail}!</p>
-		</div>
-	)
+  if (status === "authenticated")
+    return (
+      <div>
+       <h1>Welcome {data.user.name}</h1> 
+      </div>
+    );
+
+  return <div>loading</div>;
 }
 
 export default Home

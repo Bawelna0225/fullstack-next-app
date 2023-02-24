@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useRouter } from 'next/router'
-
+import Router from "next/router";
 export default function LoginPage() {
 	const [email, setEmail] = useState('')
 	const [password, setPassword] = useState('')
@@ -26,8 +26,7 @@ export default function LoginPage() {
 
 			setLoginStatus(`Logging in successful, Welcome ${email}`)
 			setTimeout(() => {
-				router.push('/Home')
-				window.location.href = '/Home'
+				Router.replace("/Home")
 			}, 2000)
 		} else {
 			setLoginStatus(`${data.message}`)

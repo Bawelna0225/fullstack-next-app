@@ -1,5 +1,4 @@
 import bcrypt from 'bcryptjs'
-import jwt from 'jsonwebtoken'
 import connection from '../../utils/db'
 
 export default async function handler(req, res) {
