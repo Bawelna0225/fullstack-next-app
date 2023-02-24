@@ -1,15 +1,23 @@
+import { useEffect, useState } from 'react'
+import { useRouter } from 'next/router'
 import Head from 'next/head'
 import Image from 'next/image'
 import { Inter } from '@next/font/google'
 import styles from '@/styles/Home.module.css'
 import connection from '../utils/db'
 import Link from 'next/link'
-import Cookies from 'js-cookie';
 const inter = Inter({ subsets: ['latin'] })
 
 export default function Home({ data }) {
-	const token = Cookies.get('token');
-	// console.log(token)
+	let [userEmail, setUserEmail] = useState(null)
+
+	useEffect(() => {
+		if (sessionStorage.getItem('userEmail')) {
+			setUserEmail(sessionStorage.getItem('userEmail'))
+		} else {
+			setUserEmail(null)
+		}
+	})
 	return (
 		<>
 			<Head>
@@ -18,9 +26,16 @@ export default function Home({ data }) {
 				<meta name="viewport" content="width=device-width, initial-scale=1" />
 				<link rel="icon" href="/favicon.ico" />
 			</Head>
-      <nav>
-        <Link href='loginPage'>Log In</Link>
-      </nav>
+			<nav>
+				{userEmail ? (
+					<p>Hello {userEmail}</p>
+				) : (
+					<>
+						<Link href="loginPage">Log In </Link>
+						<Link href="signUp">Sign Up</Link>
+					</>
+				)}
+			</nav>
 			<main className={styles.main}>
 				<div>
 					<h1>My data from MySQL:</h1>
@@ -29,9 +44,9 @@ export default function Home({ data }) {
 							<div className={styles.card} key={item.post_id}>
 								<h3>{item.title}</h3>
 								<p>{item.content}</p>
-                <button>Read More</button>
+								<button>Read More</button>
 								{/* <span>Password: {item.password}</span> */}
-                <small>{item.date_created}</small>
+								<small>{item.date_created}</small>
 							</div>
 						))}
 					</div>
@@ -39,7 +54,6 @@ export default function Home({ data }) {
 			</main>
 		</>
 	)
-	
 }
 
 export async function getStaticProps() {
