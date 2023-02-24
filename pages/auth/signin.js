@@ -2,10 +2,11 @@ import { signIn } from "next-auth/react";
 import { useState } from "react";
 import Router from "next/router";
 
-const SignIn = (props) => {
+const SignIn = () => {
   const [userInfo, setUserInfo] = useState({ email: "", password: "" });
   const [loginStatus, setLoginStatus] = useState('')
   const handleSubmit = async (e) => {
+    
     e.preventDefault();
 
     const res = await signIn("credentials", {

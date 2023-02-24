@@ -1,22 +1,36 @@
 import { useEffect, useState } from 'react'
-import { useSession } from "next-auth/react";
-import Router from "next/router";
+import { signOut } from 'next-auth/react'
+import { useSession } from 'next-auth/react'
+import Router from 'next/router'
 
 const Home = () => {
-	const { status, data } = useSession();
+	const { status, data } = useSession()
 
-  useEffect(() => {
-    if (status === "unauthenticated") Router.replace("/auth/signin");
-  }, [status]);
+	useEffect(() => {
+		if (status === 'unauthenticated') Router.replace('/auth/signin')
+	}, [status])
 
-  if (status === "authenticated")
-    return (
-      <div>
-       <h1>Welcome {data.user.name}</h1> 
-      </div>
-    );
+	if (status === 'authenticated')
+		return (
+			<div>
+				<h1>Welcome {data.user.name}</h1>
+        <button
+					onClick={() => {
+						handleSignOut()
+					}}
+				>
+					Log out
+				</button>
+			</div>
+		)
 
-  return <div>loading</div>;
+	return <div>loading</div>
 }
 
 export default Home
+
+const handleSignOut = async () => {
+	const data = await signOut({ redirect: false, callbackUrl: '/' })
+}
+
+// Call handleSignOut when the user clicks a "Sign out" button or link

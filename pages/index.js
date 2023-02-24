@@ -3,8 +3,9 @@ import Head from 'next/head'
 import { useSession } from 'next-auth/react'
 import connection from '../utils/db'
 import { Inter } from '@next/font/google'
-import { signIn } from 'next-auth/react'
+import { signOut } from 'next-auth/react'
 import Posts from './Posts'
+import Link from 'next/link'
 
 export default function Home({ posts }) {
 	const { status, data } = useSession()
@@ -18,13 +19,8 @@ export default function Home({ posts }) {
 					<meta name="viewport" content="width=device-width, initial-scale=1" />
 					<link rel="icon" href="/favicon.ico" />
 				</Head>
-				<button
-					onClick={() => {
-						signIn()
-					}}
-				>
-					Login
-				</button>
+				<Link href="/auth/signin">Log in </Link>
+				<Link href="/auth/signup">Sign Up</Link>
 				<Posts posts={posts} />
 			</>
 		)
@@ -38,12 +34,21 @@ export default function Home({ posts }) {
 					<meta name="viewport" content="width=device-width, initial-scale=1" />
 					<link rel="icon" href="/favicon.ico" />
 				</Head>
+				<button
+					onClick={() => {
+						handleSignOut()
+					}}
+				>
+					Log out
+				</button>
 				<h1>Hello {data.user.name}</h1>
 				<Posts posts={posts} />
 			</>
 		)
 }
-
+const handleSignOut = async () => {
+	const data = await signOut({ redirect: false, callbackUrl: '/' })
+}
 export async function getStaticProps() {
 	const [usersPosts, fields] = await connection.promise().query('SELECT * FROM userposts')
 	const posts = JSON.parse(JSON.stringify(usersPosts))
