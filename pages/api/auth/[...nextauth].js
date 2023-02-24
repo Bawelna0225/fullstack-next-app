@@ -13,8 +13,6 @@ const authOptions = {
 			credentials: {},
 			async authorize(credentials, req) {
 				const { email, password } = credentials
-				// perform you login logic
-				// find out user from db
 				
                 async function fetchUserFromDatabase(email) {
 					// pobranie użytkownika z bazy danych na podstawie adresu email
@@ -27,14 +25,14 @@ const authOptions = {
 				const user = await fetchUserFromDatabase(email)
 
 				if (!user) {
-					throw new Error("invalid credentials");
+					throw new Error("Invalid Credentials");
 				}
 
 				// sprawdzenie, czy hasło jest poprawne
 				const passwordMatch = await bcrypt.compare(password, user.password)
 
 				if (!passwordMatch) {
-					throw new Error("invalid credentials");
+					throw new Error("Invalid Credentials");
 				}
 				return {
 					id: user.id,

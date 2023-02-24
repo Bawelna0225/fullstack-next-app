@@ -1,54 +1,41 @@
-import { signIn } from "next-auth/react";
-import { useState } from "react";
-import Router from "next/router";
+import { signIn } from 'next-auth/react'
+import { useState } from 'react'
+import Router from 'next/router'
+import Link from 'next/link'
 
 const SignIn = () => {
-  const [userInfo, setUserInfo] = useState({ email: "", password: "" });
-  const [loginStatus, setLoginStatus] = useState('')
-  const handleSubmit = async (e) => {
-    
-    e.preventDefault();
+	const [userInfo, setUserInfo] = useState({ email: '', password: '' })
+	const [loginStatus, setLoginStatus] = useState('')
+	const handleSubmit = async (e) => {
+		e.preventDefault()
 
-    const res = await signIn("credentials", {
-      email: userInfo.email,
-      password: userInfo.password,
-      redirect: false,
-    });
-    if (res.ok) {
+		const res = await signIn('credentials', {
+			email: userInfo.email,
+			password: userInfo.password,
+			redirect: false,
+		})
+		if (res.ok) {
 			setLoginStatus(`Logging in successful, Welcome!`)
 			setTimeout(() => {
-				Router.replace("/Home")
+				Router.replace('/Home')
 			}, 2000)
 		} else {
 			setLoginStatus(`Invalid Password or Email`)
 		}
-  };
-  return (
-    <div className="sign-in-form">
-      <form onSubmit={handleSubmit}>
-        <h1>Login</h1>
-        <input
-          value={userInfo.email}
-          onChange={({ target }) =>
-            setUserInfo({ ...userInfo, email: target.value })
-          }
-          type="email"
-          placeholder="john@email.com"
-        />
-        <input
-          value={userInfo.password}
-          onChange={({ target }) =>
-            setUserInfo({ ...userInfo, password: target.value })
-          }
-          type="password"
-          placeholder="********"
-        />
-        <input type="submit" value="Login" />
-      </form>
-      {loginStatus}
-    </div>
-  );
-};
+	}
+	return (
+		<div className="sign-in-form">
+			<form onSubmit={handleSubmit}>
+				<h1>Login</h1>
+				{loginStatus}
+				<input value={userInfo.email} onChange={({ target }) => setUserInfo({ ...userInfo, email: target.value })} type="email" placeholder="Email" />
+				<input value={userInfo.password} onChange={({ target }) => setUserInfo({ ...userInfo, password: target.value })} type="password" placeholder="Password" />
+				<input type="submit" value="Login" />
+			</form>
+			<Link href="/auth/signup">New Here? Sign Up</Link>
+		</div>
+	)
+}
 
 async function fetchUserFromDatabase(email) {
 	// pobranie użytkownika z bazy danych na podstawie adresu email
@@ -58,4 +45,4 @@ async function fetchUserFromDatabase(email) {
 	return users.find((user) => user.email === email)
 }
 
-export default SignIn;
+export default SignIn

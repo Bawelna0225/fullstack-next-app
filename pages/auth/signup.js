@@ -1,6 +1,7 @@
 import { signIn } from 'next-auth/react'
 import { useState } from 'react'
 import Router from 'next/router'
+import Link from 'next/link'
 
 export default function SignUp() {
 	const [name, setName] = useState('')
@@ -37,13 +38,14 @@ export default function SignUp() {
 		<div className="sign-in-form">
 			<form onSubmit={handleSubmit}>
 				<h1>Sign Up</h1>
+				{loginStatus}
 				<input value={name} onChange={(e) => setName(e.target.value)} type="text" placeholder="Full Name" />
 				<input value={email} onChange={(e) => setEmail(e.target.value)} type="email" placeholder="Email" />
 				<input value={password} onChange={(e) => setPassword(e.target.value)} type="password" placeholder="Password" />
 				<input value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} type="password" placeholder="Confirm Password" />
 				<input type="submit" value="Login" />
 			</form>
-			{loginStatus}
+			<Link href="/auth/signin">You already have account?</Link>
 		</div>
 	)
 }

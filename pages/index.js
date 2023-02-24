@@ -19,8 +19,10 @@ export default function Home({ posts }) {
 					<meta name="viewport" content="width=device-width, initial-scale=1" />
 					<link rel="icon" href="/favicon.ico" />
 				</Head>
-				<Link href="/auth/signin">Log in </Link>
-				<Link href="/auth/signup">Sign Up</Link>
+				<nav>
+					<Link href="/auth/signin">Log in </Link>
+					<Link href="/auth/signup">Sign Up</Link>
+				</nav>
 				<Posts posts={posts} />
 			</>
 		)
@@ -34,13 +36,15 @@ export default function Home({ posts }) {
 					<meta name="viewport" content="width=device-width, initial-scale=1" />
 					<link rel="icon" href="/favicon.ico" />
 				</Head>
-				<button
-					onClick={() => {
-						handleSignOut()
-					}}
-				>
-					Log out
-				</button>
+				<nav>
+					<button
+						onClick={() => {
+							handleSignOut()
+						}}
+					>
+						Log out
+					</button>
+				</nav>
 				<h1>Hello {data.user.name}</h1>
 				<Posts posts={posts} />
 			</>
@@ -50,7 +54,7 @@ const handleSignOut = async () => {
 	const data = await signOut({ redirect: false, callbackUrl: '/' })
 }
 export async function getStaticProps() {
-	const [usersPosts, fields] = await connection.promise().query('SELECT * FROM userposts')
+	const [usersPosts] = await connection.promise().query('SELECT * FROM userposts')
 	const posts = JSON.parse(JSON.stringify(usersPosts))
 	return {
 		props: {
