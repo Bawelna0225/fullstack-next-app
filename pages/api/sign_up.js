@@ -20,9 +20,34 @@ export default async function handler(req, res) {
 		res.status(401).json({ message: 'Hasła nie są identyczne' })
 		return
 	}
-
+	const hashedPassword = await hashPassword(password)
+	const date = await getCurrentDate()
+	const user = {
+		name: name,
+		email: email,
+		password: hashedPassword,
+		date: date,
+	}
+	const newUserEmail = await saveUserToDatabase(user)
 	// wygenerowanie tokena uwierzytelniającego
-	res.status(200).json({ message: "Nice" })
+	res.status(200).json({ newUserEmail })
+}
+async function hashPassword(password) {
+	const saltRounds = 10
+	const hashedPassword = await bcrypt.hash(password, saltRounds)
+	return hashedPassword
+}
+
+async function getCurrentDate() {
+	const currentDate = new Date()
+
+	const year = currentDate.getFullYear()
+	const month = String(currentDate.getMonth() + 1).padStart(2, '0')
+	const day = String(currentDate.getDate()).padStart(2, '0')
+
+	const formattedDate = `${year}-${month}-${day}`
+
+	return formattedDate
 }
 
 async function findUserInDatabase(email) {
@@ -33,8 +58,17 @@ async function findUserInDatabase(email) {
 	return users.find((user) => user.email === email)
 }
 
-async function saveUserInDatabase(name, email, cryptedPassword) {
-	// zapisanie użytkownika w bazie danych
+async function saveUserToDatabase(user) {
+	const { name, email, password, date } = user
 
-	
+	const sql = `INSERT INTO userdata (name, email, password, date_joined) VALUES (?, ?, ?, ?)`
+	const values = [name, email, password, date]
+
+	try {
+		const [result] = await connection.promise().execute(sql, values)
+		return email
+	} catch (error) {
+		console.error(`Error saving user to database: ${error}`)
+		return null
+	}
 }
