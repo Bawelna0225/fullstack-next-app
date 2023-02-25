@@ -37,6 +37,42 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  position: relative;
+}
+.sign-in-form .custom-shape-divider-top-1677324190 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+  line-height: 0;
+}
+.sign-in-form .custom-shape-divider-top-1677324190 svg {
+  position: relative;
+  display: block;
+  width: calc(100% + 1.3px);
+  height: 74px;
+}
+.sign-in-form .custom-shape-divider-top-1677324190 .shape-fill {
+  fill: hsl(224deg, 85%, 66%);
+}
+.sign-in-form .custom-shape-divider-bottom-1677324005 {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+  line-height: 0;
+  transform: rotate(180deg);
+}
+.sign-in-form .custom-shape-divider-bottom-1677324005 svg {
+  position: relative;
+  display: block;
+  width: calc(100% + 1.3px);
+  height: 101px;
+}
+.sign-in-form .custom-shape-divider-bottom-1677324005 .shape-fill {
+  fill: hsl(269deg, 85%, 66%);
 }
 .sign-in-form form {
   z-index: 0;
@@ -169,7 +205,8 @@ body {
   -o-border-image: linear-gradient(hsl(224deg, 85%, 66%), hsl(269deg, 85%, 66%)) 30;
      border-image: linear-gradient(hsl(224deg, 85%, 66%), hsl(269deg, 85%, 66%)) 30;
 }
-.sign-in-form form p, .sign-in-form form small {
+.sign-in-form form p,
+.sign-in-form form small {
   text-align: center;
 }
 .sign-in-form form a {
@@ -187,5 +224,13 @@ body {
 @keyframes moveGradient {
   50% {
     background-position: 100% 50%;
+  }
+}
+@media (width < 450px) {
+  .custom-shape-divider-top-1677324190 svg {
+    width: calc(200% + 1.3px) !important;
+  }
+  .custom-shape-divider-bottom-1677324005 svg {
+    width: calc(200% + 1.3px) !important;
   }
 }/*# sourceMappingURL=style.css.map */

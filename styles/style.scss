@@ -3,7 +3,7 @@
 	padding: 0;
 	margin: 0;
 	font-family: sans-serif;
-    font-size: 18px;
+	font-size: 18px;
 }
 :root {
 	--background-start-rgb: rgba(0, 0, 0, 0.9);
@@ -34,6 +34,42 @@ body {
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
+	position: relative;
+	.custom-shape-divider-top-1677324190 {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		overflow: hidden;
+		line-height: 0;
+		svg {
+			position: relative;
+			display: block;
+			width: calc(100% + 1.3px);
+			height: 74px;
+		}
+		.shape-fill {
+			fill: hsl(224, 85%, 66%);
+		}
+	}
+	.custom-shape-divider-bottom-1677324005 {
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		width: 100%;
+		overflow: hidden;
+		line-height: 0;
+		transform: rotate(180deg);
+		svg {
+			position: relative;
+			display: block;
+			width: calc(100% + 1.3px);
+			height: 101px;
+		}
+		.shape-fill {
+			fill: hsl(269, 85%, 66%);
+		}
+	}
 	form {
 		z-index: 0;
 		background-color: rgb(21, 21, 21);
@@ -45,25 +81,25 @@ body {
 		flex-direction: column;
 		gap: 25px;
 		padding: 15px;
-        h1 {
-            font-size: 2rem;
-            text-align: center;
-            background: linear-gradient(60deg, hsl(224, 85%, 66%), hsl(269, 85%, 66%));
-				-webkit-background-clip: text;
-				-webkit-text-fill-color: transparent;
-        }
-        .error {
-            background-color: rgb(97, 26, 26);
-            padding: 10px;
-            text-align: center;
-            border-radius: 4px;
-        }
-         .success {
-            background-color: rgb(18, 84, 23);
-            padding: 10px;
-            text-align: center;
-            border-radius: 4px;
-        }
+		h1 {
+			font-size: 2rem;
+			text-align: center;
+			background: linear-gradient(60deg, hsl(224, 85%, 66%), hsl(269, 85%, 66%));
+			-webkit-background-clip: text;
+			-webkit-text-fill-color: transparent;
+		}
+		.error {
+			background-color: rgb(97, 26, 26);
+			padding: 10px;
+			text-align: center;
+			border-radius: 4px;
+		}
+		.success {
+			background-color: rgb(18, 84, 23);
+			padding: 10px;
+			text-align: center;
+			border-radius: 4px;
+		}
 		.input {
 			--border-width: 1px;
 			display: flex;
@@ -86,31 +122,27 @@ body {
 			}
 			&:has(input:focus) {
 				&:after {
-					background: linear-gradient(
-					60deg,
-					hsl(224, 85%, 66%), hsl(269, 85%, 66%)
-				);
+					background: linear-gradient(60deg, hsl(224, 85%, 66%), hsl(269, 85%, 66%));
 				}
 			}
-            span {
+			span {
 				position: absolute;
 				left: 6px;
 				top: -15px;
 				height: 20px;
 				background-color: rgb(21, 21, 21);
-                &.name {
-                    width: 84px;
-                }
-                &.email {
-                    width: 52px;
-                }
-                &.pass {
-                    width: 82px;
-                    
-                }
-                &.conpass {
-                    width: 140px;
-                }
+				&.name {
+					width: 84px;
+				}
+				&.email {
+					width: 52px;
+				}
+				&.pass {
+					width: 82px;
+				}
+				&.conpass {
+					width: 140px;
+				}
 			}
 			label {
 				position: absolute;
@@ -155,10 +187,7 @@ body {
 				z-index: -1;
 				width: calc(100% + var(--border-width) * 2);
 				height: calc(100% + var(--border-width) * 2);
-				background: linear-gradient(
-					60deg,
-					hsl(224, 85%, 66%), hsl(269, 85%, 66%)
-				);
+				background: linear-gradient(60deg, hsl(224, 85%, 66%), hsl(269, 85%, 66%));
 				background-size: 300% 300%;
 				background-position: 0 50%;
 				border-radius: calc(2 * var(--border-width));
@@ -172,18 +201,27 @@ body {
 		hr {
 			border-image: linear-gradient(hsl(224, 85%, 66%), hsl(269, 85%, 66%)) 30;
 		}
-        p,small {
-            text-align: center;
-        }
-        a {
-            background: linear-gradient(60deg, hsl(224, 85%, 66%), hsl(269, 85%, 66%));
-				-webkit-background-clip: text;
-				-webkit-text-fill-color: transparent;
-        }
+		p,
+		small {
+			text-align: center;
+		}
+		a {
+			background: linear-gradient(60deg, hsl(224, 85%, 66%), hsl(269, 85%, 66%));
+			-webkit-background-clip: text;
+			-webkit-text-fill-color: transparent;
+		}
 	}
 }
 @keyframes moveGradient {
 	50% {
 		background-position: 100% 50%;
+	}
+}
+@media (width < 450px) {
+	.custom-shape-divider-top-1677324190 svg {
+		width: calc(200% + 1.3px) !important;
+	}
+	.custom-shape-divider-bottom-1677324005 svg {
+		width: calc(200% + 1.3px) !important;
 	}
 }
