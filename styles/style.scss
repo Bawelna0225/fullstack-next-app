@@ -8,13 +8,23 @@
 :root {
 	--background-start-rgb: rgba(0, 0, 0, 0.9);
 	--background-end-rgb: rgba(20, 20, 20, 0.9);
-	--d: 2500ms;
-	--angle: 90deg;
-	--gradX: 100%;
-	--gradY: 50%;
-	--c1: rgba(168, 239, 255, 1);
-	--c2: rgba(168, 239, 255, 0.1);
+	--secondary-color: rgb(21, 21, 21);
+	--text-color: white;
+	--shadow-color: rgba(0, 0, 0, 0.203);
+	--border-color: rgb(46, 46, 46);
+	--first-accent-color: hsl(224, 85%, 66%);
+	--second-accent-color: hsl(269, 85%, 66%);
 }
+// :root {
+// 	--background-start-rgb: rgb(255, 255, 255);
+// 	--background-end-rgb: rgba(251, 251, 251, 0.9);
+// 	--secondary-color: rgb(255, 255, 255);
+// 	--text-color: black;
+// 	--shadow-color: rgba(0, 0, 0, 0.157);
+// 	--border-color: rgb(223, 223, 223);
+// 	--first-accent-color: hsl(306, 84%, 45%);
+// 	--second-accent-color: hsl(187, 85%, 66%);
+// }
 html,
 body {
 	max-width: 100vw;
@@ -23,7 +33,7 @@ body {
 }
 
 body {
-	color: rgb(var(--foreground-rgb));
+	color: var(--text-color);
 	background: linear-gradient(to bottom, transparent, var(--background-end-rgb)) var(--background-start-rgb);
 	backdrop-filter: blur(8px);
 }
@@ -49,7 +59,7 @@ body {
 			height: 74px;
 		}
 		.shape-fill {
-			fill: hsl(224, 85%, 66%);
+			fill: var(--first-accent-color);
 		}
 	}
 	.custom-shape-divider-bottom-1677324005 {
@@ -67,13 +77,13 @@ body {
 			height: 101px;
 		}
 		.shape-fill {
-			fill: hsl(269, 85%, 66%);
+			fill: var(--second-accent-color);
 		}
 	}
 	form {
 		z-index: 0;
-		background-color: rgb(21, 21, 21);
-		box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.203);
+		background-color: var(--secondary-color);
+		box-shadow: 0px 0px 10px var(--shadow-color);
 		border-radius: 4px;
 		width: min(calc(100vw - 2rem), 330px);
 		margin: 0 auto;
@@ -84,7 +94,7 @@ body {
 		h1 {
 			font-size: 2rem;
 			text-align: center;
-			background: linear-gradient(60deg, hsl(224, 85%, 66%), hsl(269, 85%, 66%));
+			background: linear-gradient(60deg, var(--first-accent-color), var(--second-accent-color));
 			-webkit-background-clip: text;
 			-webkit-text-fill-color: transparent;
 		}
@@ -102,11 +112,12 @@ body {
 		}
 		.input {
 			--border-width: 1px;
+            
 			display: flex;
 			flex-direction: column;
 			position: relative;
 			border-radius: 4px;
-			background-color: rgb(21, 21, 21);
+			background-color: var(--secondary-color);
 			&::after {
 				position: absolute;
 				content: '';
@@ -115,14 +126,14 @@ body {
 				z-index: -1;
 				width: calc(100% + var(--border-width) * 2);
 				height: calc(100% + var(--border-width) * 2);
-				background-color: rgb(46, 46, 46);
+				background-color: var(--border-color);
 				background-size: 300% 300%;
 				background-position: 0 50%;
 				border-radius: calc(2 * var(--border-width));
 			}
 			&:has(input:focus) {
 				&:after {
-					background: linear-gradient(60deg, hsl(224, 85%, 66%), hsl(269, 85%, 66%));
+					background: linear-gradient(60deg, var(--first-accent-color), var(--second-accent-color));
 				}
 			}
 			span {
@@ -130,7 +141,7 @@ body {
 				left: 6px;
 				top: -15px;
 				height: 20px;
-				background-color: rgb(21, 21, 21);
+				background-color: var(--secondary-color);
 				&.name {
 					width: 84px;
 				}
@@ -150,7 +161,7 @@ body {
 				top: -15px;
 				padding: 3px;
 				font-size: 0.85rem;
-				background: linear-gradient(60deg, hsl(224, 85%, 66%), hsl(269, 85%, 66%));
+				background: linear-gradient(60deg, var(--first-accent-color), var(--second-accent-color));
 				-webkit-background-clip: text;
 				-webkit-text-fill-color: transparent;
 			}
@@ -161,6 +172,7 @@ body {
 				background: none;
 				outline: none;
 				padding-left: 12px;
+                color: var(--text-color);
 			}
 		}
 		.button {
@@ -175,8 +187,8 @@ body {
 			font-family: Lato, sans-serif;
 			transition: 300ms linear;
 			text-transform: uppercase;
-			color: white;
-			background: rgb(21, 21, 21);
+			color: var(--text-color);
+			background: var(--secondary-color);
 			border-radius: var(--border-width);
 
 			&::after {
@@ -187,7 +199,7 @@ body {
 				z-index: -1;
 				width: calc(100% + var(--border-width) * 2);
 				height: calc(100% + var(--border-width) * 2);
-				background: linear-gradient(60deg, hsl(224, 85%, 66%), hsl(269, 85%, 66%));
+				background: linear-gradient(60deg, var(--first-accent-color), var(--second-accent-color));
 				background-size: 300% 300%;
 				background-position: 0 50%;
 				border-radius: calc(2 * var(--border-width));
@@ -198,15 +210,12 @@ body {
 				cursor: pointer;
 			}
 		}
-		hr {
-			border-image: linear-gradient(hsl(224, 85%, 66%), hsl(269, 85%, 66%)) 30;
-		}
 		p,
 		small {
 			text-align: center;
 		}
 		a {
-			background: linear-gradient(60deg, hsl(224, 85%, 66%), hsl(269, 85%, 66%));
+			background: linear-gradient(60deg, var(--first-accent-color), var(--second-accent-color));
 			-webkit-background-clip: text;
 			-webkit-text-fill-color: transparent;
 		}

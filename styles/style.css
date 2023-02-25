@@ -9,12 +9,12 @@
 :root {
   --background-start-rgb: rgba(0, 0, 0, 0.9);
   --background-end-rgb: rgba(20, 20, 20, 0.9);
-  --d: 2500ms;
-  --angle: 90deg;
-  --gradX: 100%;
-  --gradY: 50%;
-  --c1: rgba(168, 239, 255, 1);
-  --c2: rgba(168, 239, 255, 0.1);
+  --secondary-color: rgb(21, 21, 21);
+  --text-color: white;
+  --shadow-color: rgba(0, 0, 0, 0.203);
+  --border-color: rgb(46, 46, 46);
+  --first-accent-color: hsl(224, 85%, 66%);
+  --second-accent-color: hsl(269, 85%, 66%);
 }
 
 html,
@@ -25,7 +25,7 @@ body {
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
+  color: var(--text-color);
   background: linear-gradient(to bottom, transparent, var(--background-end-rgb)) var(--background-start-rgb);
   -webkit-backdrop-filter: blur(8px);
           backdrop-filter: blur(8px);
@@ -54,7 +54,7 @@ body {
   height: 74px;
 }
 .sign-in-form .custom-shape-divider-top-1677324190 .shape-fill {
-  fill: hsl(224deg, 85%, 66%);
+  fill: var(--first-accent-color);
 }
 .sign-in-form .custom-shape-divider-bottom-1677324005 {
   position: absolute;
@@ -72,12 +72,12 @@ body {
   height: 101px;
 }
 .sign-in-form .custom-shape-divider-bottom-1677324005 .shape-fill {
-  fill: hsl(269deg, 85%, 66%);
+  fill: var(--second-accent-color);
 }
 .sign-in-form form {
   z-index: 0;
-  background-color: rgb(21, 21, 21);
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.203);
+  background-color: var(--secondary-color);
+  box-shadow: 0px 0px 10px var(--shadow-color);
   border-radius: 4px;
   width: min(100vw - 2rem, 330px);
   margin: 0 auto;
@@ -89,7 +89,7 @@ body {
 .sign-in-form form h1 {
   font-size: 2rem;
   text-align: center;
-  background: linear-gradient(60deg, hsl(224deg, 85%, 66%), hsl(269deg, 85%, 66%));
+  background: linear-gradient(60deg, var(--first-accent-color), var(--second-accent-color));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
@@ -111,7 +111,7 @@ body {
   flex-direction: column;
   position: relative;
   border-radius: 4px;
-  background-color: rgb(21, 21, 21);
+  background-color: var(--secondary-color);
 }
 .sign-in-form form .input::after {
   position: absolute;
@@ -121,20 +121,20 @@ body {
   z-index: -1;
   width: calc(100% + var(--border-width) * 2);
   height: calc(100% + var(--border-width) * 2);
-  background-color: rgb(46, 46, 46);
+  background-color: var(--border-color);
   background-size: 300% 300%;
   background-position: 0 50%;
   border-radius: calc(2 * var(--border-width));
 }
 .sign-in-form form .input:has(input:focus):after {
-  background: linear-gradient(60deg, hsl(224deg, 85%, 66%), hsl(269deg, 85%, 66%));
+  background: linear-gradient(60deg, var(--first-accent-color), var(--second-accent-color));
 }
 .sign-in-form form .input span {
   position: absolute;
   left: 6px;
   top: -15px;
   height: 20px;
-  background-color: rgb(21, 21, 21);
+  background-color: var(--secondary-color);
 }
 .sign-in-form form .input span.name {
   width: 84px;
@@ -154,7 +154,7 @@ body {
   top: -15px;
   padding: 3px;
   font-size: 0.85rem;
-  background: linear-gradient(60deg, hsl(224deg, 85%, 66%), hsl(269deg, 85%, 66%));
+  background: linear-gradient(60deg, var(--first-accent-color), var(--second-accent-color));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
@@ -165,6 +165,7 @@ body {
   background: none;
   outline: none;
   padding-left: 12px;
+  color: var(--text-color);
 }
 .sign-in-form form .button {
   --border-width: 1px;
@@ -178,8 +179,8 @@ body {
   font-family: Lato, sans-serif;
   transition: 300ms linear;
   text-transform: uppercase;
-  color: white;
-  background: rgb(21, 21, 21);
+  color: var(--text-color);
+  background: var(--secondary-color);
   border-radius: var(--border-width);
 }
 .sign-in-form form .button::after {
@@ -190,7 +191,7 @@ body {
   z-index: -1;
   width: calc(100% + var(--border-width) * 2);
   height: calc(100% + var(--border-width) * 2);
-  background: linear-gradient(60deg, hsl(224deg, 85%, 66%), hsl(269deg, 85%, 66%));
+  background: linear-gradient(60deg, var(--first-accent-color), var(--second-accent-color));
   background-size: 300% 300%;
   background-position: 0 50%;
   border-radius: calc(2 * var(--border-width));
@@ -201,16 +202,12 @@ body {
   background-color: transparent;
   cursor: pointer;
 }
-.sign-in-form form hr {
-  -o-border-image: linear-gradient(hsl(224deg, 85%, 66%), hsl(269deg, 85%, 66%)) 30;
-     border-image: linear-gradient(hsl(224deg, 85%, 66%), hsl(269deg, 85%, 66%)) 30;
-}
 .sign-in-form form p,
 .sign-in-form form small {
   text-align: center;
 }
 .sign-in-form form a {
-  background: linear-gradient(60deg, hsl(224deg, 85%, 66%), hsl(269deg, 85%, 66%));
+  background: linear-gradient(60deg, var(--first-accent-color), var(--second-accent-color));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
