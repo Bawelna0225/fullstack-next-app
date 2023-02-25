@@ -1,0 +1,191 @@
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  font-family: sans-serif;
+  font-size: 18px;
+}
+
+:root {
+  --background-start-rgb: rgba(0, 0, 0, 0.9);
+  --background-end-rgb: rgba(20, 20, 20, 0.9);
+  --d: 2500ms;
+  --angle: 90deg;
+  --gradX: 100%;
+  --gradY: 50%;
+  --c1: rgba(168, 239, 255, 1);
+  --c2: rgba(168, 239, 255, 0.1);
+}
+
+html,
+body {
+  max-width: 100vw;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(to bottom, transparent, var(--background-end-rgb)) var(--background-start-rgb);
+  -webkit-backdrop-filter: blur(8px);
+          backdrop-filter: blur(8px);
+}
+
+.sign-in-form {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.sign-in-form form {
+  z-index: 0;
+  background-color: rgb(21, 21, 21);
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.203);
+  border-radius: 4px;
+  width: min(100vw - 2rem, 330px);
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  padding: 15px;
+}
+.sign-in-form form h1 {
+  font-size: 2rem;
+  text-align: center;
+  background: linear-gradient(60deg, hsl(224deg, 85%, 66%), hsl(269deg, 85%, 66%));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.sign-in-form form .error {
+  background-color: rgb(97, 26, 26);
+  padding: 10px;
+  text-align: center;
+  border-radius: 4px;
+}
+.sign-in-form form .success {
+  background-color: rgb(18, 84, 23);
+  padding: 10px;
+  text-align: center;
+  border-radius: 4px;
+}
+.sign-in-form form .input {
+  --border-width: 1px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  border-radius: 4px;
+  background-color: rgb(21, 21, 21);
+}
+.sign-in-form form .input::after {
+  position: absolute;
+  content: "";
+  top: calc(-1 * var(--border-width));
+  left: calc(-1 * var(--border-width));
+  z-index: -1;
+  width: calc(100% + var(--border-width) * 2);
+  height: calc(100% + var(--border-width) * 2);
+  background-color: rgb(46, 46, 46);
+  background-size: 300% 300%;
+  background-position: 0 50%;
+  border-radius: calc(2 * var(--border-width));
+}
+.sign-in-form form .input:has(input:focus):after {
+  background: linear-gradient(60deg, hsl(224deg, 85%, 66%), hsl(269deg, 85%, 66%));
+}
+.sign-in-form form .input span {
+  position: absolute;
+  left: 6px;
+  top: -15px;
+  height: 20px;
+  background-color: rgb(21, 21, 21);
+}
+.sign-in-form form .input span.name {
+  width: 84px;
+}
+.sign-in-form form .input span.email {
+  width: 52px;
+}
+.sign-in-form form .input span.pass {
+  width: 82px;
+}
+.sign-in-form form .input span.conpass {
+  width: 140px;
+}
+.sign-in-form form .input label {
+  position: absolute;
+  left: 10px;
+  top: -15px;
+  padding: 3px;
+  font-size: 0.85rem;
+  background: linear-gradient(60deg, hsl(224deg, 85%, 66%), hsl(269deg, 85%, 66%));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.sign-in-form form .input input {
+  padding: 8px;
+  border-radius: 4px;
+  border: none;
+  background: none;
+  outline: none;
+  padding-left: 12px;
+}
+.sign-in-form form .button {
+  --border-width: 1px;
+  border: none;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: min(100%, 350px);
+  height: 40px;
+  font-family: Lato, sans-serif;
+  transition: 300ms linear;
+  text-transform: uppercase;
+  color: white;
+  background: rgb(21, 21, 21);
+  border-radius: var(--border-width);
+}
+.sign-in-form form .button::after {
+  position: absolute;
+  content: "";
+  top: calc(-1 * var(--border-width));
+  left: calc(-1 * var(--border-width));
+  z-index: -1;
+  width: calc(100% + var(--border-width) * 2);
+  height: calc(100% + var(--border-width) * 2);
+  background: linear-gradient(60deg, hsl(224deg, 85%, 66%), hsl(269deg, 85%, 66%));
+  background-size: 300% 300%;
+  background-position: 0 50%;
+  border-radius: calc(2 * var(--border-width));
+  -webkit-animation: moveGradient 4s alternate infinite;
+          animation: moveGradient 4s alternate infinite;
+}
+.sign-in-form form .button:hover {
+  background-color: transparent;
+  cursor: pointer;
+}
+.sign-in-form form hr {
+  -o-border-image: linear-gradient(hsl(224deg, 85%, 66%), hsl(269deg, 85%, 66%)) 30;
+     border-image: linear-gradient(hsl(224deg, 85%, 66%), hsl(269deg, 85%, 66%)) 30;
+}
+.sign-in-form form p, .sign-in-form form small {
+  text-align: center;
+}
+.sign-in-form form a {
+  background: linear-gradient(60deg, hsl(224deg, 85%, 66%), hsl(269deg, 85%, 66%));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+@-webkit-keyframes moveGradient {
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes moveGradient {
+  50% {
+    background-position: 100% 50%;
+  }
+}/*# sourceMappingURL=style.css.map */

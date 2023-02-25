@@ -32,5 +32,3 @@ export default Home
 const handleSignOut = async () => {
 	const data = await signOut({ redirect: false, callbackUrl: '/' })
 }
-
-// Call handleSignOut when the user clicks a "Sign out" button or link
