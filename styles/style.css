@@ -1,8 +1,9 @@
+@import url("https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900");
 * {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
-  font-family: sans-serif;
+  font-family: "Poppins", sans-serif;
   font-size: 18px;
 }
 
@@ -137,16 +138,16 @@ body {
   background-color: var(--secondary-color);
 }
 .sign-in-form form .input span.name {
-  width: 84px;
+  width: 5rem;
 }
 .sign-in-form form .input span.email {
-  width: 52px;
+  width: 3rem;
 }
 .sign-in-form form .input span.pass {
-  width: 82px;
+  width: 4.8rem;
 }
 .sign-in-form form .input span.conpass {
-  width: 140px;
+  width: 8.6rem;
 }
 .sign-in-form form .input label {
   position: absolute;

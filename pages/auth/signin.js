@@ -68,7 +68,7 @@ const SignIn = () => {
 				<h1>Log In</h1>
 				{loginMessage ? loginStatus == false ? <p className="error">{loginMessage}</p> : <p className="success">{loginMessage}</p> : <></>}
 				<p>
-					Log in with you email & password
+					Log in with your Email & Password
 				</p>
 				<div className="input">
 					<span className="email"></span>
