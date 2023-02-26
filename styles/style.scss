@@ -10,6 +10,7 @@
 	--background-start-rgb: rgba(0, 0, 0, 0.9);
 	--background-end-rgb: rgba(20, 20, 20, 0.9);
 	--secondary-color: rgb(21, 21, 21);
+	--navbar-color: rgb(18, 18, 18);
 	--text-color: white;
 	--shadow-color: rgba(0, 0, 0, 0.203);
 	--border-color: rgb(46, 46, 46);
@@ -222,6 +223,7 @@ body {
 		}
 	}
 }
+@import '_navbar.scss';
 @keyframes moveGradient {
 	50% {
 		background-position: 100% 50%;

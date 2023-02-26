@@ -21,6 +21,7 @@
     "next-iron-session": "^4.2.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "react-icons": "^4.7.1",
     "serverless-mysql": "^1.5.4",
     "text-encoding": "^0.7.0",
     "universal-cookie": "^4.0.4"
