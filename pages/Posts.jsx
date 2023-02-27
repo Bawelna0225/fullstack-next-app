@@ -1,5 +1,7 @@
 import React from 'react'
 import styles from '@/styles/Home.module.css'
+import Link from 'next/link'
+import { VscComment } from 'react-icons/vsc'
 const Posts = ({ posts }) => {
 	const getUsableDate = (dateStr) => {
 		const dateObj = new Date(dateStr)
@@ -9,16 +11,24 @@ const Posts = ({ posts }) => {
 	}
 	return (
 		<>
-			<main className={styles.main}>
+			<main className="posts-container">
 				<div>
-					<h2>My data from MySQL:</h2>
-					<div className={styles.grid}>
+					<div className="cards-grid">
 						{posts.map((item) => (
-							<div className={styles.card} key={item.post_id}>
+							<div className="card" key={item.post_id}>
 								<h3>{item.title}</h3>
 								<p>{item.content}</p>
-								<button>Read More</button>
-								<small>{getUsableDate(item.date_created)}</small>
+								<p className="comments-count">
+									<VscComment></VscComment>
+									<span>69</span>
+								</p>
+								<Link href="#">
+									<span>Read More</span>
+								</Link>
+								<div className="bottom">
+									<small>{getUsableDate(item.date_created)}</small>
+									<p>By: Author</p>
+								</div>
 							</div>
 						))}
 					</div>

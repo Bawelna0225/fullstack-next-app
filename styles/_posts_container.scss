@@ -1,0 +1,94 @@
+.posts-container {
+	// display: grid;
+	width: min(calc(100vw - 2rem), 1200px);
+	margin: 0 auto;
+	margin-block: 50px;
+	.cards-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(min(100%, 575px), 1fr));
+		gap: 20px;
+		.card {
+			display: grid;
+			gap: 10px;
+			background-color: var(--secondary-color);
+			padding: 12px;
+			border-radius: 4px;
+			box-shadow: 0px 0px 10px var(--shadow-color);
+			h3 {
+				width: fit-content;
+				font-size: 1.5rem;
+				word-wrap: break-word;
+				background: linear-gradient(60deg, var(--first-accent-color), var(--second-accent-color));
+				-webkit-background-clip: text;
+				-webkit-text-fill-color: transparent;
+			}
+			p {
+				margin: 0;
+				opacity: 0.6;
+				line-height: 1.5;
+				text-overflow: ellipsis;
+				overflow: hidden;
+				display: -webkit-box;
+				-webkit-line-clamp: 2;
+				-webkit-box-orient: vertical;
+			}
+            .comments-count {
+                display: flex;
+                align-items: center;
+                gap: 5px;
+                span {
+                    font-size: 0.8rem;
+                }
+            }
+			a {
+				height: 40px;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				width: min(100%, 150px);
+				cursor: pointer;
+				border-width: 1px;
+				border-style: solid;
+				border-image: linear-gradient(60deg, var(--first-accent-color), var(--second-accent-color));
+				border-image-slice: 1;
+				position: relative;
+				span {
+					background: linear-gradient(60deg, var(--first-accent-color), var(--second-accent-color));
+					-webkit-background-clip: text;
+					color: transparent;
+					transition: 300ms linear;
+                    z-index: 1;
+				}
+				&::before {
+					position: absolute;
+					content: '';
+					width: 100%;
+					height: 100%;
+					background-image: linear-gradient(90deg, var(--first-accent-color), var(--second-accent-color));
+					top: 0;
+					left: 0;
+					scale: 0 1;
+					transition: 300ms linear;
+					transform-origin: left;
+					display: flex;
+					justify-content: center;
+					align-items: center;
+					color: white;
+				}
+				&:hover {
+					background-color: transparent;
+					span {
+						color: white;
+					}
+					&::before {
+						scale: 1 1;
+					}
+				}
+			}
+            .bottom {
+                display: flex;
+                justify-content: space-between;
+            }
+		}
+	}
+}

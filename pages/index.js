@@ -20,7 +20,7 @@ export default function Home({ posts }) {
 }
 
 export async function getStaticProps() {
-	const [usersPosts] = await connection.promise().query('SELECT * FROM userposts')
+	const [usersPosts] = await connection.promise().query('SELECT * FROM userposts ORDER BY post_id desc')
 	const posts = JSON.parse(JSON.stringify(usersPosts))
 	return {
 		props: {
