@@ -320,7 +320,6 @@ nav .dropdown ul li button {
   transition: 300ms linear;
   text-align: left;
   cursor: pointer;
-  transition: 300ms linear;
 }
 nav .dropdown ul li a:hover,
 nav .dropdown ul li button:hover {
@@ -331,12 +330,12 @@ nav .dropdown ul li button:hover {
 }
 nav .dropdown ul li a:hover svg,
 nav .dropdown ul li button:hover svg {
-  transition: 300ms linear;
+  transition: 100ms linear;
   fill: var(--text-color);
 }
 nav .dropdown ul li a:hover path,
 nav .dropdown ul li button:hover path {
-  transition: 300ms linear;
+  transition: 100ms linear;
   stroke: var(--text-accent-color);
 }
 nav .dropdown ul li button {

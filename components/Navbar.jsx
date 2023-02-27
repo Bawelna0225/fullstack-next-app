@@ -12,18 +12,18 @@ export default function Navbar() {
 
 	const handleToggleDropdown = () => {
 		setIsDropdownOpen(!isDropdownOpen)
-	} 
-	status === 'authenticated' ? (useEffect(() => {
-		window.addEventListener('click', (event) => {
-			if (!document.querySelector('.toggle').contains(event.target) && !document.querySelector('.dropdown').contains(event.target)) {
-				// if user clicks outside menu close it
-				setIsDropdownOpen(false)
-			}
-		})
-	})) : (<></>)
+	}
+	useEffect(() => {
+		if (status === 'authenticated') {
+			window.addEventListener('click', (event) => {
+				if (!document.querySelector('.toggle').contains(event.target) && !document.querySelector('.dropdown').contains(event.target)) {
+					// if user clicks outside menu close it
+					setIsDropdownOpen(false)
+				}
+			})
+		}
+	}, [status])
 
-	
-	
 	return status === 'authenticated' ? (
 		<nav>
 			<Link href="/">Index</Link>
@@ -32,7 +32,8 @@ export default function Navbar() {
 					<GrChapterAdd></GrChapterAdd>
 					<span>Create Post</span>
 				</Link>
-				<button className='toggle'
+				<button
+					className="toggle"
 					onClick={() => {
 						handleToggleDropdown()
 					}}
