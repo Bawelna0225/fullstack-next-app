@@ -68,6 +68,10 @@ nav {
 		border-radius: 4px;
 		box-shadow: 0px 0px 10px var(--shadow-color);
 		z-index: 10;
+        opacity: 0;
+        &.open {
+            opacity: 1;
+        }
 		ul {
 			list-style-type: none;
 			display: grid;

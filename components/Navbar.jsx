@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { useSession } from 'next-auth/react'
 import { signOut } from 'next-auth/react'
 import { SlLogin, SlLogout, SlPicture } from 'react-icons/sl'
@@ -8,7 +8,22 @@ import { GrChapterAdd, GrPowerReset } from 'react-icons/gr'
 
 export default function Navbar() {
 	const { status, data } = useSession()
+	const [isDropdownOpen, setIsDropdownOpen] = useState(false)
 
+	const handleToggleDropdown = () => {
+		setIsDropdownOpen(!isDropdownOpen)
+	} 
+	status === 'authenticated' ? (useEffect(() => {
+		window.addEventListener('click', (event) => {
+			if (!document.querySelector('.toggle').contains(event.target) && !document.querySelector('.dropdown').contains(event.target)) {
+				// if user clicks outside menu close it
+				setIsDropdownOpen(false)
+			}
+		})
+	})) : (<></>)
+
+	
+	
 	return status === 'authenticated' ? (
 		<nav>
 			<Link href="/">Index</Link>
@@ -17,9 +32,15 @@ export default function Navbar() {
 					<GrChapterAdd></GrChapterAdd>
 					<span>Create Post</span>
 				</Link>
-				<button>{data.user.name}</button>
+				<button className='toggle'
+					onClick={() => {
+						handleToggleDropdown()
+					}}
+				>
+					{data.user.name}
+				</button>
 			</div>
-			<div className="dropdown">
+			<div className={isDropdownOpen ? 'dropdown open' : 'dropdown'}>
 				<ul>
 					<li>
 						<Link href="/Home">
