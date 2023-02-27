@@ -18,14 +18,15 @@
 	--second-accent-color: hsl(269, 85%, 66%);
 }
 // :root {
-// 	--background-start-rgb: rgb(255, 255, 255);
-// 	--background-end-rgb: rgba(251, 251, 251, 0.9);
-// 	--secondary-color: rgb(255, 255, 255);
-// 	--text-color: black;
-// 	--shadow-color: rgba(0, 0, 0, 0.157);
-// 	--border-color: rgb(223, 223, 223);
-// 	--first-accent-color: hsl(306, 84%, 45%);
-// 	--second-accent-color: hsl(187, 85%, 66%);
+// 	--background-start-rgb: rgb(222, 240, 203);
+// 	--background-end-rgb: rgba(165, 185, 250, 0.9);
+// 	--secondary-color: rgb(254, 254, 254);
+// 	--navbar-color: rgb(254, 254, 254);
+// 	--text-color: rgb(0, 0, 0);
+// 	--shadow-color: rgba(229, 229, 229, 0.203);
+// 	--border-color: rgb(230, 230, 230);
+// 	--first-accent-color: hsl(138, 85%, 66%);
+// 	--second-accent-color: hsl(207, 85%, 66%);
 // }
 html,
 body {
@@ -114,7 +115,7 @@ body {
 		}
 		.input {
 			--border-width: 1px;
-            
+
 			display: flex;
 			flex-direction: column;
 			position: relative;
@@ -174,7 +175,7 @@ body {
 				background: none;
 				outline: none;
 				padding-left: 12px;
-                color: var(--text-color);
+				color: var(--text-color);
 			}
 		}
 		.button {

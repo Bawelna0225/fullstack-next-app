@@ -21,14 +21,18 @@ export default function Navbar() {
 	}
 
 	useEffect(() => {
+		const closeDropdown = (event) => {
+			if (!document.querySelector('.toggle').contains(event.target) && !document.querySelector('.dropdown').contains(event.target)) {
+				// if user clicks outside menu close it
+				setIsDropdownOpen(false)
+			}
+		}
 		if (status === 'authenticated') {
 			createUserLogo(data.user.name)
-			window.addEventListener('click', (event) => {
-				if (!document.querySelector('.toggle').contains(event.target) && !document.querySelector('.dropdown').contains(event.target)) {
-					// if user clicks outside menu close it
-					setIsDropdownOpen(false)
-				}
-			})
+			window.addEventListener('click', closeDropdown)
+		}
+		return () => {
+			window.removeEventListener('click', closeDropdown)
 		}
 	}, [status])
 
@@ -46,7 +50,7 @@ export default function Navbar() {
 						handleToggleDropdown()
 					}}
 				>
-					<p class="username">{data.user.name}a</p>
+					<p className="username">{data.user.name}a</p>
 				</button>
 			</div>
 			<div className={isDropdownOpen ? 'dropdown open' : 'dropdown'}>
