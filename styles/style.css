@@ -278,6 +278,29 @@ nav .buttons a:hover {
      border-image: linear-gradient(60deg, var(--second-accent-color), var(--first-accent-color));
   border-image-slice: 1;
 }
+nav .buttons .username {
+  display: none;
+}
+nav .buttons .toggle {
+  border-width: 1px;
+  border-style: solid;
+  -o-border-image: linear-gradient(60deg, var(--first-accent-color), var(--second-accent-color));
+     border-image: linear-gradient(60deg, var(--first-accent-color), var(--second-accent-color));
+  border-image-slice: 1;
+  width: 45px;
+  aspect-ratio: 1;
+  background: linear-gradient(60deg, var(--first-accent-color), var(--second-accent-color));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+nav .buttons .toggle:hover {
+  -o-border-image: linear-gradient(60deg, var(--second-accent-color), var(--first-accent-color));
+     border-image: linear-gradient(60deg, var(--second-accent-color), var(--first-accent-color));
+  background: linear-gradient(60deg, var(--second-accent-color), var(--first-accent-color));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  border-image-slice: 1;
+}
 nav .dropdown {
   position: absolute;
   right: 20px;
@@ -293,13 +316,13 @@ nav .dropdown {
 nav .dropdown::after {
   content: "";
   position: absolute;
-  width: 20px;
-  height: 20px;
+  width: 15px;
+  height: 15px;
   rotate: 45deg;
   background-color: var(--navbar-color);
   z-index: -1;
-  top: -10px;
-  right: 20px;
+  top: -8px;
+  right: 14px;
 }
 nav .dropdown.open {
   -webkit-animation: appear 300ms normal forwards;
