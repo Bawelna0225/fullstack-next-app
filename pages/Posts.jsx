@@ -1,6 +1,12 @@
 import React from 'react'
 import styles from '@/styles/Home.module.css'
 const Posts = ({ posts }) => {
+	const getUsableDate = (dateStr) => {
+		const dateObj = new Date(dateStr)
+		const options = { year: 'numeric', month: 'long', day: 'numeric' }
+		const formattedDate = new Intl.DateTimeFormat('en-us', options).format(dateObj)
+		return formattedDate
+	}
 	return (
 		<>
 			<main className={styles.main}>
@@ -12,7 +18,7 @@ const Posts = ({ posts }) => {
 								<h3>{item.title}</h3>
 								<p>{item.content}</p>
 								<button>Read More</button>
-								<small>{item.date_created}</small>
+								<small>{getUsableDate(item.date_created)}</small>
 							</div>
 						))}
 					</div>
