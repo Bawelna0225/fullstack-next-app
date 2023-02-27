@@ -67,7 +67,8 @@ nav {
 		background-color: var(--navbar-color);
 		border-radius: 4px;
 		box-shadow: 0px 0px 10px var(--shadow-color);
-		z-index: 10;
+		z-index: -1;
+		top: -200px;
 		opacity: 0;
 		&::after {
 			content: '';
@@ -81,7 +82,27 @@ nav {
 			right: 20px;
 		}
 		&.open {
-			opacity: 1;
+			animation: appear 300ms normal forwards;
+			animation-iteration-count: 1;
+		}
+		@keyframes appear {
+			0% {
+				z-index: -1;
+				top: -200px;
+				opacity: 0;
+			}
+			60% {
+				z-index: -1;
+			}
+			65% {
+				z-index: 1;
+
+			}
+			100% {
+				z-index: 1;
+				opacity: 1;
+				top: 100px;
+			}
 		}
 		ul {
 			list-style-type: none;

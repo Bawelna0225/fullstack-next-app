@@ -286,7 +286,8 @@ nav .dropdown {
   background-color: var(--navbar-color);
   border-radius: 4px;
   box-shadow: 0px 0px 10px var(--shadow-color);
-  z-index: 10;
+  z-index: -1;
+  top: -200px;
   opacity: 0;
 }
 nav .dropdown::after {
@@ -301,7 +302,46 @@ nav .dropdown::after {
   right: 20px;
 }
 nav .dropdown.open {
-  opacity: 1;
+  -webkit-animation: appear 300ms normal forwards;
+          animation: appear 300ms normal forwards;
+  -webkit-animation-iteration-count: 1;
+          animation-iteration-count: 1;
+}
+@-webkit-keyframes appear {
+  0% {
+    z-index: -1;
+    top: -200px;
+    opacity: 0;
+  }
+  60% {
+    z-index: -1;
+  }
+  65% {
+    z-index: 1;
+  }
+  100% {
+    z-index: 1;
+    opacity: 1;
+    top: 100px;
+  }
+}
+@keyframes appear {
+  0% {
+    z-index: -1;
+    top: -200px;
+    opacity: 0;
+  }
+  60% {
+    z-index: -1;
+  }
+  65% {
+    z-index: 1;
+  }
+  100% {
+    z-index: 1;
+    opacity: 1;
+    top: 100px;
+  }
 }
 nav .dropdown ul {
   list-style-type: none;
