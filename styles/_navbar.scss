@@ -62,13 +62,24 @@ nav {
 	.dropdown {
 		position: absolute;
 		right: 20px;
-		top: 90px;
+		top: 100px;
 		width: 300px;
 		background-color: var(--navbar-color);
 		border-radius: 4px;
 		box-shadow: 0px 0px 10px var(--shadow-color);
 		z-index: 10;
 		opacity: 0;
+		&::after {
+			content: '';
+			position: absolute;
+			width: 20px;
+			height: 20px;
+			rotate: 45deg;
+			background-color: var(--navbar-color);
+			z-index: -1;
+			top: -10px;
+			right: 20px;
+		}
 		&.open {
 			opacity: 1;
 		}
