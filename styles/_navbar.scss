@@ -91,6 +91,7 @@ nav {
 		z-index: -1;
 		top: -200px;
 		opacity: 0;
+		padding: 5px;
 		&::after {
 			content: '';
 			position: absolute;
@@ -112,16 +113,19 @@ nav {
 				top: -200px;
 				opacity: 0;
 			}
-			60% {
+			25% {
 				z-index: -1;
+				pointer-events: none;
 			}
-			65% {
+			60% {
 				z-index: 1;
+				pointer-events: none;
 			}
 			100% {
 				z-index: 1;
 				opacity: 1;
 				top: 100px;
+				pointer-events: all;
 			}
 		}
 		ul {

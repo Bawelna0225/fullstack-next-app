@@ -1,8 +1,7 @@
 .posts-container {
-	// display: grid;
 	width: min(calc(100vw - 2rem), 1200px);
 	margin: 0 auto;
-	margin-block: 50px;
+	margin-block: 80px;
 	.cards-grid {
 		display: grid;
 		grid-template-columns: repeat(auto-fill, minmax(min(100%, 575px), 1fr));
@@ -86,6 +85,13 @@
 				}
 			}
             .bottom {
+				small {
+					min-width: 160px;
+				}
+				p {
+					text-align: right;
+					max-width: 300px;
+				}
                 display: flex;
                 justify-content: space-between;
             }

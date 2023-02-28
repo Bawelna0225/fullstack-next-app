@@ -38,7 +38,7 @@ export default function Navbar() {
 
 	return status === 'authenticated' ? (
 		<nav>
-			<Link href="/">Index</Link>
+			<Link href="/">BlogPage.</Link>
 			<div className="buttons">
 				<Link href="#">
 					<GrChapterAdd></GrChapterAdd>
@@ -88,7 +88,7 @@ export default function Navbar() {
 		</nav>
 	) : (
 		<nav>
-			<Link href="/">Index</Link>
+			<Link href="/">BlogPage.</Link>
 			<div className="buttons">
 				<Link href="/auth/signin">
 					<SlLogin></SlLogin> <span>Log in</span>{' '}
