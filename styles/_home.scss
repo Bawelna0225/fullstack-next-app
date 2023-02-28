@@ -1,0 +1,15 @@
+.home {
+	h1 {
+		text-align: center;
+		margin-block: 50px;
+		font-size: 3.5rem;
+		span {
+			width: fit-content;
+			word-wrap: break-word;
+			background: linear-gradient(60deg, var(--first-accent-color), var(--second-accent-color));
+			background-clip: text;
+			color: transparent;
+			font-size: 3.5rem;
+		}
+	}
+}

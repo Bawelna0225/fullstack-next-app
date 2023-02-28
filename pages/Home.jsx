@@ -24,8 +24,8 @@ const Home = ({ posts, commentsQuantity, authors }) => {
 		return (
 			<>
 				<Navbar />
-				<main className="posts-container">
-					<h1>Welcome {data.user.name}</h1>
+				<main className="posts-container home">
+					<h1>Welcome <span>{data.user.name}</span></h1>
 					<div className="cards-grid">
 						{posts.map((item) => {
 							if (item.author_id === user[0].id) {

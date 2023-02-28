@@ -543,6 +543,23 @@ nav .dropdown ul li button {
   max-width: 300px;
 }
 
+.home h1 {
+  text-align: center;
+  margin-block: 50px;
+  font-size: 3.5rem;
+}
+.home h1 span {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  word-wrap: break-word;
+  background: linear-gradient(60deg, var(--first-accent-color), var(--second-accent-color));
+  -webkit-background-clip: text;
+          background-clip: text;
+  color: transparent;
+  font-size: 3.5rem;
+}
+
 @-webkit-keyframes moveGradient {
   50% {
     background-position: 100% 50%;
