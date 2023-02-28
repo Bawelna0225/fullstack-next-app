@@ -8,18 +8,18 @@ import Navbar from '@/components/Navbar'
 const Home = ({ posts, commentsQuantity, authors }) => {
 	const { status, data } = useSession()
 
-	const getUsableDate = (dateStr) => {
-		const dateObj = new Date(dateStr)
-		const options = { year: 'numeric', month: 'long', day: 'numeric' }
-		const formattedDate = new Intl.DateTimeFormat('en-us', options).format(dateObj)
-		return formattedDate
-	}
-
 	useEffect(() => {
 		if (status === 'unauthenticated') Router.replace('/auth/signin')
 	}, [status])
 
 	if (status === 'authenticated') {
+		const getUsableDate = (dateStr) => {
+			const dateObj = new Date(dateStr)
+			const options = { year: 'numeric', month: 'long', day: 'numeric' }
+			const formattedDate = new Intl.DateTimeFormat('en-us', options).format(dateObj)
+			return formattedDate
+		}
+
 		const user = authors.filter((author) => author.email === data.user.email)
 		return (
 			<>
@@ -27,23 +27,23 @@ const Home = ({ posts, commentsQuantity, authors }) => {
 				<main className="posts-container">
 					<h1>Welcome {data.user.name}</h1>
 					<div className="cards-grid">
-						{posts.map((item) =>
-							item.author_id === user[0].id ? (
-								<div className="card" key={item.post_id}>
-									<h3>{item.title}</h3>
-									<p>{item.content}</p>
-									<p className="comments-count">
-										<VscComment></VscComment>
-										<span>{commentsQuantity.filter((comment) => comment.post_id === item.post_id).length}</span>
-									</p>
-									<div className="bottom">
-										<small>{getUsableDate(item.date_created)}</small>
+						{posts.map((item) => {
+							if (item.author_id === user[0].id) {
+								return (
+									<div className="card" key={item.post_id}>
+										<h3>{item.title}</h3>
+										<p>{item.content}</p>
+										<p className="comments-count">
+											<VscComment></VscComment>
+											<span>{commentsQuantity.filter((comment) => comment.post_id === item.post_id).length}</span>
+										</p>
+										<div className="bottom">
+											<small>{getUsableDate(item.date_created)}</small>
+										</div>
 									</div>
-								</div>
-							) : (
-								<></>
-							)
-						)}
+								)
+							}
+						})}
 					</div>
 				</main>
 			</>
