@@ -19,11 +19,17 @@ const SignIn = () => {
 			setLoginMessage(`Logging in successful, Welcome!`)
 			setLoginStatus(true)
 			setTimeout(() => {
+				setLoginStatus(null)
+				setLoginMessage(``)
 				Router.replace('/Home')
-			}, 2000)
+			}, 3000)
 		} else {
 			setLoginMessage(`Invalid Password or Email`)
 			setLoginStatus(false)
+			setTimeout(() => {
+				setLoginStatus(null)
+				setLoginMessage(``)
+			}, 3000)
 		}
 	}
 	return (
@@ -66,7 +72,8 @@ const SignIn = () => {
 			</div>
 			<form onSubmit={handleSubmit}>
 				<h1>Log In</h1>
-				{loginMessage ? loginStatus == false ? <p className="error">{loginMessage}</p> : <p className="success">{loginMessage}</p> : <></>}
+				{loginMessage ? loginStatus == false ? <p className="error">{loginMessage}<span></span></p> : <p className="success">{loginMessage}<span></span></p> : <></>}
+				
 				<p>
 					Log in with your Email & Password
 				</p>
