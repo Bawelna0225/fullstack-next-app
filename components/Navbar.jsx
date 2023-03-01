@@ -40,7 +40,7 @@ export default function Navbar() {
 		<nav>
 			<Link href="/">BlogPage.</Link>
 			<div className="buttons">
-				<Link href="#">
+				<Link href="/createPost">
 					<GrChapterAdd></GrChapterAdd>
 					<span>Create Post</span>
 				</Link>
