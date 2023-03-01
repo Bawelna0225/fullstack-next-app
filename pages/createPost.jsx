@@ -21,11 +21,13 @@ export default function createPost() {
 					<label htmlFor="">Content</label>
 					<textarea value={postInfo.content} onChange={({ target }) => setPostInfo({ ...postInfo, content: target.value })} required />
 				</div>
-				<small>
-					<Link href="#">Changed your mind?</Link>
-				</small>
+				<div className="buttons">
+					<small>
+						<Link href="/">Changed your mind?</Link>
+					</small>
 
-				<input className="button" type="submit" value="Create Post" />
+					<button className="button" type="submit"><span>Create Post</span></button>
+				</div>
 			</form>
 		</div>
 	)
