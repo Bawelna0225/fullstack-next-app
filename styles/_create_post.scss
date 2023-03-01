@@ -28,9 +28,17 @@
 			display: flex;
 			flex-direction: column;
 			width: 100%;
+            label {
+				width: fit-content;
+				background: linear-gradient(60deg, var(--first-accent-color), var(--second-accent-color));
+				-webkit-background-clip: text;
+				-webkit-text-fill-color: transparent;
+			}
 			input,
 			textarea {
-				padding: 10px;
+                padding: 8px;
+				border: 1px solid var(--border-color);
+                box-shadow: 0px 0px 10px var(--shadow-color);
 			}
 			textarea {
 				resize: none;
@@ -41,5 +49,6 @@
 			padding: 6px;
 			width: 200px !important;
 		}
+        
 	}
 }
