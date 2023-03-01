@@ -1,17 +1,15 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 import Link from 'next/link'
 
 export default function createPost() {
-    const [postInfo, setPostInfo] = useState({ title: '', content: '' })
+	const [postInfo, setPostInfo] = useState({ title: '', content: '' })
 
-    const handleSubmit = async (e) => {
+	const handleSubmit = async (e) => {
 		e.preventDefault()
-
-	
 	}
-  return (
-    <div>
-        <form onSubmit={handleSubmit}>
+	return (
+		<div className="create-post">
+			<form onSubmit={handleSubmit}>
 				<h1>Create Post</h1>
 				<div className="input">
 					<span className="title"></span>
@@ -26,10 +24,9 @@ export default function createPost() {
 				<small>
 					<Link href="#">Changed your mind?</Link>
 				</small>
-				<div className="button">
-					<input className="button" type="submit" value="Create Post" />
-				</div>
+
+				<input className="button" type="submit" value="Create Post" />
 			</form>
-    </div>
-  )
+		</div>
+	)
 }
