@@ -7,7 +7,6 @@ export default function createPost() {
 	const [postTitle, setPostTitle] = useState('')
 	const [postContent, setContent] = useState('')
 	const { status, data } = useSession()
-
 	const handleSubmit = async (e) => {
 		const email = data.user.email
 		e.preventDefault()
@@ -21,10 +20,16 @@ export default function createPost() {
 		})
 		const info = await response.json()
 		if (response.ok) {
-		
+
+			resetForm()
+
 		} else {
 
 		}
+	}
+	function resetForm() {
+		setPostTitle('')
+		setContent('')
 	}
 	useEffect(() => {
 		if (status === 'unauthenticated') Router.replace('/auth/signin')
