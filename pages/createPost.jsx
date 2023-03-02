@@ -51,6 +51,21 @@ export default function createPost() {
 	if (status === 'authenticated') {
 		return (
 			<div className="create-post">
+				{postMessage ? (
+					postCreationStatus == false ? (
+						<p className="error">
+							{postMessage}
+							<span></span>
+						</p>
+					) : (
+						<p className="success">
+							{postMessage}
+							<span></span>
+						</p>
+					)
+				) : (
+					<></>
+				)}
 				<form onSubmit={handleSubmit}>
 					<h1>Create Post</h1>
 					<div className="input">
