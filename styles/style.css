@@ -49,6 +49,22 @@ body {
           backdrop-filter: blur(8px);
 }
 
+.go-back {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  color: var(--text-color);
+  position: absolute;
+  left: 20px;
+  top: 30px;
+  z-index: 10;
+  transition: 150ms linear;
+}
+.go-back:hover {
+  gap: 10px;
+}
+
 .sign-in-form {
   height: 100vh;
   display: flex;

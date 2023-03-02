@@ -2,6 +2,7 @@ import { signIn } from 'next-auth/react'
 import { useState } from 'react'
 import Router from 'next/router'
 import Link from 'next/link'
+import { AiOutlineArrowLeft } from 'react-icons/ai'
 
 export default function SignUp() {
 	const [name, setName] = useState('')
@@ -39,6 +40,8 @@ export default function SignUp() {
 	}
 	return (
 		<div className="sign-in-form">
+			<Link href='/' className='go-back'><AiOutlineArrowLeft></AiOutlineArrowLeft>Go to main page</Link>
+
 			<div className="custom-shape-divider-top-1677324190">
 				<svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
 					<path
