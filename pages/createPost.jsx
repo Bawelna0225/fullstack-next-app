@@ -3,15 +3,29 @@ import Link from 'next/link'
 import { useSession } from 'next-auth/react'
 import Router from 'next/router'
 
-
 export default function createPost() {
-	const [postInfo, setPostInfo] = useState({ title: '', content: '' })
-
-	const handleSubmit = async (e) => {
-		e.preventDefault()
-	}
+	const [postTitle, setPostTitle] = useState('')
+	const [postContent, setContent] = useState('')
 	const { status, data } = useSession()
 
+	const handleSubmit = async (e) => {
+		const email = data.user.email
+		e.preventDefault()
+
+		const response = await fetch('/api/savepost', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify({ postTitle, postContent, email }),
+		})
+		const info = await response.json()
+		if (response.ok) {
+		
+		} else {
+
+		}
+	}
 	useEffect(() => {
 		if (status === 'unauthenticated') Router.replace('/auth/signin')
 	}, [status])
@@ -24,12 +38,12 @@ export default function createPost() {
 					<div className="input">
 						<span className="title"></span>
 						<label htmlFor="">Title</label>
-						<input value={postInfo.title} onChange={({ target }) => setPostInfo({ ...postInfo, title: target.value })} type="text" required />
+						<input value={postTitle} onChange={({ target }) => setPostTitle(target.value)} type="text" required />
 					</div>
 					<div className="input">
 						<span className="content"></span>
 						<label htmlFor="">Content</label>
-						<textarea value={postInfo.content} onChange={({ target }) => setPostInfo({ ...postInfo, content: target.value })} required />
+						<textarea value={postContent} onChange={({ target }) => setContent(target.value)} required />
 					</div>
 					<div className="buttons">
 						<small>
