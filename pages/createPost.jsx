@@ -7,6 +7,9 @@ export default function createPost() {
 	const [postTitle, setPostTitle] = useState('')
 	const [postContent, setContent] = useState('')
 	const { status, data } = useSession()
+
+	const [postCreationStatus, setPostCreationStatus] = useState(false)
+	const [postMessage, setPostMessage] = useState('')
 	const handleSubmit = async (e) => {
 		const email = data.user.email
 		e.preventDefault()
@@ -20,11 +23,21 @@ export default function createPost() {
 		})
 		const info = await response.json()
 		if (response.ok) {
-
+			setPostMessage(`Post Created, You will be redirected`)
+			setPostCreationStatus(true)
 			resetForm()
-
+			setTimeout(() => {
+				setPostCreationStatus(null)
+				setPostMessage(``)
+				Router.replace('/Home')
+			}, 3000)
 		} else {
-
+			setPostMessage(`Something went wrong`)
+			setPostCreationStatus(false)
+			setTimeout(() => {
+				setPostCreationStatus(null)
+				setPostMessage(``)
+			}, 3000)
 		}
 	}
 	function resetForm() {
