@@ -13,7 +13,8 @@ export default async function handler(req, res) {
 		user_id: userId,
 		date: date,
 	}
-
+	const createNewPost = await savePostInDatabase(post)
+    res.status(200).json({ createNewPost })
 }
 
 async function getCurrentDate() {
@@ -35,4 +36,17 @@ async function findUserInDatabase(email) {
 	return users.find((user) => user.email === email)
 }
 
+async function savePostInDatabase(post) {
+	const { postTitle, postContent, user_id, date } = post
 
+	const sql = `INSERT INTO userposts (author_id, title, content, date_created) VALUES (?, ?, ?, ?)`
+	const values = [user_id, postTitle, postContent, date]
+
+	try {
+			const [result] = await connection.promise().execute(sql, values)
+		return post
+	} catch (error) {
+			console.error(`Error saving user to database: ${error}`)
+		return null
+	}
+}
