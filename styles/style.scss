@@ -45,16 +45,50 @@ body {
 }
 .go-back {
 	display: flex;
-	align-items: center;justify-content: center;
+	align-items: center;
+	justify-content: center;
 	gap: 5px;
 	color: var(--text-color);
 	position: absolute;
 	left: 20px;
-	top: 30px;
-	z-index: 10;
+	top: 20px;
+	z-index: 1;
 	transition: 150ms linear;
 	&:hover {
 		gap: 10px;
+	}
+}
+.error,
+.success {
+	padding: 10px;
+	text-align: center;
+	border-radius: 4px;
+	color: var(--text-color);
+	background-color: var(--secondary-color);
+	position: absolute;
+	right: 5px;
+	top: 40px;
+	overflow: hidden;
+	span {
+		width: 100%;
+		height: 3px;
+		position: absolute;
+		bottom: 0px;
+		left: 0;
+		animation-name: timer;
+		animation-timing-function: linear;
+		animation-duration: 3s;
+		animation-iteration-count: 1;
+	}
+}
+.error {
+	span {
+		background-color: rgb(215, 56, 56);
+	}
+}
+.success {
+	span {
+		background-color: rgb(89, 202, 48);
 	}
 }
 .sign-in-form {
@@ -117,42 +151,7 @@ body {
 			-webkit-background-clip: text;
 			-webkit-text-fill-color: transparent;
 		}
-		.error,
-		.success {
-			padding: 10px;
-			text-align: center;
-			border-radius: 4px;
-			color: var(--text-color);
-			background-color: var(--secondary-color);
-			position: absolute;
-			right: 5px;
-			top: 30px;
-			overflow: hidden;
-			span {
-				width: 100%;
-				height: 3px;
-				position: absolute;
-				bottom: 0px;
-				left: 0;
-				animation-name: timer;
-				animation-timing-function: linear;
-				animation-duration: 3s;
-				animation-iteration-count: 1;
-				
-			}
-		}
-		.error {
-			
-			span {
-				background-color: rgb(215, 56, 56);
-			}
-		}
-		.success {
-			
-			span {
-				background-color: rgb(89, 202, 48);
-			}
-		}
+
 		.input {
 			--border-width: 1px;
 
