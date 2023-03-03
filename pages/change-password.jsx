@@ -6,12 +6,22 @@ import Link from 'next/link'
 import { AiOutlineArrowLeft } from 'react-icons/ai'
 
 export default function changePassword() {
+	const [password, setPassword] = useState('')
+	const [confirmPassword, setConfirmPassword] = useState('')
+	const { status, data } = useSession()
+
+	const [loginStatus, setLoginStatus] = useState(false)
+	const [loginMessage, setLoginMessage] = useState('')
 	const handleSubmit = async (e) => {
 
 		e.preventDefault()
 
 	}
+	useEffect(() => {
+		if (status === 'unauthenticated') Router.replace('/auth/signin')
+	}, [status])
 
+	if (status === 'authenticated') {
 		return (
 			<div className="sign-in-form">
 				<Link href="/" className="go-back">
@@ -77,4 +87,5 @@ export default function changePassword() {
 				</form>
 			</div>
 		)
+	}
 }
