@@ -13,6 +13,7 @@ export default function changePassword() {
 	const [loginStatus, setLoginStatus] = useState(false)
 	const [loginMessage, setLoginMessage] = useState('')
 	const handleSubmit = async (e) => {
+		const email = data.user.email
 		e.preventDefault()
 		
 	}
@@ -64,6 +65,21 @@ export default function changePassword() {
 				</div>
 				<form onSubmit={handleSubmit}>
 					<h1>Change Password</h1>
+					{loginMessage ? (
+						loginStatus == false ? (
+							<p className="error">
+								{loginMessage}
+								<span></span>
+							</p>
+						) : (
+							<p className="success">
+								{loginMessage}
+								<span></span>
+							</p>
+						)
+					) : (
+						<></>
+					)}
 
 					<div className="input">
 						<span className="pass"></span>
