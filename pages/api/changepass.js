@@ -5,9 +5,15 @@ export default async function handler(req, res) {
 
 	const user = await findUserInDatabase(email)
 	const userId = user.id
-    
+
+	const passwordMatch = password === confirmPassword
+
+	if (!passwordMatch) {
+		res.status(401).json({ message: "Passwords Don't Match" })
+		return
+	}
 	const userData = {
-        newPassword: newPassword,
+		newPassword: newPassword,
 		user_id: userId,
 	}
 }
@@ -20,6 +26,4 @@ async function findUserInDatabase(email) {
 	return users.find((user) => user.email === email)
 }
 
-async function updateUserPassword(userData) {
-
-}
+async function updateUserPassword(userData) {}

@@ -22,9 +22,11 @@ export default function changePassword() {
 			},
 			body: JSON.stringify({ email, password, confirmPassword }),
 		})
-		const data = await response.json()
+		const info = await response.json()
 		if (response.ok) {
+            console.log(info)
 		} else {
+            console.log(info)
 		}
 	}
 	useEffect(() => {
