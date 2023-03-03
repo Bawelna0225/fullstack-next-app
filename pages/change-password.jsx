@@ -13,9 +13,8 @@ export default function changePassword() {
 	const [loginStatus, setLoginStatus] = useState(false)
 	const [loginMessage, setLoginMessage] = useState('')
 	const handleSubmit = async (e) => {
-
 		e.preventDefault()
-
+		
 	}
 	useEffect(() => {
 		if (status === 'unauthenticated') Router.replace('/auth/signin')
@@ -65,17 +64,16 @@ export default function changePassword() {
 				</div>
 				<form onSubmit={handleSubmit}>
 					<h1>Change Password</h1>
-				
 
 					<div className="input">
 						<span className="pass"></span>
 						<label htmlFor="">Password</label>
-						<input  type="password" required />
+						<input value={password} onChange={(e) => setPassword(e.target.value)} type="password" required />
 					</div>
 					<div className="input">
 						<span className="conpass"></span>
 						<label htmlFor="">Confirm Password</label>
-						<input type="password" required />
+						<input value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} type="password" required />
 					</div>
 					<div className="button">
 						<input className="button" type="submit" value="Change Password" />
