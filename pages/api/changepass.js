@@ -12,10 +12,17 @@ export default async function handler(req, res) {
 		res.status(401).json({ message: "Passwords Don't Match" })
 		return
 	}
+	const hashedPassword = await hashPassword(password)
 	const userData = {
 		newPassword: newPassword,
 		user_id: userId,
 	}
+}
+
+async function hashPassword(password) {
+	const saltRounds = 10
+	const hashedPassword = await bcrypt.hash(password, saltRounds)
+	return hashedPassword
 }
 
 async function findUserInDatabase(email) {
