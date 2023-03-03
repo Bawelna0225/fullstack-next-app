@@ -15,7 +15,17 @@ export default function changePassword() {
 	const handleSubmit = async (e) => {
 		const email = data.user.email
 		e.preventDefault()
-		
+		const response = await fetch('/api/changepass', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify({ email, password, confirmPassword }),
+		})
+		const data = await response.json()
+		if (response.ok) {
+		} else {
+		}
 	}
 	useEffect(() => {
 		if (status === 'unauthenticated') Router.replace('/auth/signin')
