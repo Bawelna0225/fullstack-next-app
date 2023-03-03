@@ -68,7 +68,7 @@ export default function Navbar() {
 						</Link>
 					</li>
 					<li>
-						<Link href="#">
+						<Link href="/change-password">
 							<GrPowerReset></GrPowerReset>
 							<span>Password</span>
 						</Link>
