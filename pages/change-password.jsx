@@ -24,7 +24,7 @@ export default function changePassword() {
 		})
 		const info = await response.json()
 		if (response.ok) {
-			setUpdateMessage(`Post Created, You will be redirected`)
+			setUpdateMessage(`Password updated, You will be redirected`)
 			setUpdateStatus(true)
 			resetForm()
 			setTimeout(() => {
@@ -44,6 +44,11 @@ export default function changePassword() {
 	useEffect(() => {
 		if (status === 'unauthenticated') Router.replace('/auth/signin')
 	}, [status])
+
+	function resetForm() {
+		setPassword('')
+		setConfirmPassword('')
+	}
 
 	if (status === 'authenticated') {
 		return (
