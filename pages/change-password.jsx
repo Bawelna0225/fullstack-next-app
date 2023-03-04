@@ -24,6 +24,11 @@ export default function changePassword() {
 		})
 		const info = await response.json()
 		if (response.ok) {
+			const res = await signIn('credentials', {
+				email: email,
+				password: password,
+				redirect: false,
+			})
 			setUpdateMessage(`Password updated, You will be redirected`)
 			setUpdateStatus(true)
 			resetForm()
