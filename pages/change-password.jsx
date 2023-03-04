@@ -24,7 +24,7 @@ export default function changePassword() {
 		})
 		const info = await response.json()
 		if (response.ok) {
-            console.log(info)
+			console.log(info)
 		} else {
             console.log(info)
 		}

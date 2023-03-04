@@ -1,4 +1,5 @@
 import connection from '../../utils/db'
+import bcrypt from 'bcryptjs'
 
 export default async function handler(req, res) {
 	const { email, password, confirmPassword } = req.body
@@ -13,10 +14,15 @@ export default async function handler(req, res) {
 		return
 	}
 	const hashedPassword = await hashPassword(password)
+    
 	const userData = {
-		newPassword: newPassword,
+		email: email,
+		newPassword: hashedPassword,
 		user_id: userId,
 	}
+	const newUserPassword = await updateUserPassword(userData)
+	res.status(200).json({ newUserPassword })
+
 }
 
 async function hashPassword(password) {
@@ -33,4 +39,7 @@ async function findUserInDatabase(email) {
 	return users.find((user) => user.email === email)
 }
 
-async function updateUserPassword(userData) {}
+async function updateUserPassword(userData) {
+	const { email, newPassword, user_id } = userData
+	return [email, newPassword]
+}
