@@ -5,7 +5,11 @@ export default async function handler(req, res) {
 	const { email, password, confirmPassword } = req.body
 
 	const user = await findUserInDatabase(email)
-	const userId = user.id
+
+	if (!user) {
+		res.status(401).json({ message: "Something is wrong, You don't exist" })
+		return
+	}
 
 	const passwordMatch = password === confirmPassword
 
@@ -18,7 +22,6 @@ export default async function handler(req, res) {
 	const userData = {
 		email: email,
 		newPassword: hashedPassword,
-		user_id: userId,
 	}
 	const newUserPassword = await updateUserPassword(userData)
 	res.status(200).json({ newUserPassword })
@@ -40,6 +43,14 @@ async function findUserInDatabase(email) {
 }
 
 async function updateUserPassword(userData) {
-	const { email, newPassword, user_id } = userData
-	return [email, newPassword]
+	const { email, newPassword } = userData
+	const sql = `UPDATE userdata SET password = ? WHERE email = ?`
+	const values = [newPassword, email]
+	try {
+		const [result] = await connection.promise().execute(sql, values)
+		return [email, newPassword]
+	} catch (error) {
+		console.error(`Error saving user to database: ${error}`)
+		return null
+	}
 }
