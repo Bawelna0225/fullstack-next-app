@@ -10,8 +10,8 @@ export default function changePassword() {
 	const [confirmPassword, setConfirmPassword] = useState('')
 	const { status, data } = useSession()
 
-	const [loginStatus, setLoginStatus] = useState(false)
-	const [loginMessage, setLoginMessage] = useState('')
+	const [updateStatus, setUpdateStatus] = useState(false)
+	const [updateMessage, setUpdateMessage] = useState('')
 	const handleSubmit = async (e) => {
 		const email = data.user.email
 		e.preventDefault()
@@ -24,9 +24,21 @@ export default function changePassword() {
 		})
 		const info = await response.json()
 		if (response.ok) {
-			console.log(info)
+			setUpdateMessage(`Post Created, You will be redirected`)
+			setUpdateStatus(true)
+			resetForm()
+			setTimeout(() => {
+				setUpdateStatus(null)
+				setUpdateMessage(``)
+				Router.replace('/Home')
+			}, 3000)
 		} else {
-            console.log(info)
+			setUpdateMessage(info.message)
+			setUpdateStatus(false)
+			setTimeout(() => {
+				setUpdateStatus(null)
+				setUpdateMessage(``)
+			}, 3000)
 		}
 	}
 	useEffect(() => {
@@ -75,23 +87,23 @@ export default function changePassword() {
 						></path>
 					</svg>
 				</div>
+				{updateMessage ? (
+					updateStatus == false ? (
+						<p className="error">
+							{updateMessage}
+							<span></span>
+						</p>
+					) : (
+						<p className="success">
+							{updateMessage}
+							<span></span>
+						</p>
+					)
+				) : (
+					<></>
+				)}
 				<form onSubmit={handleSubmit}>
 					<h1>Change Password</h1>
-					{loginMessage ? (
-						loginStatus == false ? (
-							<p className="error">
-								{loginMessage}
-								<span></span>
-							</p>
-						) : (
-							<p className="success">
-								{loginMessage}
-								<span></span>
-							</p>
-						)
-					) : (
-						<></>
-					)}
 
 					<div className="input">
 						<span className="pass"></span>
