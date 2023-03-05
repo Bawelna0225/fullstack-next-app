@@ -64,13 +64,13 @@ export default function Navbar() {
 					<li>
 						<Link href="#">
 							<SlPicture></SlPicture>
-							<span>Profile Picture</span>
+							<span>Change Profile Picture</span>
 						</Link>
 					</li>
 					<li>
 						<Link href="/change-password">
 							<GrPowerReset></GrPowerReset>
-							<span>Password</span>
+							<span>Change Password</span>
 						</Link>
 					</li>
 					<li>
