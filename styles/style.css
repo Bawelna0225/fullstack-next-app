@@ -727,6 +727,61 @@ nav .dropdown ul li button {
   scale: 1 1;
 }
 
+.crop-container {
+  background-color: var(--secondary-color);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: min(100vw - 2rem, 1200px);
+  margin: 0 auto;
+  padding: 20px;
+  gap: 10px;
+  margin-block: 20px;
+  border-radius: 4px;
+  box-shadow: 0px 0px 10px var(--shadow-color);
+}
+.crop-container .Crop-Controls {
+  display: flex;
+  flex-direction: column;
+}
+.crop-container .Crop-Controls .crop-input {
+  display: grid;
+}
+.crop-container .Crop-Controls .crop-input:has(input:disabled) {
+  opacity: 0.7;
+}
+.crop-container .Crop-Controls .crop-input:has(input:disabled) input {
+  opacity: 0.3;
+}
+.crop-container .Crop-Controls .crop-input:has(input:disabled) label {
+  background: var(--text-color);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  opacity: 0.3;
+}
+.crop-container .Crop-Controls .crop-input label {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  background: linear-gradient(60deg, var(--first-accent-color), var(--second-accent-color));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.crop-container .Crop-Controls .crop-input input {
+  padding: 8px;
+  border-radius: 4px;
+  border: none;
+  background: none;
+  outline: none;
+  padding-left: 12px;
+  color: var(--text-color);
+  border: 1px solid var(--border-color);
+}
+.crop-container .Crop-Controls .crop-input input:focus {
+  border: 1px solid var(--first-accent-color);
+}
+
 @-webkit-keyframes moveGradient {
   50% {
     background-position: 100% 50%;
