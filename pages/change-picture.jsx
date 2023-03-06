@@ -60,12 +60,12 @@ export default function changePicture() {
 		[completedCrop, scale, rotate]
 	)
 	return (
-		<div className="App">
+		<div className="crop-container">
 			<div className="Crop-Controls">
 				<input type="file" accept="image/*" onChange={onSelectFile} />
 				<div>
 					<label htmlFor="scale-input">Scale: </label>
-					<input id="scale-input" type="number" step="0.1" value={scale} disabled={!imgSrc} onChange={(e) => setScale(Number(e.target.value))} />
+					<input id="scale-input" min={0} max={5} type="number" step="0.1" value={scale} disabled={!imgSrc} onChange={(e) => setScale(Number(e.target.value))} />
 				</div>
 				<div>
 					<label htmlFor="rotate-input">Rotate: </label>
