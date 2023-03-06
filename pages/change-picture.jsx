@@ -1,53 +1,95 @@
-import React, { useState } from 'react'
-import ReactCrop from 'react-image-crop'
+import React, { useState, useRef } from 'react'
+
+import ReactCrop, { centerCrop, makeAspectCrop, Crop, PixelCrop } from 'react-image-crop'
+import { canvasPreview } from './canvasPreview'
+import { useDebounceEffect } from './useDebounceEffect'
 import 'react-image-crop/dist/ReactCrop.css'
 
+// This is to demonstate how to make and center a % aspect crop
+// which is a bit trickier so we use some helper functions.
+function centerAspectCrop(mediaWidth, mediaHeight, aspect) {
+	return centerCrop(
+		makeAspectCrop(
+			{
+				unit: '%',
+				width: 90,
+			},
+			aspect,
+			mediaWidth,
+			mediaHeight
+		),
+		mediaWidth,
+		mediaHeight
+	)
+}
+
 export default function changePicture() {
-	const [imagePreview, setImagePreview] = useState(null)
-	const [crop, setCrop] = useState({ aspect: 1 })
+	const [imgSrc, setImgSrc] = useState('')
+	const previewCanvasRef = useRef(null)
+	const imgRef = useRef(null)
+	const [crop, setCrop] = useState()
+	const [completedCrop, setCompletedCrop] = useState()
+	const [scale, setScale] = useState(1)
+	const [rotate, setRotate] = useState(0)
+	const [aspect, setAspect] = useState(1)
 
-	function handleFileInputChange(event) {
-		const file = event.target.files[0]
-		const reader = new FileReader()
-		reader.onload = function (event) {
-			setImagePreview(event.target.result)
+	function onSelectFile(e) {
+		if (e.target.files && e.target.files.length > 0) {
+			setCrop(undefined) // Makes crop preview update between images.
+			const reader = new FileReader()
+			reader.addEventListener('load', () => setImgSrc(reader.result?.toString() || ''))
+			reader.readAsDataURL(e.target.files[0])
 		}
-		reader.readAsDataURL(file)
 	}
 
-	function handleImageCropComplete(croppedAreaPixels, croppedImagePixels) {
-		// `croppedImagePixels` is a base64-encoded string of the cropped image
-		// const croppedImageFile = dataURItoFile(croppedImagePixels, 'cropped-image.jpg')
-        console.log('first')
-		// send `croppedImageFile` to the server or perform other necessary actions
-	}
-	function handleClearImage() {
-		setImagePreview(null)
+	function onImageLoad(e) {
+		if (aspect) {
+			const { width, height } = e.currentTarget
+			setCrop(centerAspectCrop(width, height, aspect))
+		}
 	}
 
-	// function dataURItoFile(dataURI, filename) {
-	// 	const byteString = atob(dataURI.split(',')[1])
-	// 	const mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0]
-	// 	const ab = new ArrayBuffer(byteString.length)
-	// 	const ia = new Uint8Array(ab)
-	// 	for (let i = 0; i < byteString.length; i++) {
-	// 		ia[i] = byteString.charCodeAt(i)
-	// 	}
-	// 	return new File([ab], filename, { type: mimeString })
-	// }
-
+	useDebounceEffect(
+		async () => {
+			if (completedCrop?.width && completedCrop?.height && imgRef.current && previewCanvasRef.current) {
+				// We use canvasPreview as it's much faster than imgPreview.
+				canvasPreview(imgRef.current, previewCanvasRef.current, completedCrop, scale, rotate)
+			}
+		},
+		100,
+		[completedCrop, scale, rotate]
+	)
 	return (
-		<div>
-			{/* <img src={imagePreview} alt="" /> */}
-			<input type="file" onChange={handleFileInputChange} />
-			{imagePreview && (
-				<div style={{ width: '500px', height: '500px', outline: '1px' }}>
-					<ReactCrop crop={crop} onComplete={handleImageCropComplete}>
-						<img src={imagePreview} />
-					</ReactCrop>
+		<div className="App">
+			<div className="Crop-Controls">
+				<input type="file" accept="image/*" onChange={onSelectFile} />
+				<div>
+					<label htmlFor="scale-input">Scale: </label>
+					<input id="scale-input" type="number" step="0.1" value={scale} disabled={!imgSrc} onChange={(e) => setScale(Number(e.target.value))} />
 				</div>
+				<div>
+					<label htmlFor="rotate-input">Rotate: </label>
+					<input id="rotate-input" type="number" value={rotate} disabled={!imgSrc} onChange={(e) => setRotate(Math.min(180, Math.max(-180, Number(e.target.value))))} />
+				</div>
+			</div>
+			{!!imgSrc && (
+				<ReactCrop crop={crop} onChange={(_, percentCrop) => setCrop(percentCrop)} onComplete={(c) => setCompletedCrop(c)} aspect={aspect}>
+					<img ref={imgRef} alt="Crop me" src={imgSrc} style={{ transform: `scale(${scale}) rotate(${rotate}deg)` }} onLoad={onImageLoad} />
+				</ReactCrop>
 			)}
-			<button onClick={handleClearImage}>Clear image</button>
+			<div>
+				{!!completedCrop && (
+					<canvas
+						ref={previewCanvasRef}
+						style={{
+							border: '1px solid black',
+							objectFit: 'contain',
+							width: 400,
+							height: 400,
+						}}
+					/>
+				)}
+			</div>
 		</div>
 	)
 }
