@@ -60,6 +60,18 @@ export default function changePicture() {
 		100,
 		[completedCrop, scale, rotate]
 	)
+	function handleSaveImage() {
+		const canvas = previewCanvasRef.current
+		const link = document.createElement('a')
+		const fileName = Date.now()
+		canvas.toBlob((blob) => {
+			const url = URL.createObjectURL(blob)
+			link.href = url
+			link.download = `${fileName}.png`
+			link.click()
+			URL.revokeObjectURL(url)
+		})
+	}
 	return (
 		<div className="crop-container">
 			<div className="Crop-Controls">
@@ -88,7 +100,7 @@ export default function changePicture() {
 						<canvas ref={previewCanvasRef} className="canvas" />
 						<div className="buttons">
 							<Link href="/Home">Cancel</Link>
-							<button>
+							<button onClick={handleSaveImage}>
 								<span>Save</span>
 							</button>
 						</div>
