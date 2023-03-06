@@ -88,7 +88,9 @@ export default function changePicture() {
 						<canvas ref={previewCanvasRef} className="canvas" />
 						<div className="buttons">
 							<Link href="/Home">Cancel</Link>
-							<button>Save</button>
+							<button>
+								<span>Save</span>
+							</button>
 						</div>
 					</>
 				)}

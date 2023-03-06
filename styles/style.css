@@ -797,6 +797,76 @@ nav .dropdown ul li button {
   border: 1px dashed transparent;
   background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' stroke='%23000000FF' stroke-width='3' stroke-dasharray='38%2c 37%2c 12' stroke-dashoffset='100' stroke-linecap='butt'/%3e%3c/svg%3e");
 }
+.crop-container .buttons {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid var(--border-color);
+}
+.crop-container .buttons a {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  background: linear-gradient(60deg, var(--first-accent-color), var(--second-accent-color));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.crop-container .buttons a:hover {
+  background: linear-gradient(60deg, var(--second-accent-color), var(--first-accent-color));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.crop-container .buttons button {
+  padding: 6px;
+  width: 200px !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100px !important;
+  cursor: pointer;
+  border-width: 1px;
+  border-style: solid;
+  -o-border-image: linear-gradient(60deg, var(--first-accent-color), var(--second-accent-color));
+     border-image: linear-gradient(60deg, var(--first-accent-color), var(--second-accent-color));
+  border-image-slice: 1;
+  position: relative;
+  background-color: transparent;
+}
+.crop-container .buttons button span {
+  background: linear-gradient(60deg, var(--first-accent-color), var(--second-accent-color));
+  -webkit-background-clip: text;
+  color: transparent;
+  transition: 300ms linear;
+  z-index: 1;
+}
+.crop-container .buttons button::before {
+  position: absolute;
+  content: "";
+  width: 100%;
+  height: 100%;
+  background-image: linear-gradient(90deg, var(--first-accent-color), var(--second-accent-color));
+  top: 0;
+  left: 0;
+  scale: 0 1;
+  transition: 300ms linear;
+  transform-origin: left;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+}
+.crop-container .buttons button:hover {
+  background-color: transparent;
+}
+.crop-container .buttons button:hover span {
+  color: white;
+}
+.crop-container .buttons button:hover::before {
+  scale: 1 1;
+}
 
 @-webkit-keyframes moveGradient {
   50% {
