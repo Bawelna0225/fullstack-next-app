@@ -744,6 +744,7 @@ nav .dropdown ul li button {
 .crop-container .Crop-Controls {
   display: flex;
   flex-direction: column;
+  width: min(100%, 400px);
 }
 .crop-container .Crop-Controls .crop-input {
   display: grid;
@@ -780,6 +781,21 @@ nav .dropdown ul li button {
 }
 .crop-container .Crop-Controls .crop-input input:focus {
   border: 1px solid var(--first-accent-color);
+}
+.crop-container h3 {
+  font-size: 1.3rem;
+  font-weight: normal;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  background: linear-gradient(60deg, var(--first-accent-color), var(--second-accent-color));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.crop-container .canvas {
+  width: min(400px, 100%);
+  border: 1px dashed transparent;
+  background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' stroke='%23000000FF' stroke-width='3' stroke-dasharray='38%2c 37%2c 12' stroke-dashoffset='100' stroke-linecap='butt'/%3e%3c/svg%3e");
 }
 
 @-webkit-keyframes moveGradient {
