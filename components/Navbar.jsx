@@ -62,7 +62,7 @@ export default function Navbar() {
 						</Link>
 					</li>
 					<li>
-						<Link href="#">
+						<Link href="/change-picture">
 							<SlPicture></SlPicture>
 							<span>Change Profile Picture</span>
 						</Link>
