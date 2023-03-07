@@ -23,7 +23,7 @@ const Home = ({ posts, commentsQuantity, authors }) => {
 		const user = authors.filter((author) => author.email === data.user.email)
 		return (
 			<>
-				<Navbar />
+				<Navbar userData={user}/>
 				<main className="posts-container home">
 					<h1>Welcome <span>{data.user.name}</span></h1>
 					<div className="cards-grid">
@@ -52,6 +52,13 @@ const Home = ({ posts, commentsQuantity, authors }) => {
 		return <div>loading</div>
 	}
 }
+	// const  getUserData = async (data) => {
+	// 	const email = data?.user.email
+	// 	const [users] = await connection.promise().query(`SELECT * FROM userdata`)
+
+	// 	return users.find((user) => user.email === email)
+	// 	// return pic
+	// }
 export async function getStaticProps() {
 	const [usersPosts] = await connection.promise().query('SELECT * FROM userposts ORDER BY post_id desc')
 	const [postsCommentsQuantity] = await connection.promise().query(`SELECT * FROM postcomments`)

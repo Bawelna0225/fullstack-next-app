@@ -3,8 +3,11 @@ import connection from '../utils/db'
 import { Inter } from '@next/font/google'
 import Posts from './Posts'
 import Navbar from '@/components/Navbar'
+import { useSession } from 'next-auth/react'
 
-export default function Home({ posts, commentsQuantity, author }) {
+export default function Home({ posts, commentsQuantity, authors }) {
+	const { status, data } = useSession()
+	const user = authors.filter((author) => author.email === data?.user.email)
 	return (
 		<>
 			<Head>
@@ -13,8 +16,8 @@ export default function Home({ posts, commentsQuantity, author }) {
 				<meta name="viewport" content="width=device-width, initial-scale=1" />
 				<link rel="icon" href="/favicon.ico" />
 			</Head>
-			<Navbar />
-			<Posts posts={posts} commentsQuantity={commentsQuantity} authors={author}  />
+			<Navbar userData={user}/>
+			<Posts posts={posts} commentsQuantity={commentsQuantity} authors={authors}  />
 		</>
 	)
 }
@@ -26,13 +29,13 @@ export async function getStaticProps() {
 	
 	const posts = JSON.parse(JSON.stringify(usersPosts))
 	const commentsQuantity = JSON.parse(JSON.stringify(postsCommentsQuantity))
-	const author = JSON.parse(JSON.stringify(postsAuthors))
+	const authors = JSON.parse(JSON.stringify(postsAuthors))
 
 	return {
 		props: {
 			posts,
 			commentsQuantity,
-			author,
+			authors,
 		},
 	}
 }

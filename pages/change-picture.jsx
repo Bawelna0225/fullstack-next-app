@@ -1,5 +1,6 @@
 import React, { useState, useRef } from 'react'
 import { useSession } from 'next-auth/react'
+import Router from 'next/router'
 import ReactCrop, { centerCrop, makeAspectCrop, Crop, PixelCrop } from 'react-image-crop'
 import { canvasPreview } from './canvasPreview'
 import { useDebounceEffect } from './useDebounceEffect'
@@ -70,6 +71,7 @@ export default function changePicture() {
 				body: JSON.stringify({ dataUrl, email }),
 			})
 			console.log('Image saved successfully')
+			Router.replace('/Home')
 		} catch (error) {
 			console.error(error)
 		}

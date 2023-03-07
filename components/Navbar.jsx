@@ -6,11 +6,11 @@ import { SlLogin, SlLogout, SlPicture } from 'react-icons/sl'
 import { AiOutlineHome, AiOutlineUserAdd } from 'react-icons/ai'
 import { GrChapterAdd, GrPowerReset } from 'react-icons/gr'
 import Image from 'next/image'
-import mypic from '../public/images/1678187345977.png'
 
-export default function Navbar() {
+export default function Navbar(userData) {
 	const { status, data } = useSession()
 	const [isDropdownOpen, setIsDropdownOpen] = useState(false)
+	const [profilePic, setProfilePic] = useState()
 
 	const handleToggleDropdown = () => {
 		setIsDropdownOpen(!isDropdownOpen)
@@ -21,7 +21,6 @@ export default function Navbar() {
 		var acronym = matches.join('')
 		userLogo.innerHTML = acronym.toUpperCase()
 	}
-
 	useEffect(() => {
 		const closeDropdown = (event) => {
 			if (!document.querySelector('.toggle').contains(event.target) && !document.querySelector('.dropdown').contains(event.target)) {
@@ -30,6 +29,12 @@ export default function Navbar() {
 			}
 		}
 		if (status === 'authenticated') {
+
+			const picName = userData.userData[0].picture
+			import(`../public/images/${picName}`)
+				.then((pic) => setProfilePic(pic.default))
+				.catch((error) => console.log(error))
+
 			createUserLogo(data.user.name)
 			window.addEventListener('click', closeDropdown)
 		}
@@ -54,7 +59,7 @@ export default function Navbar() {
 				>
 					<p className="username">{data.user.name}a</p>
 				</button>
-				<Image src={mypic} alt="Picture of the author" width={40} height={40}/>
+				{profilePic ? <Image src={profilePic} alt="Picture of the author" width={40} height={40} /> : <></>}
 			</div>
 			<div className={isDropdownOpen ? 'dropdown open' : 'dropdown'}>
 				<ul>
