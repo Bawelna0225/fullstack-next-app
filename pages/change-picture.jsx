@@ -6,8 +6,6 @@ import { useDebounceEffect } from './useDebounceEffect'
 import 'react-image-crop/dist/ReactCrop.css'
 import Link from 'next/link'
 
-// This is to demonstate how to make and center a % aspect crop
-// which is a bit trickier so we use some helper functions.
 function centerAspectCrop(mediaWidth, mediaHeight, aspect) {
 	return centerCrop(
 		makeAspectCrop(
@@ -60,17 +58,19 @@ export default function changePicture() {
 		100,
 		[completedCrop, scale, rotate]
 	)
-	function handleSaveImage() {
+	async function handleSaveImage() {
 		const canvas = previewCanvasRef.current
-		const link = document.createElement('a')
-		const fileName = Date.now()
-		canvas.toBlob((blob) => {
-			const url = URL.createObjectURL(blob)
-			link.href = url
-			link.download = `${fileName}.png`
-			link.click()
-			URL.revokeObjectURL(url)
-		})
+		const dataUrl = canvas.toDataURL('image/png')
+		try {
+			await fetch('/api/save-image', {
+				method: 'POST',
+				headers: { 'Content-Type': 'application/json' },
+				body: JSON.stringify({ dataUrl }),
+			})
+			console.log('Image saved successfully')
+		} catch (error) {
+			console.error(error)
+		}
 	}
 	return (
 		<div className="crop-container">
