@@ -16,10 +16,13 @@ export default function Navbar(userData) {
 		setIsDropdownOpen(!isDropdownOpen)
 	}
 	const createUserLogo = (username) => {
-		const userLogo = document.querySelector('.toggle')
-		var matches = username.match(/\b(\w)/g)
-		var acronym = matches.join('')
-		userLogo.innerHTML = acronym.toUpperCase()
+		if (!profilePic) {
+			console.log(profilePic);
+			const userLogo = document.querySelector('.toggle')
+			var matches = username.match(/\b(\w)/g)
+			var acronym = matches.join('')
+			userLogo.innerHTML = acronym.toUpperCase()
+		}
 	}
 	useEffect(() => {
 		const closeDropdown = (event) => {
@@ -29,13 +32,13 @@ export default function Navbar(userData) {
 			}
 		}
 		if (status === 'authenticated') {
-
 			const picName = userData.userData[0].picture
 			import(`../public/images/${picName}`)
 				.then((pic) => setProfilePic(pic.default))
 				.catch((error) => console.log(error))
-
-			createUserLogo(data.user.name)
+			if (!profilePic) {
+				createUserLogo(data.user.name)
+			}
 			window.addEventListener('click', closeDropdown)
 		}
 		return () => {
@@ -57,9 +60,8 @@ export default function Navbar(userData) {
 						handleToggleDropdown()
 					}}
 				>
-					<p className="username">{data.user.name}a</p>
+					{profilePic ? <Image src={profilePic} alt="Picture of the author" width={40} height={40} /> : <></>}
 				</button>
-				{profilePic ? <Image src={profilePic} alt="Picture of the author" width={40} height={40} /> : <></>}
 			</div>
 			<div className={isDropdownOpen ? 'dropdown open' : 'dropdown'}>
 				<ul>

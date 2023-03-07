@@ -71,12 +71,20 @@ nav {
 			background: linear-gradient(60deg, var(--first-accent-color), var(--second-accent-color));
 			-webkit-background-clip: text;
 			color: transparent;
+			position: relative;
 			&:hover {
 				border-image: linear-gradient(60deg, var(--second-accent-color), var(--first-accent-color));
 				background: linear-gradient(60deg, var(--second-accent-color), var(--first-accent-color));
 				-webkit-background-clip: text;
 				color: transparent;
 				border-image-slice: 1;
+			}
+			img {
+				width: 100%;
+				height: 100%;
+				position: absolute;
+				left: 0;
+				top: 0;
 			}
 		}
 	}

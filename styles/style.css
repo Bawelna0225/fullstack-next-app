@@ -349,6 +349,7 @@ nav .buttons .toggle {
   background: linear-gradient(60deg, var(--first-accent-color), var(--second-accent-color));
   -webkit-background-clip: text;
   color: transparent;
+  position: relative;
 }
 nav .buttons .toggle:hover {
   -o-border-image: linear-gradient(60deg, var(--second-accent-color), var(--first-accent-color));
@@ -357,6 +358,13 @@ nav .buttons .toggle:hover {
   -webkit-background-clip: text;
   color: transparent;
   border-image-slice: 1;
+}
+nav .buttons .toggle img {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
 }
 nav .dropdown {
   position: absolute;
