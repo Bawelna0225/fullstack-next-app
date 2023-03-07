@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react'
-
+import { useSession } from 'next-auth/react'
 import ReactCrop, { centerCrop, makeAspectCrop, Crop, PixelCrop } from 'react-image-crop'
 import { canvasPreview } from './canvasPreview'
 import { useDebounceEffect } from './useDebounceEffect'
@@ -31,6 +31,8 @@ export default function changePicture() {
 	const [scale, setScale] = useState(1)
 	const [rotate, setRotate] = useState(0)
 	const [aspect, setAspect] = useState(1)
+	const { status, data } = useSession()
+	const email = data?.user.email
 
 	function onSelectFile(e) {
 		if (e.target.files && e.target.files.length > 0) {
@@ -65,7 +67,7 @@ export default function changePicture() {
 			await fetch('/api/save-image', {
 				method: 'POST',
 				headers: { 'Content-Type': 'application/json' },
-				body: JSON.stringify({ dataUrl }),
+				body: JSON.stringify({ dataUrl, email }),
 			})
 			console.log('Image saved successfully')
 		} catch (error) {
