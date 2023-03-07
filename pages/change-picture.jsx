@@ -4,6 +4,7 @@ import Router from 'next/router'
 import ReactCrop, { centerCrop, makeAspectCrop, Crop, PixelCrop } from 'react-image-crop'
 import { canvasPreview } from './canvasPreview'
 import { useDebounceEffect } from './useDebounceEffect'
+import { AiOutlineArrowLeft, AiOutlineCloudUpload } from 'react-icons/ai'
 import 'react-image-crop/dist/ReactCrop.css'
 import Link from 'next/link'
 
@@ -77,40 +78,52 @@ export default function changePicture() {
 		}
 	}
 	return (
-		<div className="crop-container">
-			<div className="Crop-Controls">
-				<input type="file" accept="image/*" onChange={onSelectFile} />
-				<div className="crop-input">
-					<label htmlFor="scale-input">Scale: </label>
-					<input id="scale-input" min={0} max={5} type="number" step="0.1" value={scale} disabled={!imgSrc} onChange={(e) => setScale(Number(e.target.value))} />
+		<>
+			<Link href="/" className="go-back">
+				<AiOutlineArrowLeft></AiOutlineArrowLeft>Go to main page
+			</Link>
+
+			<div className="crop-container">
+				<div className="Crop-Controls">
+					<div className="drop-zone">
+						<input type="file" accept="image/*" onChange={onSelectFile} />
+							<AiOutlineCloudUpload></AiOutlineCloudUpload>
+						<span>
+							Drag and Drop or Click to Upload File
+						</span>
+					</div>
+					<div className="crop-input">
+						<label htmlFor="scale-input">Scale: </label>
+						<input id="scale-input" min={0} max={5} type="number" step="0.1" value={scale} disabled={!imgSrc} onChange={(e) => setScale(Number(e.target.value))} />
+					</div>
+					<div className="crop-input">
+						<label htmlFor="rotate-input">Rotate: </label>
+						<input id="rotate-input" type="number" value={rotate} disabled={!imgSrc} onChange={(e) => setRotate(Math.min(180, Math.max(-180, Number(e.target.value))))} />
+					</div>
 				</div>
-				<div className="crop-input">
-					<label htmlFor="rotate-input">Rotate: </label>
-					<input id="rotate-input" type="number" value={rotate} disabled={!imgSrc} onChange={(e) => setRotate(Math.min(180, Math.max(-180, Number(e.target.value))))} />
-				</div>
-			</div>
-			{!!imgSrc && (
-				<>
-					<h3>Image: </h3>
-					<ReactCrop crop={crop} onChange={(_, percentCrop) => setCrop(percentCrop)} onComplete={(c) => setCompletedCrop(c)} aspect={aspect}>
-						<img ref={imgRef} alt="Crop me" src={imgSrc} style={{ transform: `scale(${scale}) rotate(${rotate}deg)` }} onLoad={onImageLoad} />
-					</ReactCrop>
-				</>
-			)}
-			<div>
-				{!!completedCrop && (
+				{!!imgSrc && (
 					<>
-						<h3>Preview:</h3>
-						<canvas ref={previewCanvasRef} className="canvas" />
-						<div className="buttons">
-							<Link href="/Home">Cancel</Link>
-							<button onClick={handleSaveImage}>
-								<span>Save</span>
-							</button>
-						</div>
+						<h3>Image: </h3>
+						<ReactCrop crop={crop} onChange={(_, percentCrop) => setCrop(percentCrop)} onComplete={(c) => setCompletedCrop(c)} aspect={aspect}>
+							<img ref={imgRef} alt="Crop me" src={imgSrc} style={{ transform: `scale(${scale}) rotate(${rotate}deg)` }} onLoad={onImageLoad} />
+						</ReactCrop>
 					</>
 				)}
+				<div>
+					{!!completedCrop && (
+						<>
+							<h3>Preview:</h3>
+							<canvas ref={previewCanvasRef} className="canvas" />
+							<div className="buttons">
+								<Link href="/Home">Cancel</Link>
+								<button onClick={handleSaveImage}>
+									<span>Save</span>
+								</button>
+							</div>
+						</>
+					)}
+				</div>
 			</div>
-		</div>
+		</>
 	)
 }
