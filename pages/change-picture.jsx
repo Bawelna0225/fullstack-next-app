@@ -141,14 +141,14 @@ export default function changePicture() {
 						<>
 							<h3>Preview:</h3>
 							<canvas ref={previewCanvasRef} className="canvas" />
-							<div className="buttons">
-								<Link href="/Home">Cancel</Link>
-								<button onClick={handleSaveImage}>
-									<span>Save</span>
-								</button>
-							</div>
 						</>
 					)}
+				</div>
+				<div className="buttons">
+					<Link href="/Home">Cancel</Link>
+					<button onClick={handleSaveImage} disabled={!completedCrop}>
+						<span>Save</span>
+					</button>
 				</div>
 			</div>
 		</>
