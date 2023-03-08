@@ -12,12 +12,12 @@ export default function createPost() {
 	const [postMessage, setPostMessage] = useState('')
 	useEffect(() => {
 		const { postID, postTitle, postContent} = Router.query
+        
 		setPostTitle(postTitle || '')
 		setContent(postContent || '')
 	}, [])
 	const handleSubmit = async (e) => {
 		e.preventDefault()
-
 		const response = await fetch('/api/update-post', {
 			method: 'POST',
 			headers: {
