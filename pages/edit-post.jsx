@@ -4,6 +4,7 @@ import { useSession } from 'next-auth/react'
 import Router from 'next/router'
 
 export default function createPost() {
+	const [postID, setPostID] = useState('')
 	const [postTitle, setPostTitle] = useState('')
 	const [postContent, setContent] = useState('')
 	const { status, data } = useSession()
@@ -12,7 +13,8 @@ export default function createPost() {
 	const [postMessage, setPostMessage] = useState('')
 	useEffect(() => {
 		const { postID, postTitle, postContent} = Router.query
-        
+
+		setPostID(postID || '')
 		setPostTitle(postTitle || '')
 		setContent(postContent || '')
 	}, [])
