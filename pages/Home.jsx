@@ -33,18 +33,19 @@ const Home = ({ posts, commentsQuantity, authors }) => {
 		}
 		const handleDelete = async (e) => {
 			const postID = e.target.getAttribute('data-post-id')
-			console.log("Delete: ", postID);
-			// const response = await fetch('/api/delete_post', {
-			// 	method: 'POST',
-			// 	headers: {
-			// 		'Content-Type': 'application/json',
-			// 	},
-			// 	body: JSON.stringify({}),
-			// })
-			// const data = await response.json()
-			// if (response.ok) {
-			// } else {
-			// }
+			const response = await fetch('/api/delete_post', {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+				},
+				body: JSON.stringify({postID}),
+			})
+			const data = await response.json()
+			if (response.ok) {
+				Router.replace('/Home')
+			} else {
+				console.log(data)
+			}
 		}
 		const getUsableDate = (dateStr) => {
 			const dateObj = new Date(dateStr)
