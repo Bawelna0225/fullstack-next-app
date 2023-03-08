@@ -17,7 +17,6 @@ export default function Navbar(userData) {
 	}
 	const createUserLogo = (username) => {
 		if (!profilePic) {
-			console.log(profilePic);
 			const userLogo = document.querySelector('.toggle')
 			var matches = username.match(/\b(\w)/g)
 			var acronym = matches.join('')

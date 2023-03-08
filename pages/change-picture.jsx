@@ -33,6 +33,8 @@ export default function changePicture() {
 	const [scale, setScale] = useState(1)
 	const [rotate, setRotate] = useState(0)
 	const [aspect, setAspect] = useState(1)
+	const [updateStatus, setUpdateStatus] = useState(false)
+	const [updateMessage, setUpdateMessage] = useState('')
 	const { status, data } = useSession()
 	const email = data?.user.email
 
@@ -66,15 +68,28 @@ export default function changePicture() {
 		const canvas = previewCanvasRef.current
 		const dataUrl = canvas.toDataURL('image/png')
 		try {
-			await fetch('/api/save-image', {
+			const response = await fetch('/api/save-image', {
 				method: 'POST',
 				headers: { 'Content-Type': 'application/json' },
 				body: JSON.stringify({ dataUrl, email }),
 			})
-			console.log('Image saved successfully')
-			Router.replace('/Home')
+			const info = await response.json()
+			console.log(info)
+			setUpdateMessage(`Picture updated, You will be redirected`)
+			setUpdateStatus(true)
+			setTimeout(() => {
+				setUpdateStatus(null)
+				setUpdateMessage(``)
+				Router.replace('/Home')
+			}, 3000)
 		} catch (error) {
 			console.error(error)
+			setUpdateMessage('Something went wrong')
+			setUpdateStatus(false)
+			setTimeout(() => {
+				setUpdateStatus(null)
+				setUpdateMessage(``)
+			}, 3000)
 		}
 	}
 	return (
@@ -82,15 +97,27 @@ export default function changePicture() {
 			<Link href="/" className="go-back">
 				<AiOutlineArrowLeft></AiOutlineArrowLeft>Go to main page
 			</Link>
-
+			{updateMessage ? (
+				updateStatus == false ? (
+					<p className="error">
+						{updateMessage}
+						<span></span>
+					</p>
+				) : (
+					<p className="success">
+						{updateMessage}
+						<span></span>
+					</p>
+				)
+			) : (
+				<></>
+			)}
 			<div className="crop-container">
 				<div className="Crop-Controls">
 					<div className="drop-zone">
 						<input type="file" accept="image/*" onChange={onSelectFile} />
-							<AiOutlineCloudUpload></AiOutlineCloudUpload>
-						<span>
-							Drag and Drop or Click to Upload File
-						</span>
+						<AiOutlineCloudUpload></AiOutlineCloudUpload>
+						<span>Drag and Drop or Click to Upload File</span>
 					</div>
 					<div className="crop-input">
 						<label htmlFor="scale-input">Scale: </label>
