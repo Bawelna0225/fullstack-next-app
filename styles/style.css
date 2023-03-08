@@ -613,6 +613,39 @@ nav .dropdown ul li button {
   color: transparent;
   font-size: 3.5rem;
 }
+.home .cards-grid .card {
+  position: relative;
+}
+.home .cards-grid .card:hover .post-action {
+  opacity: 1;
+  pointer-events: all;
+}
+.home .cards-grid .post-action {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 4px;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  position: absolute;
+  right: 2px;
+  top: 2px;
+  border-width: 1px;
+  border-style: solid;
+  -o-border-image: linear-gradient(60deg, var(--first-accent-color), var(--second-accent-color));
+     border-image: linear-gradient(60deg, var(--first-accent-color), var(--second-accent-color));
+  border-image-slice: 1;
+  background-color: var(--secondary-color) !important;
+  z-index: 1;
+  opacity: 0;
+  pointer-events: none;
+  transition: 150ms linear;
+  cursor: pointer;
+}
+.home .cards-grid .post-action:last-of-type {
+  top: 42px;
+}
 
 .create-post {
   width: min(100vw - 2rem, 1200px);
