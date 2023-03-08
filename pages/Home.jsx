@@ -18,7 +18,15 @@ const Home = ({ posts, commentsQuantity, authors }) => {
 			const postID = e.target.getAttribute('data-post-id')
 			const postTitle = e.target.getAttribute('data-post-title')
 			const postContent = e.target.getAttribute('data-post-content')
-			console.table([['postID', postID],['postTitle', postTitle],['postContent', postContent]])
+			console.table([
+				['postID', postID],
+				['postTitle', postTitle],
+				['postContent', postContent],
+			])
+			Router.push({
+				pathname: '/edit-post',
+				query: { postID, postTitle, postContent },
+			})
 			// const response = await fetch('/api/edit_post', {
 			// 	method: 'POST',
 			// 	headers: {
@@ -38,7 +46,7 @@ const Home = ({ posts, commentsQuantity, authors }) => {
 				headers: {
 					'Content-Type': 'application/json',
 				},
-				body: JSON.stringify({postID}),
+				body: JSON.stringify({ postID }),
 			})
 			const data = await response.json()
 			if (response.ok) {
@@ -68,9 +76,9 @@ const Home = ({ posts, commentsQuantity, authors }) => {
 								return (
 									<div className="card" key={item.post_id}>
 										<h3>{item.title}</h3>
-										<span className="post-action" data-post-id={item.post_id} onClick={handleDelete}>
+										{/* <span className="post-action" data-post-id={item.post_id} onClick={handleDelete}>
 											<AiOutlineDelete></AiOutlineDelete> Delete
-										</span>
+										</span> */}
 										<span className="post-action" data-post-id={item.post_id} data-post-title={item.title} data-post-content={item.content} onClick={handleEdit}>
 											<AiOutlineEdit></AiOutlineEdit> Edit
 										</span>
