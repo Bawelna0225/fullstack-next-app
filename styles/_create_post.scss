@@ -18,7 +18,7 @@
 		border: 1px solid var(--border-color);
 		border-radius: 4px;
 		h1 {
-			font-size: 2rem;
+			font-size: clamp(1.3rem, 3vw, 3rem);
 			text-align: center;
 			width: fit-content;
 			background: linear-gradient(60deg, var(--first-accent-color), var(--second-accent-color));

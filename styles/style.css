@@ -669,7 +669,7 @@ nav .dropdown ul li button {
   border-radius: 4px;
 }
 .create-post form h1 {
-  font-size: 2rem;
+  font-size: clamp(1.3rem, 3vw, 3rem);
   text-align: center;
   width: -webkit-fit-content;
   width: -moz-fit-content;
@@ -944,6 +944,51 @@ nav .dropdown ul li button {
 }
 .crop-container .buttons button:hover::before {
   scale: 1 1;
+}
+
+.post-container {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 50px;
+}
+.post-container .top {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+.post-container .top p span {
+  font-weight: bold;
+}
+.post-container .post-content {
+  background-color: var(--secondary-color);
+  width: min(100vw - 2rem, 1200px);
+  padding: 15px;
+  border-radius: 4px;
+  box-shadow: 0px 0px 10px var(--shadow-color);
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+.post-container .post-content h1 {
+  font-size: 2rem;
+  font-weight: normal;
+  text-align: center;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  background: linear-gradient(60deg, var(--first-accent-color), var(--second-accent-color));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.post-container .post-content pre {
+  white-space: pre-wrap; /* Since CSS 2.1 */
+  white-space: -moz-pre-wrap; /* Mozilla, since 1999 */
+  white-space: -pre-wrap; /* Opera 4-6 */
+  white-space: -o-pre-wrap; /* Opera 7 */
+  word-wrap: break-word; /* Internet Explorer 5.5+ */
+  font-size: clamp(1rem, 1.1vw, 1.2rem);
 }
 
 @-webkit-keyframes moveGradient {
