@@ -1,9 +1,29 @@
+
+	.custom-shape-divider-bottom-1677324005 {
+		position: absolute;
+		bottom: 0;
+        z-index: -1;
+		left: 0;
+		width: 100%;
+		overflow: hidden;
+		line-height: 0;
+		transform: rotate(180deg);
+		svg {
+			position: relative;
+			display: block;
+			width: calc(100% + 1.3px);
+			height: 101px;
+		}
+		.shape-fill {
+			fill: var(--second-accent-color);
+		}
+	}
 .post-container {
-	padding: 20px;
+	padding: 50px 20px;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	gap: 50px;
+	gap: 30px;
 	.top {
 		width: 100%;
 		display: flex;
@@ -11,6 +31,10 @@
 		p {
 			span {
 				font-weight: bold;
+				width: fit-content;
+				background: linear-gradient(60deg, var(--first-accent-color), var(--second-accent-color));
+				-webkit-background-clip: text;
+				-webkit-text-fill-color: transparent;
 			}
 		}
 	}
@@ -32,13 +56,13 @@
 			-webkit-background-clip: text;
 			-webkit-text-fill-color: transparent;
 		}
-        pre {
-            white-space: pre-wrap; /* Since CSS 2.1 */
+		pre {
+			white-space: pre-wrap; /* Since CSS 2.1 */
 			white-space: -moz-pre-wrap; /* Mozilla, since 1999 */
 			white-space: -pre-wrap; /* Opera 4-6 */
 			white-space: -o-pre-wrap; /* Opera 7 */
 			word-wrap: break-word; /* Internet Explorer 5.5+ */
 			font-size: clamp(1rem, 1.1vw, 1.2rem);
-        }
+		}
 	}
 }
