@@ -22,7 +22,7 @@ const Posts = ({ posts, commentsQuantity, authors }) => {
 									<VscComment></VscComment>
 									<span>{commentsQuantity.filter((comment) => comment.post_id === item.post_id).length}</span>
 								</p>
-								<Link href="#">
+								<Link href={`/posts/${item.post_id}`}>
 									<span>Read More</span>
 								</Link>
 								<div className="bottom">
