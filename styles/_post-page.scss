@@ -151,5 +151,47 @@
 				}
 			}
 		}
+		.comments-container {
+			// background-color: #fff;
+			display: grid;
+			gap: 10px;
+			.user-comment {
+				background-color: var(--secondary-color);
+				padding: 5px;
+				display: flex;
+				flex-direction: column;
+				align-items: start;
+				border-radius: 4px;
+				border: 1px solid var(--border-color);
+				box-shadow: 0px 0px 10px var(--shadow-color);
+				.user {
+					display: flex;
+					gap: 10px;
+					align-items: center;
+					img {
+						width: 35px;
+						height: 35px;
+					}
+				}
+				.comment-content {
+					margin-left: 50px;
+				}
+				button {
+					margin-left: 65px;
+					background-color: transparent;
+					border: none;
+					display: flex;
+					align-items: center;
+					gap: 5px;
+					background: linear-gradient(60deg, var(--second-accent-color), var(--first-accent-color));
+					-webkit-background-clip: text;
+					color: transparent;
+					cursor: pointer;
+					svg {
+						fill: var(--second-accent-color);
+					}
+				}
+			}
+		}
 	}
 }

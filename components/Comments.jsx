@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import React, { useState } from 'react'
 import { BsReply } from 'react-icons/bs'
-import image from '../public/images/1678183414696.png'
+import image from '../public/images/1678183610311.png'
 
 export default function Comments({ comments, users }) {
 	const [commentContent, setCommentContent] = useState('')
@@ -46,14 +46,14 @@ export default function Comments({ comments, users }) {
 					<div className="user-comment">
 						<small>{getUsableDate(comment.date_created)}</small>
 						<div className="user">
-							<Image src={image}></Image>
+							<Image src={image} alt='pfp'></Image>
 							<p>
 								<b>{users.map((user) => {
 										if(user.id === comment.user_id) return <p key={user.id}>{user.name}</p>
 									})}</b>
 							</p>
 						</div>
-						<p>{comment.content}</p>
+						<p className='comment-content'>{comment.content}</p>
 						<button className="reply">
 							<BsReply></BsReply> reply
 						</button>
