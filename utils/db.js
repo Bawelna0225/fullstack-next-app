@@ -4,7 +4,7 @@ const connection = mysql.createConnection({
   host: 'localhost',
   user: 'root',
   password: '',
-  database: 'userlogindata'
+  database: 'next-blog-app'
 });
 
 module.exports = connection;

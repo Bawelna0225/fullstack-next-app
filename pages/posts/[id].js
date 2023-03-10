@@ -39,7 +39,6 @@ export const getStaticProps = async (context) => {
 	}
 }
 export default function Post({ posts, comments, users }) {
-	console.log(comments)
 	const { status, data } = useSession()
 
 	const getUsableDate = (dateStr) => {
