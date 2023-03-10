@@ -3,6 +3,7 @@ import connection from '../../utils/db'
 import Router from 'next/router'
 import Navbar from '@/components/Navbar'
 import { useSession } from 'next-auth/react'
+import Comments from '@/components/Comments'
 
 export const getStaticPaths = async () => {
 	const [usersPosts] = await connection.promise().query('SELECT * FROM userposts ORDER BY post_id desc')
@@ -80,6 +81,7 @@ export default function Post({ posts, authors }) {
 					<h1>{posts[0].title}</h1>
 					<pre>{posts[0].content}</pre>
 				</div>
+				<Comments></Comments>
 			</div>
 		</>
 	)

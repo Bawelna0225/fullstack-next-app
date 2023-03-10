@@ -1016,6 +1016,92 @@ nav .dropdown ul li button {
   word-wrap: break-word; /* Internet Explorer 5.5+ */
   font-size: clamp(1rem, 1.1vw, 1.2rem);
 }
+.post-container .comments {
+  width: min(100vw - 2rem, 1200px);
+  display: grid;
+  gap: 10px;
+  margin-top: 100px;
+}
+.post-container .comments form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.post-container .comments form textarea {
+  width: 100%;
+  resize: none;
+  height: 200px;
+  border-radius: 4px;
+  border: 1px solid var(--border-color);
+  box-shadow: 0px 0px 10px var(--shadow-color);
+  padding: 8px;
+  background-color: var(--secondary-color);
+  color: var(--text-color);
+}
+.post-container .comments form textarea:focus {
+  outline: 1px solid var(--first-accent-color);
+}
+.post-container .comments form .buttons {
+  display: flex;
+  gap: 10px;
+}
+.post-container .comments form .buttons button {
+  padding: 6px;
+  border-width: 1px;
+  border-style: solid;
+  -o-border-image: linear-gradient(60deg, var(--first-accent-color), var(--second-accent-color));
+     border-image: linear-gradient(60deg, var(--first-accent-color), var(--second-accent-color));
+  border-image-slice: 1;
+}
+.post-container .comments form .buttons button span {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+}
+.post-container .comments form .buttons button:first-of-type {
+  background-color: var(--secondary-color);
+}
+.post-container .comments form .buttons button:first-of-type * {
+  transition: 150ms linear;
+}
+.post-container .comments form .buttons button:first-of-type span {
+  background: linear-gradient(60deg, var(--first-accent-color), var(--second-accent-color));
+  -webkit-background-clip: text;
+  color: transparent;
+}
+.post-container .comments form .buttons button:first-of-type span svg {
+  fill: var(--second-accent-color);
+}
+.post-container .comments form .buttons button:first-of-type:hover {
+  cursor: pointer;
+  border-width: 1px;
+  border-style: solid;
+  -o-border-image: linear-gradient(60deg, var(--second-accent-color), var(--first-accent-color));
+     border-image: linear-gradient(60deg, var(--second-accent-color), var(--first-accent-color));
+  border-image-slice: 1;
+}
+.post-container .comments form .buttons button:first-of-type:hover span {
+  background: linear-gradient(60deg, var(--second-accent-color), var(--first-accent-color));
+  -webkit-background-clip: text;
+  color: transparent;
+}
+.post-container .comments form .buttons button:first-of-type:hover span svg {
+  fill: var(--first-accent-color);
+}
+.post-container .comments form .buttons button:last-of-type {
+  background-image: linear-gradient(60deg, var(--first-accent-color), var(--second-accent-color));
+  color: white;
+  border: none;
+  background-size: 200% 200%;
+  background-position: 0 50%;
+  transition: 300ms linear;
+}
+.post-container .comments form .buttons button:last-of-type:hover {
+  cursor: pointer;
+  background-position: 100% 50%;
+}
 
 @-webkit-keyframes moveGradient {
   50% {
