@@ -9,9 +9,9 @@ export default function Comments({ comment, author }) {
 
 	return (
 		<div className="comments">
-			<h2>Comments: (number)</h2>
+			<h2>Leave Your Comment</h2>
 			<form onSubmit={handleSubmitComment}>
-				<textarea required value={commentContent} onChange={({ target }) => setCommentContent(target.value)}></textarea>
+				<textarea placeholder='Your thoughts ...' required value={commentContent} onChange={({ target }) => setCommentContent(target.value)}></textarea>
 				<div className="buttons">
 					<button type="reset" onClick={() => setCommentContent('')}>
 						<span>
