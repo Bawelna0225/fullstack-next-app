@@ -1,17 +1,25 @@
+import Image from 'next/image'
 import React, { useState } from 'react'
+import { BsReply } from 'react-icons/bs'
+import image from '../public/images/1678183414696.png'
 
-export default function Comments({ comment, author }) {
+export default function Comments({ comments, users }) {
 	const [commentContent, setCommentContent] = useState('')
 	const handleSubmitComment = (e) => {
 		e.preventDefault()
 		console.log(commentContent)
 	}
-
+	const getUsableDate = (dateStr) => {
+		const dateObj = new Date(dateStr)
+		const options = { year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric' }
+		const formattedDate = new Intl.DateTimeFormat('en-us', options).format(dateObj)
+		return formattedDate
+	}
 	return (
 		<div className="comments">
 			<h2>Leave Your Comment</h2>
 			<form onSubmit={handleSubmitComment}>
-				<textarea placeholder='Your thoughts ...' required value={commentContent} onChange={({ target }) => setCommentContent(target.value)}></textarea>
+				<textarea placeholder="Your thoughts ..." required value={commentContent} onChange={({ target }) => setCommentContent(target.value)}></textarea>
 				<div className="buttons">
 					<button type="reset" onClick={() => setCommentContent('')}>
 						<span>
@@ -32,6 +40,26 @@ export default function Comments({ comment, author }) {
 					</button>
 				</div>
 			</form>
+			<h2>Comments ({comments.length}): </h2>
+			<div className="comments-container">
+				{comments.map((comment) => (
+					<div className="user-comment">
+						<small>{getUsableDate(comment.date_created)}</small>
+						<div className="user">
+							<Image src={image}></Image>
+							<p>
+								<b>{users.map((user) => {
+										if(user.id === comment.user_id) return <p key={user.id}>{user.name}</p>
+									})}</b>
+							</p>
+						</div>
+						<p>{comment.content}</p>
+						<button className="reply">
+							<BsReply></BsReply> reply
+						</button>
+					</div>
+				))}
+			</div>
 		</div>
 	)
 }

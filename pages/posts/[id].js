@@ -24,18 +24,22 @@ export const getStaticPaths = async () => {
 export const getStaticProps = async (context) => {
 	const id = context.params.id
 	const [usersPosts] = await connection.promise().query(`SELECT * FROM userposts WHERE post_id = ${id}`)
-	const [postsAuthors] = await connection.promise().query(`SELECT * FROM userdata`)
+	const [selectComments] = await connection.promise().query(`SELECT * FROM postcomments WHERE post_id = ${id}`)
+	const [selectUsers] = await connection.promise().query(`SELECT * FROM userdata`)
 
 	const posts = JSON.parse(JSON.stringify(usersPosts))
-	const authors = JSON.parse(JSON.stringify(postsAuthors))
+	const comments = JSON.parse(JSON.stringify(selectComments))
+	const users = JSON.parse(JSON.stringify(selectUsers))
 	return {
 		props: {
 			posts,
-			authors,
+			comments,
+			users,
 		},
 	}
 }
-export default function Post({ posts, authors }) {
+export default function Post({ posts, comments, users }) {
+	console.log(comments)
 	const { status, data } = useSession()
 
 	const getUsableDate = (dateStr) => {
@@ -45,8 +49,8 @@ export default function Post({ posts, authors }) {
 		return formattedDate
 	}
 
-	const user = authors.filter((author) => author.email === data?.user.email)
-	const postAuthor = authors.filter((author) => author.id === posts[0].author_id)
+	const user = users.filter((author) => author.email === data?.user.email)
+	const postAuthor = users.filter((author) => author.id === posts[0].author_id)
 	return (
 		<>
 			<div className="custom-shape-divider-bottom-1677324005">
@@ -81,7 +85,7 @@ export default function Post({ posts, authors }) {
 					<h1>{posts[0].title}</h1>
 					<pre>{posts[0].content}</pre>
 				</div>
-				<Comments></Comments>
+				<Comments comments={comments} users={users} />
 			</div>
 		</>
 	)
