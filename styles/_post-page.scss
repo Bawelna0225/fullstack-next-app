@@ -156,7 +156,7 @@
 			gap: 10px;
 			.user-comment {
 				background-color: var(--secondary-color);
-				padding: 8px;
+				padding: 12px;
 				display: flex;
 				flex-direction: column;
 				align-items: start;
@@ -190,6 +190,13 @@
 					svg {
 						fill: var(--second-accent-color);
 					}
+				}
+				.replies {
+					margin-top: 10px;
+					width: 100%;
+					display: flex;
+					flex-direction: column;
+					gap: 8px;
 				}
 			}
 		}

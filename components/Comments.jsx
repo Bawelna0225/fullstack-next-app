@@ -61,6 +61,27 @@ export default function Comments({ comments, users }) {
 								<button className="reply">
 									<BsReply></BsReply> reply
 								</button>
+								<div className="replies">
+									{comments.map((reply) => {
+										if (reply.parent_comment_id == comment.comment_id)
+											return (
+												<div className="user-comment">
+													<small>{getUsableDate(reply.date_created)}</small>
+													<div className="user">
+														<Image src={image} alt="pfp"></Image>
+														<p>
+															<b>
+																{users.map((user) => {
+																	if (user.id === reply.user_id) return <p key={user.id}>{user.name}</p>
+																})}
+															</b>
+														</p>
+													</div>
+													<p className="comment-content">{reply.content}</p>
+												</div>
+											)
+									})}
+								</div>
 							</div>
 						)
 				})}

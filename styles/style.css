@@ -28,18 +28,6 @@ button:disabled {
   --second-accent-color: hsl(269, 85%, 66%);
 }
 
-:root {
-  --background-start-rgb: rgb(222, 240, 203);
-  --background-end-rgb: rgba(165, 185, 250, 0.9);
-  --secondary-color: rgb(254, 254, 254);
-  --navbar-color: rgb(254, 254, 254);
-  --text-color: rgb(0, 0, 0);
-  --shadow-color: rgba(229, 229, 229, 0.203);
-  --border-color: rgb(230, 230, 230);
-  --first-accent-color: hsl(138, 85%, 66%);
-  --second-accent-color: hsl(207, 85%, 66%);
-}
-
 html,
 body {
   max-width: 100vw;
@@ -1109,7 +1097,7 @@ nav .dropdown ul li button {
 }
 .post-container .comments .comments-container .user-comment {
   background-color: var(--secondary-color);
-  padding: 8px;
+  padding: 12px;
   display: flex;
   flex-direction: column;
   align-items: start;
@@ -1144,6 +1132,13 @@ nav .dropdown ul li button {
 }
 .post-container .comments .comments-container .user-comment button svg {
   fill: var(--second-accent-color);
+}
+.post-container .comments .comments-container .user-comment .replies {
+  margin-top: 10px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 
 @-webkit-keyframes moveGradient {
