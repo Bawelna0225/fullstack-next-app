@@ -1103,12 +1103,13 @@ nav .dropdown ul li button {
   background-position: 100% 50%;
 }
 .post-container .comments .comments-container {
+  margin-top: 50px;
   display: grid;
   gap: 10px;
 }
 .post-container .comments .comments-container .user-comment {
   background-color: var(--secondary-color);
-  padding: 5px;
+  padding: 8px;
   display: flex;
   flex-direction: column;
   align-items: start;
@@ -1124,6 +1125,7 @@ nav .dropdown ul li button {
 .post-container .comments .comments-container .user-comment .user img {
   width: 35px;
   height: 35px;
+  border-radius: 4px;
 }
 .post-container .comments .comments-container .user-comment .comment-content {
   margin-left: 50px;

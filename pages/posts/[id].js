@@ -24,7 +24,7 @@ export const getStaticPaths = async () => {
 export const getStaticProps = async (context) => {
 	const id = context.params.id
 	const [usersPosts] = await connection.promise().query(`SELECT * FROM userposts WHERE post_id = ${id}`)
-	const [selectComments] = await connection.promise().query(`SELECT * FROM postcomments WHERE post_id = ${id}`)
+	const [selectComments] = await connection.promise().query(`SELECT * FROM postcomments WHERE post_id = ${id} ORDER BY comment_id desc`)
 	const [selectUsers] = await connection.promise().query(`SELECT * FROM userdata`)
 
 	const posts = JSON.parse(JSON.stringify(usersPosts))

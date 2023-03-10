@@ -69,7 +69,6 @@
 		display: grid;
 		gap: 10px;
 		margin-top: 100px;
-		// padding: 10px;
 		form {
 			width: 100%;
 			display: flex;
@@ -152,12 +151,12 @@
 			}
 		}
 		.comments-container {
-			// background-color: #fff;
+			margin-top: 50px;
 			display: grid;
 			gap: 10px;
 			.user-comment {
 				background-color: var(--secondary-color);
-				padding: 5px;
+				padding: 8px;
 				display: flex;
 				flex-direction: column;
 				align-items: start;
@@ -171,6 +170,7 @@
 					img {
 						width: 35px;
 						height: 35px;
+						border-radius: 4px;
 					}
 				}
 				.comment-content {

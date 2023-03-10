@@ -40,8 +40,8 @@ export default function Comments({ comments, users }) {
 					</button>
 				</div>
 			</form>
-			<h2>Comments ({comments.length}): </h2>
 			<div className="comments-container">
+			<h2>Comments ({comments.length}): </h2>
 				{comments.map((comment) => (
 					<div className="user-comment">
 						<small>{getUsableDate(comment.date_created)}</small>
