@@ -41,24 +41,29 @@ export default function Comments({ comments, users }) {
 				</div>
 			</form>
 			<div className="comments-container">
-			<h2>Comments ({comments.length}): </h2>
-				{comments.map((comment) => (
-					<div className="user-comment">
-						<small>{getUsableDate(comment.date_created)}</small>
-						<div className="user">
-							<Image src={image} alt='pfp'></Image>
-							<p>
-								<b>{users.map((user) => {
-										if(user.id === comment.user_id) return <p key={user.id}>{user.name}</p>
-									})}</b>
-							</p>
-						</div>
-						<p className='comment-content'>{comment.content}</p>
-						<button className="reply">
-							<BsReply></BsReply> reply
-						</button>
-					</div>
-				))}
+				<h2>Comments ({comments.length}): </h2>
+				{comments.map((comment) => {
+					if (comment.parent_comment_id === null)
+						return (
+							<div className="user-comment">
+								<small>{getUsableDate(comment.date_created)}</small>
+								<div className="user">
+									<Image src={image} alt="pfp"></Image>
+									<p>
+										<b>
+											{users.map((user) => {
+												if (user.id === comment.user_id) return <p key={user.id}>{user.name}</p>
+											})}
+										</b>
+									</p>
+								</div>
+								<p className="comment-content">{comment.content}</p>
+								<button className="reply">
+									<BsReply></BsReply> reply
+								</button>
+							</div>
+						)
+				})}
 			</div>
 		</div>
 	)
