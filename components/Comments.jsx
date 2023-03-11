@@ -1,11 +1,14 @@
 import Image from 'next/image'
 import React, { useState, useEffect } from 'react'
+import { useSession } from 'next-auth/react'
 import { BsReply } from 'react-icons/bs'
 import { format } from 'date-fns'
 
-export default function Comments({ comments, users }) {
+export default function Comments({ comments, users, id }) {
 	const [commentContent, setCommentContent] = useState('')
+	const { status, data } = useSession()
 	const handleSubmitComment = (e) => {
+		console.log(commentContent, id, data.user.email);
 		e.preventDefault()
 	}
 	return (
@@ -23,7 +26,7 @@ export default function Comments({ comments, users }) {
 							</svg>
 						</span>
 					</button>
-					<button type="submit">
+					<button type="submit" disabled = {status === 'unauthenticated'}>
 						<span>
 							Submit
 							<svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 16 16" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">

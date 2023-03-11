@@ -35,10 +35,11 @@ export const getStaticProps = async (context) => {
 			posts,
 			comments,
 			users,
+			id,
 		},
 	}
 }
-export default function Post({ posts, comments, users }) {
+export default function Post({ posts, comments, users, id }) {
 	const { status, data } = useSession()
 
 	const getUsableDate = (dateStr) => {
@@ -84,7 +85,7 @@ export default function Post({ posts, comments, users }) {
 					<h1>{posts[0].title}</h1>
 					<pre>{posts[0].content}</pre>
 				</div>
-				<Comments comments={comments} users={users} />
+				<Comments comments={comments} users={users} id={id} />
 			</div>
 		</>
 	)
