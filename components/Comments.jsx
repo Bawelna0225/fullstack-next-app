@@ -1,25 +1,20 @@
 import Image from 'next/image'
 import React, { useState, useEffect } from 'react'
 import { BsReply } from 'react-icons/bs'
+import { format } from 'date-fns'
 
 export default function Comments({ comments, users }) {
 	const [commentContent, setCommentContent] = useState('')
 	const handleSubmitComment = (e) => {
 		e.preventDefault()
 	}
-	const getUsableDate = (dateStr) => {
-		const dateObj = new Date(dateStr)
-		const options = { year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric' }
-		const formattedDate = new Intl.DateTimeFormat('en-us', options).format(dateObj)
-		return formattedDate
-	}
-
 	const createUserLogo = (username) => {
 		const userLogo = document.querySelector('.user img')
 		var matches = username.match(/\b(\w)/g)
 		var acronym = matches.join('')
 		userLogo.innerHTML = acronym.toUpperCase()
 	}
+
 	return (
 		<div className="comments">
 			<h2>Leave Your Comment</h2>
@@ -50,8 +45,11 @@ export default function Comments({ comments, users }) {
 				{comments.map((comment) => {
 					if (comment.parent_comment_id === null)
 						return (
-							<div className="user-comment">
-								<small>{getUsableDate(comment.date_created)}</small>
+							<div className="user-comment" key={comment.comment_id}>
+								<small>
+									{format(new Date(comment.date_created), 'yyyy-MM-dd')}, {format(new Date(comment.date_created), 'HH:mm')}
+								</small>
+
 								{users.map((user) => {
 									if (user.id === comment.user_id)
 										return (
@@ -71,12 +69,14 @@ export default function Comments({ comments, users }) {
 									{comments.map((reply) => {
 										if (reply.parent_comment_id == comment.comment_id)
 											return (
-												<div className="user-comment">
-													<small>{getUsableDate(reply.date_created)}</small>
+												<div className="user-comment" key={`${reply.comment_id}`}>
+													<small>
+														{format(new Date(reply.date_created), 'yyyy-MM-dd')}, {format(new Date(reply.date_created), 'HH:mm')}
+													</small>
 													{users.map((user) => {
 														if (user.id === reply.user_id)
 															return (
-																<div className="user" key={`${user.id}-reply`}>
+																<div className="user" key={`${user.id}`}>
 																	<Image src={`/images/${user.picture}`} width={40} height={40} alt={user.name}></Image>
 																	<p>
 																		<b>{user.name}</b>
