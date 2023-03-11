@@ -8,13 +8,6 @@ export default function Comments({ comments, users }) {
 	const handleSubmitComment = (e) => {
 		e.preventDefault()
 	}
-	const createUserLogo = (username) => {
-		const userLogo = document.querySelector('.user img')
-		var matches = username.match(/\b(\w)/g)
-		var acronym = matches.join('')
-		userLogo.innerHTML = acronym.toUpperCase()
-	}
-
 	return (
 		<div className="comments">
 			<h2>Leave Your Comment</h2>
@@ -54,7 +47,8 @@ export default function Comments({ comments, users }) {
 									if (user.id === comment.user_id)
 										return (
 											<div className="user" key={user.id}>
-												<Image src={`/images/${user.picture}`} width={40} height={40} alt={user.name}></Image>
+												<div className="logo"></div>
+												{user.picture === null ? <Image src={`/images/Default_pfp.png`} width={40} height={40} alt={user.name}></Image> : <Image src={`/images/${user.picture}`} width={40} height={40} alt={user.name}></Image>}
 												<p>
 													<b>{user.name}</b>
 												</p>
@@ -77,7 +71,8 @@ export default function Comments({ comments, users }) {
 														if (user.id === reply.user_id)
 															return (
 																<div className="user" key={`${user.id}`}>
-																	<Image src={`/images/${user.picture}`} width={40} height={40} alt={user.name}></Image>
+																	<div className="logo"></div>
+																	{user.picture === null ? <Image src={`/images/Default_pfp.png`} width={40} height={40} alt={user.name}></Image> : <Image src={`/images/${user.picture}`} width={40} height={40} alt={user.name}></Image>}
 																	<p>
 																		<b>{user.name}</b>
 																	</p>
