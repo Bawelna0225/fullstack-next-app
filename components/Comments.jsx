@@ -7,9 +7,25 @@ import { format } from 'date-fns'
 export default function Comments({ comments, users, id }) {
 	const [commentContent, setCommentContent] = useState('')
 	const { status, data } = useSession()
-	const handleSubmitComment = (e) => {
-		console.log(commentContent, id, data.user.email);
+	const handleSubmitComment = async (e) => {
+		// console.log(id, commentContent, data.user.email);
+		const email = data.user.email
 		e.preventDefault()
+
+		const response = await fetch('/api/save-comment', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify({ id, commentContent, email }),
+		})
+		const info = await response.json()
+		if (response.ok) {
+			window.location.reload();
+		} else {
+			console.error('Error', info);
+		}
+		console.log(info)
 	}
 	return (
 		<div className="comments">
