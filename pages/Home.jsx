@@ -28,21 +28,24 @@ const Home = ({ posts, commentsQuantity, authors }) => {
 				query: { postID, postTitle, postContent },
 			})
 		}
-		const handleDelete = async (e) => {
-			const postID = e.target.getAttribute('data-post-id')
-			const response = await fetch('/api/delete_post', {
-				method: 'POST',
-				headers: {
-					'Content-Type': 'application/json',
-				},
-				body: JSON.stringify({ postID }),
-			})
-			const data = await response.json()
-			if (response.ok) {
-				Router.replace('/Home')
-			} else {
-				console.log(data)
-			}
+		const confirmDelete = async (e) => {
+			
+		}
+		const handleDelete = async (postID) => {
+			
+			// const response = await fetch('/api/delete_post', {
+			// 	method: 'POST',
+			// 	headers: {
+			// 		'Content-Type': 'application/json',
+			// 	},
+			// 	body: JSON.stringify({ postID }),
+			// })
+			// const data = await response.json()
+			// if (response.ok) {
+			// Router.replace('/Home')
+			// } else {
+			// 	console.log(data)
+			// }
 		}
 		const getUsableDate = (dateStr) => {
 			const dateObj = new Date(dateStr)
@@ -54,6 +57,16 @@ const Home = ({ posts, commentsQuantity, authors }) => {
 		const user = authors.filter((author) => author.email === data.user.email)
 		return (
 			<>
+				{/* <div className="confirm-modal">
+					<div className="modal-content">
+						<h2>Are you sure?</h2>
+						<p>This action cannot be reverted. This post will be lost forever.</p>
+						<div className="buttons">
+							<button>No, Cancel</button>
+							<button>Yes, I am</button>
+						</div>
+					</div>
+				</div> */}
 				<Navbar userData={user} />
 				<main className="posts-container home">
 					<h1>
@@ -65,7 +78,7 @@ const Home = ({ posts, commentsQuantity, authors }) => {
 								return (
 									<div className="card" key={item.post_id}>
 										<h3>{item.title}</h3>
-										<span className="post-action" data-post-id={item.post_id} onClick={handleDelete}>
+										<span className="post-action" data-post-id={item.post_id} onClick={confirmDelete}>
 											<AiOutlineDelete></AiOutlineDelete> Delete
 										</span>
 										<span className="post-action" data-post-id={item.post_id} data-post-title={item.title} data-post-content={item.content} onClick={handleEdit}>
