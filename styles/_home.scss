@@ -1,9 +1,7 @@
  .confirm-modal {
 	position: fixed !important;
 	z-index: 10;
-	top: 0;
-	left: 0;
-	right: 0;
+	inset: 0;
 	height: 100vh;
 	display: flex;
 	justify-content: center;

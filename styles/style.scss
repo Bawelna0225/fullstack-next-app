@@ -56,7 +56,6 @@ body {
 body {
 	color: var(--text-color);
 	background: linear-gradient(to bottom, transparent, var(--background-end-rgb)) var(--background-start-rgb);
-	// backdrop-filter: blur(8px);
 }
 .go-back {
 	display: flex;
