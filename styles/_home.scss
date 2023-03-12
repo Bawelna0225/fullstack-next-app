@@ -1,3 +1,58 @@
+.confirm-modal {
+	position: fixed;
+	z-index: 10;
+	inset: 0;
+	height: 100vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: rgba(0, 0, 0, 0.939);
+	backdrop-filter: blur(10px);
+	.modal-content {
+		background-color: var(--secondary-color);
+		padding: 15px;
+		width: min(calc(100% - 2rem), 400px);
+		border-radius: 4px;
+		box-shadow: 0px 0px 10px var(--shadow-color);
+		display: flex;
+		flex-direction: column;
+		gap: 40px;
+		text-align: center;
+		h2 {
+			font-size: 2rem;
+		}
+		.buttons {
+			width: 100%;
+			display: flex;
+			justify-content: space-between;
+			button {
+				border-width: 1px;
+				border-style: solid;
+				border-image: linear-gradient(60deg, var(--first-accent-color), var(--second-accent-color));
+				border-image-slice: 1;
+				background: linear-gradient(60deg, var(--first-accent-color), var(--second-accent-color));
+				background-clip: text;
+				color: transparent;
+				padding: 6px;
+				&:hover {
+					border-width: 1px;
+					border-style: solid;
+					border-image: linear-gradient(60deg, var(--second-accent-color), var(--first-accent-color));
+					border-image-slice: 1;
+					background: linear-gradient(60deg, var(--second-accent-color), var(--first-accent-color));
+					background-clip: text;
+					color: transparent;
+					cursor: pointer;
+				}
+				&:active {
+					background: linear-gradient(60deg, var(--second-accent-color), var(--first-accent-color));
+					color: var(--text-color);
+				}
+			}
+		}
+	}
+}
+
 .home {
 	h1 {
 		text-align: center;

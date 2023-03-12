@@ -57,7 +57,7 @@ const Home = ({ posts, commentsQuantity, authors }) => {
 		const user = authors.filter((author) => author.email === data.user.email)
 		return (
 			<>
-				{/* <div className="confirm-modal">
+				<div className="confirm-modal">
 					<div className="modal-content">
 						<h2>Are you sure?</h2>
 						<p>This action cannot be reverted. This post will be lost forever.</p>
@@ -66,7 +66,7 @@ const Home = ({ posts, commentsQuantity, authors }) => {
 							<button>Yes, I am</button>
 						</div>
 					</div>
-				</div> */}
+				</div>
 				<Navbar userData={user} />
 				<main className="posts-container home">
 					<h1>

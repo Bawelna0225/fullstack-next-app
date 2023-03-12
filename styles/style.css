@@ -597,6 +597,66 @@ nav .dropdown ul li button {
   max-width: 300px;
 }
 
+.confirm-modal {
+  position: fixed;
+  z-index: 10;
+  inset: 0;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.939);
+  -webkit-backdrop-filter: blur(10px);
+          backdrop-filter: blur(10px);
+}
+.confirm-modal .modal-content {
+  background-color: var(--secondary-color);
+  padding: 15px;
+  width: min(100% - 2rem, 400px);
+  border-radius: 4px;
+  box-shadow: 0px 0px 10px var(--shadow-color);
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  text-align: center;
+}
+.confirm-modal .modal-content h2 {
+  font-size: 2rem;
+}
+.confirm-modal .modal-content .buttons {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+.confirm-modal .modal-content .buttons button {
+  border-width: 1px;
+  border-style: solid;
+  -o-border-image: linear-gradient(60deg, var(--first-accent-color), var(--second-accent-color));
+     border-image: linear-gradient(60deg, var(--first-accent-color), var(--second-accent-color));
+  border-image-slice: 1;
+  background: linear-gradient(60deg, var(--first-accent-color), var(--second-accent-color));
+  -webkit-background-clip: text;
+          background-clip: text;
+  color: transparent;
+  padding: 6px;
+}
+.confirm-modal .modal-content .buttons button:hover {
+  border-width: 1px;
+  border-style: solid;
+  -o-border-image: linear-gradient(60deg, var(--second-accent-color), var(--first-accent-color));
+     border-image: linear-gradient(60deg, var(--second-accent-color), var(--first-accent-color));
+  border-image-slice: 1;
+  background: linear-gradient(60deg, var(--second-accent-color), var(--first-accent-color));
+  -webkit-background-clip: text;
+          background-clip: text;
+  color: transparent;
+  cursor: pointer;
+}
+.confirm-modal .modal-content .buttons button:active {
+  background: linear-gradient(60deg, var(--second-accent-color), var(--first-accent-color));
+  color: var(--text-color);
+}
+
 .home h1 {
   text-align: center;
   margin-block: 50px;
