@@ -36,20 +36,21 @@ const Home = ({ posts, commentsQuantity, authors }) => {
 			setDeleteID(postID)
 		}
 		const handleDelete = async (postID) => {
-			console.log('deleting:', postID)
-			// const response = await fetch('/api/delete_post', {
-			// 	method: 'POST',
-			// 	headers: {
-			// 		'Content-Type': 'application/json',
-			// 	},
-			// 	body: JSON.stringify({ postID }),
-			// })
-			// const data = await response.json()
-			// if (response.ok) {
-			// Router.replace('/Home')
-			// } else {
-			// 	console.log(data)
-			// }
+			const response = await fetch('/api/delete_post', {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+				},
+				body: JSON.stringify({ postID }),
+			})
+			const data = await response.json()
+			if (response.ok) {
+				setShowModal(false)
+				setDeleteID(null)
+				Router.replace('/Home')
+			} else {
+				console.log(data)
+			}
 		}
 		const getUsableDate = (dateStr) => {
 			const dateObj = new Date(dateStr)
