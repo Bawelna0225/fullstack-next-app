@@ -7,6 +7,8 @@ import Navbar from '@/components/Navbar'
 import { AiOutlineDelete, AiOutlineEdit } from 'react-icons/ai'
 
 const Home = ({ posts, commentsQuantity, authors }) => {
+	const [deleteID, setDeleteID] = useState(null)
+	const [showModal, setShowModal] = useState(false)
 	const { status, data } = useSession()
 
 	useEffect(() => {
@@ -29,10 +31,12 @@ const Home = ({ posts, commentsQuantity, authors }) => {
 			})
 		}
 		const confirmDelete = async (e) => {
-			
+			const postID = e.target.getAttribute('data-post-id')
+			setShowModal(true)
+			setDeleteID(postID)
 		}
 		const handleDelete = async (postID) => {
-			
+			console.log('deleting:', postID)
 			// const response = await fetch('/api/delete_post', {
 			// 	method: 'POST',
 			// 	headers: {
@@ -57,16 +61,19 @@ const Home = ({ posts, commentsQuantity, authors }) => {
 		const user = authors.filter((author) => author.email === data.user.email)
 		return (
 			<>
-				<div className="confirm-modal">
-					<div className="modal-content">
-						<h2>Are you sure?</h2>
-						<p>This action cannot be reverted. This post will be lost forever.</p>
-						<div className="buttons">
-							<button>No, Cancel</button>
-							<button>Yes, I am</button>
+				{showModal && (
+					<div className="confirm-modal">
+						<div className="modal-content">
+							<h2>Are you sure?</h2>
+							<p>This action cannot be reverted. This post will be lost forever.</p>
+							<div className="buttons">
+								<button onClick={() => setShowModal(false)}>No, Cancel</button>
+								<button onClick={() => handleDelete(deleteID)}>Yes, I am</button>
+							</div>
 						</div>
 					</div>
-				</div>
+				)}
+
 				<Navbar userData={user} />
 				<main className="posts-container home">
 					<h1>

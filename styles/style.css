@@ -50,8 +50,6 @@ body {
 body {
   color: var(--text-color);
   background: linear-gradient(to bottom, transparent, var(--background-end-rgb)) var(--background-start-rgb);
-  -webkit-backdrop-filter: blur(8px);
-          backdrop-filter: blur(8px);
 }
 
 .go-back {
@@ -598,9 +596,11 @@ nav .dropdown ul li button {
 }
 
 .confirm-modal {
-  position: fixed;
+  position: fixed !important;
   z-index: 10;
-  inset: 0;
+  top: 0;
+  left: 0;
+  right: 0;
   height: 100vh;
   display: flex;
   justify-content: center;
@@ -613,6 +613,9 @@ nav .dropdown ul li button {
   background-color: var(--secondary-color);
   padding: 15px;
   width: min(100% - 2rem, 400px);
+  height: -webkit-max-content;
+  height: -moz-max-content;
+  height: max-content;
   border-radius: 4px;
   box-shadow: 0px 0px 10px var(--shadow-color);
   display: flex;
@@ -657,6 +660,9 @@ nav .dropdown ul li button {
   color: var(--text-color);
 }
 
+.home {
+  position: relative;
+}
 .home h1 {
   text-align: center;
   margin-block: 50px;
