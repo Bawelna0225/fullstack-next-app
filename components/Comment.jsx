@@ -58,7 +58,13 @@ export default function Comment({ comment, users, allComments }) {
 			<form onSubmit={handleSubmitReply} className={!openReply ? 'hide' : ''}>
 				<textarea placeholder="Your thoughts ..." required value={replyContent} onChange={({ target }) => setReplyContent(target.value)}></textarea>
 				<div className="buttons">
-					<button type="reset" onClick={() => {setReplyContent(''); setOpenReply(false)}}>
+					<button
+						type="reset"
+						onClick={() => {
+							setReplyContent('')
+							setOpenReply(false)
+						}}
+					>
 						<span>
 							Cancel
 							<svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 16 16" height="1em" width="1em" xmlns="http:www.w3.org/2000/svg">
