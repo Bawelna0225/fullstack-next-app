@@ -1093,6 +1093,9 @@ nav .dropdown ul li button {
   flex-direction: column;
   gap: 10px;
 }
+.post-container .comments form.hide {
+  display: none;
+}
 .post-container .comments form textarea {
   width: 100%;
   resize: none;
