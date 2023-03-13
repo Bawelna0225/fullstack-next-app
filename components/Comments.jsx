@@ -1,13 +1,10 @@
 import Image from 'next/image'
 import React, { useState } from 'react'
 import { useSession } from 'next-auth/react'
-import { BsReply } from 'react-icons/bs'
-import { format } from 'date-fns'
 import Comment from './Comment'
 
 export default function Comments({ comments, users, id }) {
 	const [commentContent, setCommentContent] = useState('')
-	const [replyContent, setReplyContent] = useState('')
 	const { status, data } = useSession()
 	const handleSubmitComment = async (e) => {
 		const email = data.user.email
@@ -19,25 +16,6 @@ export default function Comments({ comments, users, id }) {
 				'Content-Type': 'application/json',
 			},
 			body: JSON.stringify({ id, commentContent, email }),
-		})
-		const info = await response.json()
-		if (response.ok) {
-			window.location.reload()
-		} else {
-			console.error('Error', info)
-		}
-		console.log(info)
-	}
-	const handleSubmitReply = async (e) => {
-		const email = data.user.email
-		e.preventDefault()
-
-		const response = await fetch('/api/save-reply', {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json',
-			},
-			body: JSON.stringify({ id, replyContent, email }),
 		})
 		const info = await response.json()
 		if (response.ok) {
