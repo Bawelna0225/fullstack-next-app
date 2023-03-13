@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { useSession } from 'next-auth/react'
 import { BsReply } from 'react-icons/bs'
 import { format } from 'date-fns'
@@ -8,7 +8,6 @@ export default function Comments({ comments, users, id }) {
 	const [commentContent, setCommentContent] = useState('')
 	const { status, data } = useSession()
 	const handleSubmitComment = async (e) => {
-		// console.log(id, commentContent, data.user.email);
 		const email = data.user.email
 		e.preventDefault()
 
@@ -21,9 +20,9 @@ export default function Comments({ comments, users, id }) {
 		})
 		const info = await response.json()
 		if (response.ok) {
-			window.location.reload();
+			window.location.reload()
 		} else {
-			console.error('Error', info);
+			console.error('Error', info)
 		}
 		console.log(info)
 	}
@@ -42,7 +41,7 @@ export default function Comments({ comments, users, id }) {
 							</svg>
 						</span>
 					</button>
-					<button type="submit" disabled = {status === 'unauthenticated'}>
+					<button type="submit" disabled={status === 'unauthenticated'}>
 						<span>
 							Submit
 							<svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 16 16" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
@@ -67,7 +66,11 @@ export default function Comments({ comments, users, id }) {
 										return (
 											<div className="user" key={user.id}>
 												<div className="logo"></div>
-												{user.picture === null ? <Image src={`/images/Default_pfp.png`} width={40} height={40} alt={user.name}></Image> : <Image src={`/images/${user.picture}`} width={40} height={40} alt={user.name}></Image>}
+												{user.picture === null ? (
+													<Image src={`/images/Default_pfp.png`} width={40} height={40} alt={user.name}></Image>
+												) : (
+													<Image src={`/images/${user.picture}`} width={40} height={40} alt={user.name}></Image>
+												)}
 												<p>
 													<b>{user.name}</b>
 												</p>
@@ -91,7 +94,11 @@ export default function Comments({ comments, users, id }) {
 															return (
 																<div className="user" key={`${user.id}`}>
 																	<div className="logo"></div>
-																	{user.picture === null ? <Image src={`/images/Default_pfp.png`} width={40} height={40} alt={user.name}></Image> : <Image src={`/images/${user.picture}`} width={40} height={40} alt={user.name}></Image>}
+																	{user.picture === null ? (
+																		<Image src={`/images/Default_pfp.png`} width={40} height={40} alt={user.name}></Image>
+																	) : (
+																		<Image src={`/images/${user.picture}`} width={40} height={40} alt={user.name}></Image>
+																	)}
 																	<p>
 																		<b>{user.name}</b>
 																	</p>

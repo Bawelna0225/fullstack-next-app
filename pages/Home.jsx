@@ -20,11 +20,6 @@ const Home = ({ posts, commentsQuantity, authors }) => {
 			const postID = e.target.getAttribute('data-post-id')
 			const postTitle = e.target.getAttribute('data-post-title')
 			const postContent = e.target.getAttribute('data-post-content')
-			console.table([
-				['postID', postID],
-				['postTitle', postTitle],
-				['postContent', postContent],
-			])
 			Router.push({
 				pathname: '/edit-post',
 				query: { postID, postTitle, postContent },
@@ -108,8 +103,6 @@ const Home = ({ posts, commentsQuantity, authors }) => {
 				</main>
 			</>
 		)
-
-		return <div>loading</div>
 	}
 }
 export async function getStaticProps() {
