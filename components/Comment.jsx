@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Image from 'next/image'
 import { format } from 'date-fns'
 import { BsReply } from 'react-icons/bs'
@@ -6,6 +6,8 @@ import { useSession } from 'next-auth/react'
 
 export default function Comment({ comment, users, allComments }) {
 	const [openReply, setOpenReply] = useState(false)
+	const [replies, setReplies] = useState(allComments)
+    const reversedReplies = [...replies].reverse();
 	const [replyContent, setReplyContent] = useState('')
 	const { status, data } = useSession()
 
@@ -84,7 +86,7 @@ export default function Comment({ comment, users, allComments }) {
 				</div>
 			</form>
 			<div className="replies">
-				{allComments.map((reply) => {
+				{reversedReplies.map((reply) => {
 					if (reply.parent_comment_id === comment_id)
 						return (
 							<div className="user-comment" key={`${reply.comment_id}`}>
