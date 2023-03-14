@@ -1196,9 +1196,9 @@ nav .dropdown ul li button {
   border-radius: 4px;
 }
 .post-container .comments .comments-container .user-comment .comment-content {
-  margin-left: 50px;
+  margin-left: 57px;
 }
-.post-container .comments .comments-container .user-comment button {
+.post-container .comments .comments-container .user-comment button.reply {
   margin-left: 65px;
   background-color: transparent;
   border: none;
@@ -1210,8 +1210,19 @@ nav .dropdown ul li button {
   color: transparent;
   cursor: pointer;
 }
-.post-container .comments .comments-container .user-comment button svg {
+.post-container .comments .comments-container .user-comment button.reply svg {
   fill: var(--second-accent-color);
+}
+.post-container .comments .comments-container .user-comment form {
+  height: 150px;
+  margin-top: 10px;
+}
+.post-container .comments .comments-container .user-comment form .buttons {
+  display: flex;
+  width: 100%;
+}
+.post-container .comments .comments-container .user-comment form .buttons button {
+  margin-left: 0;
 }
 .post-container .comments .comments-container .user-comment .replies {
   margin-top: 10px;
