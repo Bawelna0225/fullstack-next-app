@@ -1,7 +1,7 @@
 import connection from '../../utils/db'
 
 export default async function handler(req, res) {
-	const { id, parentComment, commentContent, email } = req.body
+	const { id, parentComment, replyContent, email } = req.body
 
 	const user = await findUserInDatabase(email)
 	const userId = user.id
@@ -11,7 +11,7 @@ export default async function handler(req, res) {
 		post_id: id,
 		user_id: userId,
 		parent_comment_id: parentComment,
-		content: commentContent,
+		content: replyContent,
 		date: date,
 	}
 	// const createNewComment = await saveCommentInDatabase(commentData)

@@ -4,30 +4,32 @@ import { format } from 'date-fns'
 import { BsReply } from 'react-icons/bs'
 import { useSession } from 'next-auth/react'
 
-export default function Comment({ comment, users, allComments }) {
+export default function Comment({ comment, users, allComments, id }) {
 	const [openReply, setOpenReply] = useState(false)
 	const [replies, setReplies] = useState(allComments)
-    const reversedReplies = [...replies].reverse();
+	const reversedReplies = [...replies].reverse()
 	const [replyContent, setReplyContent] = useState('')
 	const { status, data } = useSession()
 
 	const handleSubmitReply = async (e) => {
-		// const email = data.user.email
-		// e.preventDefault()
-		// const response = await fetch('/api/save-reply', {
-		// 	method: 'POST',
-		// 	headers: {
-		// 		'Content-Type': 'application/json',
-		// 	},
-		// 	body: JSON.stringify({ id, replyContent, email }),
-		// })
-		// const info = await response.json()
-		// if (response.ok) {
-		// 	window.location.reload()
-		// } else {
-		// 	console.error('Error', info)
-		// }
-		// console.log(info)
+		const email = data.user.email
+		const parentComment = e.target.id
+		e.preventDefault()
+		const response = await fetch('/api/save-reply', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify({ id, parentComment, replyContent, email }),
+		})
+		const info = await response.json()
+
+		if (response.ok) {
+			// window.location.reload()
+		} else {
+			console.error('Error', info)
+		}
+		console.log(info)
 	}
 
 	const { comment_id, content, date_created, is_edited, parent_comment_id, post_id, user_id } = comment
@@ -57,7 +59,7 @@ export default function Comment({ comment, users, allComments }) {
 			<button className="reply" onClick={() => setOpenReply(true)}>
 				<BsReply></BsReply> reply
 			</button>
-			<form onSubmit={handleSubmitReply} className={!openReply ? 'hide' : ''}>
+			<form onSubmit={handleSubmitReply} id={comment_id} className={!openReply ? 'hide' : ''}>
 				<textarea placeholder="Your thoughts ..." required value={replyContent} onChange={({ target }) => setReplyContent(target.value)}></textarea>
 				<div className="buttons">
 					<button

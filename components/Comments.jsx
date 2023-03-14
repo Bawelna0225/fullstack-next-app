@@ -52,8 +52,8 @@ export default function Comments({ comments, users, id }) {
 			</form>
 			<div className="comments-container">
 				<h2>Comments ({comments.length}): </h2>
-				{comments.map((comment) => {
-					if (comment.parent_comment_id === null) return <Comment comment={comment} users={users} allComments={comments} key={comment.comment_id} />
+				{comments.map((comment, index) => {
+					if (comment.parent_comment_id === null) return <Comment comment={comment} users={users} allComments={comments} id={id} key={index} />
 				})}
 			</div>
 		</div>
