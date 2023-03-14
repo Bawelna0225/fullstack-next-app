@@ -25,11 +25,10 @@ export default function Comment({ comment, users, allComments, id }) {
 		const info = await response.json()
 
 		if (response.ok) {
-			// window.location.reload()
+			window.location.reload()
 		} else {
 			console.error('Error', info)
 		}
-		console.log(info)
 	}
 
 	const { comment_id, content, date_created, is_edited, parent_comment_id, post_id, user_id } = comment

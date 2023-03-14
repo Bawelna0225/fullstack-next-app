@@ -14,8 +14,8 @@ export default async function handler(req, res) {
 		content: replyContent,
 		date: date,
 	}
-	// const createNewComment = await saveCommentInDatabase(commentData)
-	res.status(200).json({ commentData })
+	const createNewComment = await saveReplyInDatabase(commentData)
+	res.status(200).json({ createNewComment })
 }
 
 async function getCurrentDate() {
