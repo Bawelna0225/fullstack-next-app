@@ -16,6 +16,24 @@ button:disabled {
   pointer-events: none;
 }
 
+.loader {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 40px;
+  aspect-ratio: 1;
+  background-color: black;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0px 0px 10px var(--shadow-color);
+  border-radius: 4px;
+}
+.loader svg {
+  filter: drop-shadow(0px 0px 5px white);
+}
+
 :root {
   --background-start-rgb: rgba(0, 0, 0, 0.9);
   --background-end-rgb: rgba(20, 20, 20, 0.9);
