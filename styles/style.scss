@@ -17,7 +17,7 @@ button:disabled {
 	position: fixed;
 	bottom: 20px;
 	right: 20px;
-	width: 40px;
+	width: 35px;
 	aspect-ratio: 1;
 	background-color: black;
 	color: white;
@@ -26,9 +26,10 @@ button:disabled {
 	align-items: center;
 	box-shadow: 0px 0px 10px var(--shadow-color);
 	border-radius: 4px;
-	animation: animateInLoader 150ms ease-in;
+	animation: animateInLoader 100ms ease-in;
 	svg {
 		filter: drop-shadow(0px 0px 5px white);
+		width: 20px;
 	}
 }
 :root {
@@ -311,9 +312,11 @@ body {
 @keyframes animateInLoader {
 	0% {
 		bottom: -30px;
+		opacity: 0;
 	}
 	100% {
 		bottom: 20px;
+		opacity: 1;
 	}
 }
 @keyframes timer {
