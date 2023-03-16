@@ -43,5 +43,39 @@ export const getStaticProps = async (context) => {
 	}
 }
 export default function UserPage({ user, allUsers, posts, details, id }) {
-	return <></>
+	const { status, data } = useSession()
+
+	const getUsableDate = (dateStr) => {
+		const dateObj = new Date(dateStr)
+		const options = { year: 'numeric', month: 'long', day: 'numeric' }
+		const formattedDate = new Intl.DateTimeFormat('en-us', options).format(dateObj)
+		return formattedDate
+	}
+
+  const loggedUser = allUsers.filter((user) => user.email === data?.user.email)
+	return (
+		<>
+			<Navbar userData={loggedUser} />
+			<div>
+				{user[0].picture === null ? (
+					<Image src={`/images/Default_pfp.png`} width={100} height={100} alt={user[0].name}></Image>
+				) : (
+					<Image src={`/images/${user[0].picture}`} width={100} height={100} alt={user[0].name}></Image>
+				)}
+				<h1>{user[0].name}</h1>
+				<p>{getUsableDate(user[0].date_joined)}</p>
+				<p>{details[0].introduction}</p>
+				{details[0].github && (
+					<p>
+						Github: <Link href={details[0].github}>{details[0].github}</Link>
+					</p>
+				)}
+				{details[0].website && (
+					<p>
+						Website: <Link href={details[0].website}>{details[0].website}</Link>
+					</p>
+				)}
+			</div>
+		</>
+	)
 }
