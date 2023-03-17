@@ -61,10 +61,12 @@ async function saveUserToDatabase(user) {
 	const { name, email, password, date } = user
 
 	const sql = `INSERT INTO userdata (name, email, password, date_joined) VALUES (?, ?, ?, ?)`
+	const sql2 = `INSERT INTO userdetails (introduction, github, website) VALUES ('','','')`
 	const values = [name, email, password, date]
 
 	try {
 		const [result] = await connection.promise().execute(sql, values)
+		const [result2] = await connection.promise().execute(sql2)
 		return email
 	} catch (error) {
 		console.error(`Error saving user to database: ${error}`)
