@@ -4,7 +4,7 @@ import { format } from 'date-fns'
 import { BsReply } from 'react-icons/bs'
 import { useSession } from 'next-auth/react'
 
-export default function Comment({ comment, users, allComments, id }) {
+export default function Comment({onGrandchildSubmit , comment, users, allComments, id }) {
 	
 	const [openReply, setOpenReply] = useState(false)
 	const [replies, setReplies] = useState(allComments)
@@ -24,9 +24,9 @@ export default function Comment({ comment, users, allComments, id }) {
 			body: JSON.stringify({ id, parentComment, replyContent, email }),
 		})
 		const info = await response.json()
-
+		
 		if (response.ok) {
-			window.location.reload()
+			onGrandchildSubmit()
 		} else {
 			console.error('Error', info)
 		}

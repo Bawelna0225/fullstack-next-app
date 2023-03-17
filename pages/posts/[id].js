@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react'
 import connection from '../../utils/db'
 import dynamic from 'next/dynamic'
 import Navbar from '@/components/Navbar'
+import Comments from '@/components/Comments'
 import { useSession } from 'next-auth/react'
-const Comments = dynamic(() => import('/components/Comments'), { ssr: false })
 
 export default function Post({ posts, users, id }) {
 	const { status, data } = useSession()
@@ -57,7 +57,9 @@ export default function Post({ posts, users, id }) {
 		}
 		console.log(info)
 	}
-
+	const handleGrandchildSubmit = () => {
+		fetchAndSetComments()
+	}
 	const user = users.filter((author) => author.email === data?.user.email)
 	const postAuthor = users.filter((author) => author.id === posts[0].author_id)
 	return (
@@ -118,7 +120,7 @@ export default function Post({ posts, users, id }) {
 							</button>
 						</div>
 					</form>
-					<Comments comments={comments} users={users} id={id} />
+					<Comments onGrandchildSubmit={handleGrandchildSubmit} comments={comments} users={users} id={id} />
 				</div>
 			</div>
 		</>
