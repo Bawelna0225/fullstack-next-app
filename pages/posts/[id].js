@@ -32,6 +32,12 @@ export default function Post({ posts, users, id }) {
 	}
 	fetchAndSetComments()
 
+	useEffect(() => {
+		const intervalId = setInterval(fetchAndSetComments, 5000) // Poll every 5 seconds
+
+		return () => clearInterval(intervalId)
+	}, [])
+
 	const handleSubmitComment = async (e) => {
 		const email = data.user.email
 		e.preventDefault()
