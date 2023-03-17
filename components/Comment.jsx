@@ -5,6 +5,7 @@ import { BsReply } from 'react-icons/bs'
 import { useSession } from 'next-auth/react'
 
 export default function Comment({ comment, users, allComments, id }) {
+	
 	const [openReply, setOpenReply] = useState(false)
 	const [replies, setReplies] = useState(allComments)
 	const reversedReplies = [...replies].reverse()
@@ -33,7 +34,7 @@ export default function Comment({ comment, users, allComments, id }) {
 
 	const { comment_id, content, date_created, is_edited, parent_comment_id, post_id, user_id } = comment
 	return (
-		<div className="user-comment" key={comment_id}>
+		<div className="user-comment">
 			<small>
 				{format(new Date(date_created), 'yyyy-MM-dd')}, {format(new Date(date_created), 'HH:mm')}
 			</small>

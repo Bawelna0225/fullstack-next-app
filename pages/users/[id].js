@@ -66,7 +66,7 @@ export default function UserPage({ user, allUsers, posts, details, id }) {
 				<p>Joined on: <b>{getUsableDate(user[0].date_joined)}</b></p>
 				<p>{details[0].introduction}</p>
 				<p>
-					<RiArticleLine></RiArticleLine> Posts: {posts.length}
+					<RiArticleLine></RiArticleLine> Posts: <b>{posts.length}</b>
 				</p>
 				<div className="socials">
 					{details[0].github && (
