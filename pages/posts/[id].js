@@ -51,7 +51,7 @@ export default function Post({ posts, users, id }) {
 		})
 		const info = await response.json()
 		if (response.ok) {
-			
+			fetchAndSetComments()
 		} else {
 			console.error('Error', info)
 		}
