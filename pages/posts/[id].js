@@ -19,6 +19,18 @@ export default function Post({ posts, users, id }) {
 	function resetForm() {
 		setCommentContent('')
 	}
+	async function fetchAndSetComments() {
+		const response = await fetch('/api/comments', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify(id),
+		})
+		const comments = await response.json()
+		setComments(comments.selectComments)
+	}
+	fetchAndSetComments()
 
 	const handleSubmitComment = async (e) => {
 		const email = data.user.email
