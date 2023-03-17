@@ -4,6 +4,7 @@ import Navbar from '@/components/Navbar'
 import { useSession } from 'next-auth/react'
 import Image from 'next/image'
 import Link from 'next/link'
+import { RiArticleLine, RiGithubFill } from 'react-icons/ri'
 
 export const getStaticPaths = async () => {
 	const [usersInfo] = await connection.promise().query('SELECT * FROM userdata')
@@ -51,7 +52,7 @@ export default function UserPage({ user, allUsers, posts, details, id }) {
 		return formattedDate
 	}
 
-  const loggedUser = allUsers.filter((user) => user.email === data?.user.email)
+	const loggedUser = allUsers.filter((user) => user.email === data?.user.email)
 	return (
 		<>
 			<Navbar userData={loggedUser} />
@@ -62,19 +63,36 @@ export default function UserPage({ user, allUsers, posts, details, id }) {
 					<Image src={`/images/${user[0].picture}`} width={150} height={150} alt={user[0].name}></Image>
 				)}
 				<h1>{user[0].name}</h1>
-				<p>{getUsableDate(user[0].date_joined)}</p>
+				<p>Joined on: {getUsableDate(user[0].date_joined)}</p>
 				<p>{details[0].introduction}</p>
-        <p>Posts: {posts.length}</p>
-				{details[0].github && (
-					<p>
-						Github: <Link href={details[0].github}>{details[0].github}</Link>
-					</p>
-				)}
-				{details[0].website && (
-					<p>
-						Website: <Link href={details[0].website}>{details[0].website}</Link>
-					</p>
-				)}
+				<p>
+					<RiArticleLine></RiArticleLine> Posts: {posts.length}
+				</p>
+				<div className="socials">
+					{details[0].github && (
+						<p>
+							<RiGithubFill></RiGithubFill>
+							Github: <Link href={details[0].github}>{details[0].github}</Link>
+						</p>
+					)}
+					{details[0].website && (
+						<p>
+							<svg stroke="currentColor" fill="none" strokeWidth="2" viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
+								<path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+								<path d="M19.5 7a9 9 0 0 0 -7.5 -4a8.991 8.991 0 0 0 -7.484 4"></path>
+								<path d="M11.5 3a16.989 16.989 0 0 0 -1.826 4"></path>
+								<path d="M12.5 3a16.989 16.989 0 0 1 1.828 4"></path>
+								<path d="M19.5 17a9 9 0 0 1 -7.5 4a8.991 8.991 0 0 1 -7.484 -4"></path>
+								<path d="M11.5 21a16.989 16.989 0 0 1 -1.826 -4"></path>
+								<path d="M12.5 21a16.989 16.989 0 0 0 1.828 -4"></path>
+								<path d="M2 10l1 4l1.5 -4l1.5 4l1 -4"></path>
+								<path d="M17 10l1 4l1.5 -4l1.5 4l1 -4"></path>
+								<path d="M9.5 10l1 4l1.5 -4l1.5 4l1 -4"></path>
+							</svg>
+							Website: <Link href={details[0].website}>{details[0].website}</Link>
+						</p>
+					)}
+				</div>
 			</div>
 		</>
 	)
