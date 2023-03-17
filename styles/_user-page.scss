@@ -1,0 +1,49 @@
+.user-introduction {
+	width: min(calc(100vw - 2rem), 1000px);
+	margin-inline: auto;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	gap: 15px;
+	padding: 15px;
+	margin-top: 120px;
+	box-shadow: 0px 0px 10px var(--shadow-color);
+	border-radius: 4px;
+	position: relative;
+	padding-top: 80px;
+	text-align: center;
+	img {
+		position: absolute;
+		top: -80px;
+		border-radius: 8px;
+		box-shadow: 0px 0px 10px var(--shadow-color);
+	}
+	h1 {
+		background: linear-gradient(60deg, var(--first-accent-color), var(--second-accent-color));
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		font-size: 2rem;
+	}
+	.socials {
+		display: flex;
+		gap: 10px;
+		flex-wrap: wrap;
+	}
+	p {
+		text-align: center;
+		display: flex;
+		align-items: center;
+		gap: 5px;
+		a {
+			background: linear-gradient(60deg, var(--first-accent-color), var(--second-accent-color));
+			-webkit-background-clip: text;
+			-webkit-text-fill-color: transparent;
+			&:hover {
+				background: linear-gradient(60deg, var(--second-accent-color), var(--first-accent-color));
+				-webkit-background-clip: text;
+				-webkit-text-fill-color: transparent;
+			}
+		}
+	}
+}

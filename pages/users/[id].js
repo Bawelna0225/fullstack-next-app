@@ -56,14 +56,14 @@ export default function UserPage({ user, allUsers, posts, details, id }) {
 	return (
 		<>
 			<Navbar userData={loggedUser} />
-			<div>
+			<div className='user-introduction'>
 				{user[0].picture === null ? (
 					<Image src={`/images/Default_pfp.png`} width={150} height={150} alt={user[0].name}></Image>
 				) : (
 					<Image src={`/images/${user[0].picture}`} width={150} height={150} alt={user[0].name}></Image>
 				)}
 				<h1>{user[0].name}</h1>
-				<p>Joined on: {getUsableDate(user[0].date_joined)}</p>
+				<p>Joined on: <b>{getUsableDate(user[0].date_joined)}</b></p>
 				<p>{details[0].introduction}</p>
 				<p>
 					<RiArticleLine></RiArticleLine> Posts: {posts.length}
