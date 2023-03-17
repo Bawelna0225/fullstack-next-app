@@ -16,10 +16,14 @@ export default function Post({ posts, users, id }) {
 		const formattedDate = new Intl.DateTimeFormat('en-us', options).format(dateObj)
 		return formattedDate
 	}
+	function resetForm() {
+		setCommentContent('')
+	}
 
 	const handleSubmitComment = async (e) => {
 		const email = data.user.email
 		e.preventDefault()
+		resetForm()
 		const response = await fetch('/api/save-comment', {
 			method: 'POST',
 			headers: {
