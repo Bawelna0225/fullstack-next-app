@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react'
 import connection from '../../utils/db'
-import dynamic from 'next/dynamic'
 import Navbar from '@/components/Navbar'
 import Comments from '@/components/Comments'
 import { useSession } from 'next-auth/react'

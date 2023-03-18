@@ -1,11 +1,10 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import Image from 'next/image'
 import { format } from 'date-fns'
 import { BsReply } from 'react-icons/bs'
 import { useSession } from 'next-auth/react'
 
-export default function Comment({onGrandchildSubmit , comment, users, allComments, id }) {
-	
+export default function Comment({ onGrandchildSubmit, comment, users, allComments, id }) {
 	const [openReply, setOpenReply] = useState(false)
 	const [replies, setReplies] = useState(allComments)
 	const reversedReplies = [...replies].reverse()
@@ -24,7 +23,7 @@ export default function Comment({onGrandchildSubmit , comment, users, allComment
 			body: JSON.stringify({ id, parentComment, replyContent, email }),
 		})
 		const info = await response.json()
-		
+
 		if (response.ok) {
 			onGrandchildSubmit()
 		} else {
