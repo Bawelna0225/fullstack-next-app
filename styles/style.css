@@ -1217,6 +1217,9 @@ nav .dropdown ul li button {
   height: 35px;
   border-radius: 4px;
 }
+.post-container .comments .comments-container .user-comment .user a {
+  color: var(--text-color);
+}
 .post-container .comments .comments-container .user-comment .comment-content {
   margin-left: 57px;
 }

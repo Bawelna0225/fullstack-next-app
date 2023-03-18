@@ -9,6 +9,7 @@ export default function Post({ posts, users, id }) {
 	const { status, data } = useSession()
 	const [commentContent, setCommentContent] = useState('')
 	const [comments, setComments] = useState([])
+	const [isLoading, setIsLoading] = useState(false)
 
 	const getUsableDate = (dateStr) => {
 		const dateObj = new Date(dateStr)
@@ -64,6 +65,29 @@ export default function Post({ posts, users, id }) {
 	const postAuthor = users.filter((author) => author.id === posts[0].author_id)
 	return (
 		<>
+			{isLoading && (
+				<div className="loader">
+					<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 38 38">
+						<defs>
+							<linearGradient x1="8.042%" y1="0%" x2="65.682%" y2="23.865%" id="a">
+								<stop stopColor="#fff" stopOpacity="0" offset="0%" />
+								<stop stopColor="#fff" stopOpacity=".631" offset="63.146%" />
+								<stop stopColor="#fff" offset="100%" />
+							</linearGradient>
+						</defs>
+						<g fill="none" fillRule="evenodd">
+							<g transform="translate(1 1)">
+								<path d="M36 18c0-9.94-8.06-18-18-18" id="Oval-2" stroke="url(#a)" strokeWidth="2">
+									<animateTransform attributeName="transform" type="rotate" from="0 18 18" to="360 18 18" dur="0.9s" repeatCount="indefinite" />
+								</path>
+								<circle fill="#fff" cx="36" cy="18" r="1">
+									<animateTransform attributeName="transform" type="rotate" from="0 18 18" to="360 18 18" dur="0.9s" repeatCount="indefinite" />
+								</circle>
+							</g>
+						</g>
+					</svg>
+				</div>
+			)}
 			<div className="custom-shape-divider-bottom-1677324005">
 				<svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
 					<path
@@ -89,7 +113,10 @@ export default function Post({ posts, users, id }) {
 						Created: <span>{getUsableDate(posts[0].date_created)}</span>
 					</p>
 					<p>
-						By: <Link href={`/users/${postAuthor[0].id}`} onClick={() => setCommentContent('')}>{postAuthor[0].name}</Link>
+						By:{' '}
+						<Link href={`/users/${postAuthor[0].id}`} onClick={() => setIsLoading(true)}>
+							{postAuthor[0].name}
+						</Link>
 					</p>
 				</div>
 				<div className="post-content">
