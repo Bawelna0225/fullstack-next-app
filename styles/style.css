@@ -1064,7 +1064,8 @@ nav .dropdown ul li button {
   display: flex;
   justify-content: space-between;
 }
-.post-container .top p span {
+.post-container .top p span,
+.post-container .top p a {
   font-weight: bold;
   width: -webkit-fit-content;
   width: -moz-fit-content;

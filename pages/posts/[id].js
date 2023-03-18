@@ -3,6 +3,7 @@ import connection from '../../utils/db'
 import Navbar from '@/components/Navbar'
 import Comments from '@/components/Comments'
 import { useSession } from 'next-auth/react'
+import Link from 'next/link'
 
 export default function Post({ posts, users, id }) {
 	const { status, data } = useSession()
@@ -88,7 +89,7 @@ export default function Post({ posts, users, id }) {
 						Created: <span>{getUsableDate(posts[0].date_created)}</span>
 					</p>
 					<p>
-						By: <span>{postAuthor[0].name}</span>
+						By: <Link href={`/users/${postAuthor[0].id}`} onClick={() => setCommentContent('')}>{postAuthor[0].name}</Link>
 					</p>
 				</div>
 				<div className="post-content">

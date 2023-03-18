@@ -28,7 +28,8 @@
 		display: flex;
 		justify-content: space-between;
 		p {
-			span {
+			span,
+			a {
 				font-weight: bold;
 				width: fit-content;
 				background: linear-gradient(60deg, var(--first-accent-color), var(--second-accent-color));
@@ -192,25 +193,23 @@
 					}
 				}
 				form {
-						height: 150px;
-						margin-top: 10px;
-						.buttons {
-							display: flex;
-							// background-color: red;
-							width: 100%;
-							button {
-								margin-left: 0;
-								
-							}
+					height: 150px;
+					margin-top: 10px;
+					.buttons {
+						display: flex;
+						// background-color: red;
+						width: 100%;
+						button {
+							margin-left: 0;
 						}
 					}
+				}
 				.replies {
 					margin-top: 10px;
 					width: 100%;
 					display: flex;
 					flex-direction: column;
 					gap: 8px;
-					
 				}
 			}
 		}
