@@ -1255,6 +1255,7 @@ nav .dropdown ul li button {
 
 .user-introduction {
   width: min(100vw - 2rem, 1000px);
+  background-color: var(--secondary-color);
   margin-inline: auto;
   display: flex;
   flex-direction: column;
@@ -1274,6 +1275,7 @@ nav .dropdown ul li button {
   top: -80px;
   border-radius: 8px;
   box-shadow: 0px 0px 10px var(--shadow-color);
+  border: 1px solid var(--border-color);
 }
 .user-introduction h1 {
   background: linear-gradient(60deg, var(--first-accent-color), var(--second-accent-color));
