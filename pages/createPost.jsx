@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { useSession } from 'next-auth/react'
 import Router from 'next/router'
+import Head from 'next/head'
 
 export default function createPost() {
 	const [postTitle, setPostTitle] = useState('')
@@ -50,45 +51,51 @@ export default function createPost() {
 
 	if (status === 'authenticated') {
 		return (
-			<div className="create-post">
-				{postMessage ? (
-					postCreationStatus == false ? (
-						<p className="error">
-							{postMessage}
-							<span></span>
-						</p>
-					) : (
-						<p className="success">
-							{postMessage}
-							<span></span>
-						</p>
-					)
-				) : (
-					<></>
-				)}
-				<form onSubmit={handleSubmit}>
-					<h1>Create Post</h1>
-					<div className="input">
-						<span className="title"></span>
-						<label htmlFor="">Title</label>
-						<input value={postTitle} onChange={({ target }) => setPostTitle(target.value)} type="text" required />
-					</div>
-					<div className="input">
-						<span className="content"></span>
-						<label htmlFor="">Content</label>
-						<textarea value={postContent} onChange={({ target }) => setContent(target.value)} required />
-					</div>
-					<div className="buttons">
-						<small>
-							<Link href="/">Changed your mind?</Link>
-						</small>
+			<>
+				<Head>
+					<title>Create New Post</title>
+				</Head>
 
-						<button className="button" type="submit">
-							<span>Create Post</span>
-						</button>
-					</div>
-				</form>
-			</div>
+				<div className="create-post">
+					{postMessage ? (
+						postCreationStatus == false ? (
+							<p className="error">
+								{postMessage}
+								<span></span>
+							</p>
+						) : (
+							<p className="success">
+								{postMessage}
+								<span></span>
+							</p>
+						)
+					) : (
+						<></>
+					)}
+					<form onSubmit={handleSubmit}>
+						<h1>Create Post</h1>
+						<div className="input">
+							<span className="title"></span>
+							<label htmlFor="">Title</label>
+							<input value={postTitle} onChange={({ target }) => setPostTitle(target.value)} type="text" required />
+						</div>
+						<div className="input">
+							<span className="content"></span>
+							<label htmlFor="">Content</label>
+							<textarea value={postContent} onChange={({ target }) => setContent(target.value)} required />
+						</div>
+						<div className="buttons">
+							<small>
+								<Link href="/">Changed your mind?</Link>
+							</small>
+
+							<button className="button" type="submit">
+								<span>Create Post</span>
+							</button>
+						</div>
+					</form>
+				</div>
+			</>
 		)
 	}
 }

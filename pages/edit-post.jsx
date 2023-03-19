@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { useSession } from 'next-auth/react'
 import Router from 'next/router'
+import Head from 'next/head'
 
 export default function createPost() {
 	const [postID, setPostID] = useState('')
@@ -12,7 +13,7 @@ export default function createPost() {
 	const [postCreationStatus, setPostCreationStatus] = useState(false)
 	const [postMessage, setPostMessage] = useState('')
 	useEffect(() => {
-		const { postID, postTitle, postContent} = Router.query
+		const { postID, postTitle, postContent } = Router.query
 
 		setPostID(postID || '')
 		setPostTitle(postTitle || '')
@@ -56,45 +57,50 @@ export default function createPost() {
 
 	if (status === 'authenticated') {
 		return (
-			<div className="create-post">
-				{postMessage ? (
-					postCreationStatus == false ? (
-						<p className="error">
-							{postMessage}
-							<span></span>
-						</p>
+			<>
+				<Head>
+					<title>Edit Post | {postID}</title>
+				</Head>
+				<div className="create-post">
+					{postMessage ? (
+						postCreationStatus == false ? (
+							<p className="error">
+								{postMessage}
+								<span></span>
+							</p>
+						) : (
+							<p className="success">
+								{postMessage}
+								<span></span>
+							</p>
+						)
 					) : (
-						<p className="success">
-							{postMessage}
-							<span></span>
-						</p>
-					)
-				) : (
-					<></>
-				)}
-				<form onSubmit={handleSubmit}>
-					<h1>Edit Post</h1>
-					<div className="input">
-						<span className="title"></span>
-						<label htmlFor="">Title</label>
-						<input value={postTitle} onChange={({ target }) => setPostTitle(target.value)} type="text" required />
-					</div>
-					<div className="input">
-						<span className="content"></span>
-						<label htmlFor="">Content</label>
-						<textarea value={postContent} onChange={({ target }) => setContent(target.value)} required />
-					</div>
-					<div className="buttons">
-						<small>
-							<Link href="/Home">Changed your mind?</Link>
-						</small>
+						<></>
+					)}
+					<form onSubmit={handleSubmit}>
+						<h1>Edit Post</h1>
+						<div className="input">
+							<span className="title"></span>
+							<label htmlFor="">Title</label>
+							<input value={postTitle} onChange={({ target }) => setPostTitle(target.value)} type="text" required />
+						</div>
+						<div className="input">
+							<span className="content"></span>
+							<label htmlFor="">Content</label>
+							<textarea value={postContent} onChange={({ target }) => setContent(target.value)} required />
+						</div>
+						<div className="buttons">
+							<small>
+								<Link href="/Home">Changed your mind?</Link>
+							</small>
 
-						<button className="button" type="submit">
-							<span>Update Post</span>
-						</button>
-					</div>
-				</form>
-			</div>
+							<button className="button" type="submit">
+								<span>Update Post</span>
+							</button>
+						</div>
+					</form>
+				</div>
+			</>
 		)
 	}
 }

@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { VscComment } from 'react-icons/vsc'
+import Head from 'next/head'
 import connection from '../utils/db'
 import { useSession } from 'next-auth/react'
 import Router from 'next/router'
@@ -57,6 +58,9 @@ const Home = ({ posts, commentsQuantity, authors }) => {
 		const user = authors.filter((author) => author.email === data.user.email)
 		return (
 			<>
+			<Head>
+				<title>Home | {data.user.name}</title>
+			</Head>
 				{showModal && (
 					<div className="confirm-modal">
 						<div className="modal-content">

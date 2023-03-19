@@ -7,6 +7,7 @@ import { useDebounceEffect } from '../utils/useDebounceEffect'
 import { AiOutlineArrowLeft, AiOutlineCloudUpload } from 'react-icons/ai'
 import 'react-image-crop/dist/ReactCrop.css'
 import Link from 'next/link'
+import Head from 'next/head'
 
 function centerAspectCrop(mediaWidth, mediaHeight, aspect) {
 	return centerCrop(
@@ -94,6 +95,9 @@ export default function changePicture() {
 	}
 	return (
 		<>
+		<Head>
+				<title>Edit Profile Picture</title>
+			</Head>
 			<Link href="/" className="go-back">
 				<AiOutlineArrowLeft></AiOutlineArrowLeft>Go to main page
 			</Link>
