@@ -1,7 +1,6 @@
 import Head from 'next/head'
 import connection from '../utils/db'
-import { Inter } from '@next/font/google'
-import Posts from './Posts'
+import Posts from '../components/Posts'
 import Navbar from '@/components/Navbar'
 import { useSession } from 'next-auth/react'
 
