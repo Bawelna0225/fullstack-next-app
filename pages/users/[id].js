@@ -5,6 +5,7 @@ import { useSession } from 'next-auth/react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { RiArticleLine, RiGithubFill } from 'react-icons/ri'
+import Head from 'next/head'
 
 export const getStaticPaths = async () => {
 	const [usersInfo] = await connection.promise().query('SELECT * FROM userdata')
@@ -55,6 +56,9 @@ export default function UserPage({ user, allUsers, posts, details, id }) {
 	const loggedUser = allUsers.filter((user) => user.email === data?.user.email)
 	return (
 		<>
+		<Head>
+				<title>User | {user[0].name}</title>
+			</Head>
 			<Navbar userData={loggedUser} />
 			<div className='user-introduction'>
 				{user[0].picture === null ? (

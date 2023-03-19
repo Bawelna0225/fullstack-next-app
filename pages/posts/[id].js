@@ -4,6 +4,7 @@ import Navbar from '@/components/Navbar'
 import Comments from '@/components/Comments'
 import { useSession } from 'next-auth/react'
 import Link from 'next/link'
+import Head from 'next/head'
 
 export default function Post({ posts, users, id }) {
 	const { status, data } = useSession()
@@ -65,6 +66,9 @@ export default function Post({ posts, users, id }) {
 	const postAuthor = users.filter((author) => author.id === posts[0].author_id)
 	return (
 		<>
+			<Head>
+				<title>Post | {id}</title>
+			</Head>
 			{isLoading && (
 				<div className="loader">
 					<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 38 38">
