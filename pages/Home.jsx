@@ -6,6 +6,7 @@ import { useSession } from 'next-auth/react'
 import Router from 'next/router'
 import Navbar from '@/components/Navbar'
 import { AiOutlineDelete, AiOutlineEdit } from 'react-icons/ai'
+import Link from 'next/link'
 import Image from 'next/image'
 
 const Home = ({ posts, commentsQuantity, authors }) => {
@@ -57,6 +58,7 @@ const Home = ({ posts, commentsQuantity, authors }) => {
 		}
 
 		const user = authors.filter((author) => author.email === data.user.email)
+		console.log(user)
 		return (
 			<>
 				<Head>
@@ -74,22 +76,28 @@ const Home = ({ posts, commentsQuantity, authors }) => {
 						</div>
 					</div>
 				)}
-
 				<Navbar userData={user} />
 				<main className="posts-container home">
 					<h1>
 						Welcome <span>{data.user.name}</span>
 					</h1>
-					<div className="icondiv">
-						<svg className='camera' stroke="" strokeWidth="0" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
-							<linearGradient id="linear-gradient" gradientUnits="userSpaceOnUse"  x1="0%" y1="0%" x2="100%" y2="0%">
-								<stop offset="0%" stopColor="var(--first-accent-color)" stopOpacity="1" />
-								<stop offset="100%" stopColor="var(--second-accent-color)" stopOpacity="1" />
-							</linearGradient>
-							<path d="M15 12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h1.172a3 3 0 0 0 2.12-.879l.83-.828A1 1 0 0 1 6.827 3h2.344a1 1 0 0 1 .707.293l.828.828A3 3 0 0 0 12.828 5H14a1 1 0 0 1 1 1v6z"></path>
-							<path d="M8 11a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5zm0 1a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7zM3 6.5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0z" fill="url(#linear-gradient)"></path>
-						</svg>
-					</div>
+					<Link href="#" className="user-pfp" width={400} height={400}>
+						{user[0].picture === null ? (
+							<Image src={`/images/Default_pfp.png`} width={400} height={400} alt={user[0].name}></Image>
+						) : (
+							<Image src={`/images/${user[0].picture}`} width={400} height={400} alt={user[0].name}></Image>
+						)}
+						<div className="overlay">
+							<svg className="camera" stroke="" strokeWidth="0" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+								<linearGradient id="linear-gradient" gradientUnits="userSpaceOnUse" x1="0%" y1="0%" x2="100%" y2="0%">
+									<stop offset="0%" stopColor="var(--first-accent-color)" stopOpacity="1" />
+									<stop offset="100%" stopColor="var(--second-accent-color)" stopOpacity="1" />
+								</linearGradient>
+								<path d="M15 12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h1.172a3 3 0 0 0 2.12-.879l.83-.828A1 1 0 0 1 6.827 3h2.344a1 1 0 0 1 .707.293l.828.828A3 3 0 0 0 12.828 5H14a1 1 0 0 1 1 1v6z"></path>
+								<path d="M8 11a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5zm0 1a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7zM3 6.5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0z" fill="url(#linear-gradient)"></path>
+							</svg>
+						</div>
+					</Link>
 					<div className="cards-grid">
 						{posts.map((item) => {
 							if (item.author_id === user[0].id) {

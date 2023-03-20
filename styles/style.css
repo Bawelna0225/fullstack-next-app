@@ -699,11 +699,51 @@ nav .dropdown ul li button {
   color: transparent;
   font-size: 3.5rem;
 }
-.home .icondiv svg {
-  width: 200px;
+.home .user-pfp {
+  width: min(100%, 400px);
+  height: min(100%, 400px);
+  margin-inline: auto;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-width: 2px;
+  border-style: solid;
+  -o-border-image: linear-gradient(60deg, var(--second-accent-color), var(--first-accent-color));
+     border-image: linear-gradient(60deg, var(--second-accent-color), var(--first-accent-color));
+  border-image-slice: 1;
+}
+.home .user-pfp img {
+  width: 100% !important;
+  height: 100% !important;
+}
+.home .user-pfp .overlay {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  z-index: 10;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  filter: drop-shadow(0px 0px 10px var(--shadow-color));
+  transition: 250ms linear;
+}
+.home .user-pfp .overlay svg {
+  width: 70%;
+  position: absolute;
   padding: 0px;
   margin: 0px;
   filter: drop-shadow(0px 0px 10px var(--shadow-color));
+  opacity: 0;
+  transition: 350ms linear;
+}
+.home .user-pfp .overlay:hover {
+  background-color: rgba(0, 0, 0, 0.685);
+  -webkit-backdrop-filter: blur(8px);
+          backdrop-filter: blur(8px);
+}
+.home .user-pfp .overlay:hover svg {
+  opacity: 1;
 }
 .home .cards-grid .card {
   position: relative;
