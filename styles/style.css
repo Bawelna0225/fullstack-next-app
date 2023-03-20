@@ -680,11 +680,6 @@ nav .dropdown ul li button {
   color: var(--text-color);
 }
 
-#grad stop {
-  stop-color: red !important;
-  stop-opacity: 1;
-}
-
 .home {
   position: relative;
 }
@@ -703,6 +698,12 @@ nav .dropdown ul li button {
           background-clip: text;
   color: transparent;
   font-size: 3.5rem;
+}
+.home .icondiv svg {
+  width: 200px;
+  padding: 0px;
+  margin: 0px;
+  filter: drop-shadow(0px 0px 10px var(--shadow-color));
 }
 .home .cards-grid .card {
   position: relative;

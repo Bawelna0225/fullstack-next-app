@@ -53,13 +53,6 @@
 		}
 	}
 }
-#grad {
-	// color: var(--first-accent-color) !important;
-	stop {
-		stop-color: red !important;
-		stop-opacity: 1;
-	}
-}
 .home {
 	position: relative;
 	h1 {
@@ -75,7 +68,14 @@
 			font-size: 3.5rem;
 		}
 	}
-
+	.icondiv {
+		svg {
+			width: 200px;
+			padding: 0px;
+			margin: 0px;
+			filter: drop-shadow(0px 0px 10px var(--shadow-color));
+		}
+	}
 	.cards-grid {
 		.card {
 			position: relative;
