@@ -12,6 +12,7 @@ import Image from 'next/image'
 const Home = ({ posts, commentsQuantity, authors }) => {
 	const [deleteID, setDeleteID] = useState(null)
 	const [showModal, setShowModal] = useState(false)
+	const [isLoading, setIsLoading] = useState(false)
 	const { status, data } = useSession()
 
 	useEffect(() => {
@@ -20,6 +21,7 @@ const Home = ({ posts, commentsQuantity, authors }) => {
 
 	if (status === 'authenticated') {
 		const handleEdit = async (e) => {
+			setIsLoading(true)
 			const postID = e.target.getAttribute('data-post-id')
 			const postTitle = e.target.getAttribute('data-post-title')
 			const postContent = e.target.getAttribute('data-post-content')
@@ -64,6 +66,29 @@ const Home = ({ posts, commentsQuantity, authors }) => {
 				<Head>
 					<title>Home | {data.user.name}</title>
 				</Head>
+				{isLoading && (
+					<div className="loader">
+						<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 38 38">
+							<defs>
+								<linearGradient x1="8.042%" y1="0%" x2="65.682%" y2="23.865%" id="a">
+									<stop stopColor="#fff" stopOpacity="0" offset="0%" />
+									<stop stopColor="#fff" stopOpacity=".631" offset="63.146%" />
+									<stop stopColor="#fff" offset="100%" />
+								</linearGradient>
+							</defs>
+							<g fill="none" fillRule="evenodd">
+								<g transform="translate(1 1)">
+									<path d="M36 18c0-9.94-8.06-18-18-18" id="Oval-2" stroke="url(#a)" strokeWidth="2">
+										<animateTransform attributeName="transform" type="rotate" from="0 18 18" to="360 18 18" dur="0.9s" repeatCount="indefinite" />
+									</path>
+									<circle fill="#fff" cx="36" cy="18" r="1">
+										<animateTransform attributeName="transform" type="rotate" from="0 18 18" to="360 18 18" dur="0.9s" repeatCount="indefinite" />
+									</circle>
+								</g>
+							</g>
+						</svg>
+					</div>
+				)}
 				{showModal && (
 					<div className="confirm-modal">
 						<div className="modal-content">
@@ -81,7 +106,7 @@ const Home = ({ posts, commentsQuantity, authors }) => {
 					<h1>
 						Welcome <span>{data.user.name}</span>
 					</h1>
-					<Link href="#" className="user-pfp" width={400} height={400}>
+					<Link href="/change-picture" onClick={() => setIsLoading(true)} className="user-pfp">
 						{user[0].picture === null ? (
 							<Image src={`/images/Default_pfp.png`} width={400} height={400} alt={user[0].name}></Image>
 						) : (
