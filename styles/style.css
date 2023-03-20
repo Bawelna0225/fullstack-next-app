@@ -712,6 +712,37 @@ nav .dropdown ul li button {
   -o-border-image: linear-gradient(60deg, var(--second-accent-color), var(--first-accent-color));
      border-image: linear-gradient(60deg, var(--second-accent-color), var(--first-accent-color));
   border-image-slice: 1;
+  margin-bottom: 20px;
+}
+.home .user-pfp:hover:before {
+  opacity: 0.7;
+}
+.home .user-pfp:before {
+  content: "";
+  z-index: -1;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: linear-gradient(60deg, var(--second-accent-color) 0%, var(--first-accent-color) 100%);
+  filter: blur(20px);
+  opacity: 0;
+  transition: opacity 0.3s;
+  border-radius: inherit;
+  transition: 250ms linear;
+  transition-delay: 150ms;
+}
+.home .user-pfp::after {
+  content: "";
+  z-index: -1;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: inherit;
+  border-radius: inherit;
 }
 .home .user-pfp img {
   width: 100% !important;
