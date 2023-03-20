@@ -5,7 +5,9 @@ import connection from '../utils/db'
 import { useSession } from 'next-auth/react'
 import Router from 'next/router'
 import Navbar from '@/components/Navbar'
-import { AiOutlineDelete, AiOutlineEdit } from 'react-icons/ai'
+import { AiOutlineDelete, AiOutlineEdit, AiOutlineCamera } from 'react-icons/ai'
+import Image from 'next/image'
+import CameraIcon from '../public/camera-icon.svg'
 
 const Home = ({ posts, commentsQuantity, authors }) => {
 	const [deleteID, setDeleteID] = useState(null)
@@ -58,9 +60,9 @@ const Home = ({ posts, commentsQuantity, authors }) => {
 		const user = authors.filter((author) => author.email === data.user.email)
 		return (
 			<>
-			<Head>
-				<title>Home | {data.user.name}</title>
-			</Head>
+				<Head>
+					<title>Home | {data.user.name}</title>
+				</Head>
 				{showModal && (
 					<div className="confirm-modal">
 						<div className="modal-content">
@@ -79,6 +81,10 @@ const Home = ({ posts, commentsQuantity, authors }) => {
 					<h1>
 						Welcome <span>{data.user.name}</span>
 					</h1>
+					<div className='icondiv'>
+					 <Image src={CameraIcon} alt="Gradient icon" width={200} height={200} id='svg'/>
+					 
+					</div>
 					<div className="cards-grid">
 						{posts.map((item) => {
 							if (item.author_id === user[0].id) {

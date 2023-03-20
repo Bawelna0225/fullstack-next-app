@@ -1,4 +1,4 @@
- .confirm-modal {
+.confirm-modal {
 	position: fixed !important;
 	z-index: 10;
 	inset: 0;
@@ -53,7 +53,13 @@
 		}
 	}
 }
-
+#grad {
+	// color: var(--first-accent-color) !important;
+	stop {
+		stop-color: red !important;
+		stop-opacity: 1;
+	}
+}
 .home {
 	position: relative;
 	h1 {
@@ -69,6 +75,7 @@
 			font-size: 3.5rem;
 		}
 	}
+
 	.cards-grid {
 		.card {
 			position: relative;
