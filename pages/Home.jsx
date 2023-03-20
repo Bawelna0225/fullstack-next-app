@@ -102,51 +102,61 @@ const Home = ({ posts, commentsQuantity, authors }) => {
 					</div>
 				)}
 				<Navbar userData={user} />
-				<main className="posts-container home">
+				<main className="home">
 					<h1>
 						Welcome <span>{data.user.name}</span>
 					</h1>
-					<Link href="/change-picture" onClick={() => setIsLoading(true)} className="user-pfp">
-						{user[0].picture === null ? (
-							<Image src={`/images/Default_pfp.png`} width={400} height={400} alt={user[0].name}></Image>
-						) : (
-							<Image src={`/images/${user[0].picture}`} width={400} height={400} alt={user[0].name}></Image>
-						)}
-						<div className="overlay">
-							<svg className="camera" stroke="" strokeWidth="0" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
-								<linearGradient id="linear-gradient" gradientUnits="userSpaceOnUse" x1="0%" y1="0%" x2="100%" y2="0%">
-									<stop offset="0%" stopColor="var(--first-accent-color)" stopOpacity="1" />
-									<stop offset="100%" stopColor="var(--second-accent-color)" stopOpacity="1" />
-								</linearGradient>
-								<path d="M15 12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h1.172a3 3 0 0 0 2.12-.879l.83-.828A1 1 0 0 1 6.827 3h2.344a1 1 0 0 1 .707.293l.828.828A3 3 0 0 0 12.828 5H14a1 1 0 0 1 1 1v6z"></path>
-								<path d="M8 11a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5zm0 1a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7zM3 6.5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0z" fill="url(#linear-gradient)"></path>
-							</svg>
+					<div className=" container">
+						<div className="left-panel">
+							<p className='section-title'>Change Your Picture</p>
+							<Link href="/change-picture" onClick={() => setIsLoading(true)} className="user-pfp">
+								{user[0].picture === null ? (
+									<Image src={`/images/Default_pfp.png`} width={400} height={400} alt={user[0].name}></Image>
+								) : (
+									<Image src={`/images/${user[0].picture}`} width={400} height={400} alt={user[0].name}></Image>
+								)}
+								<div className="overlay">
+									<svg className="camera" stroke="" strokeWidth="0" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+										<linearGradient id="linear-gradient" gradientUnits="userSpaceOnUse" x1="0%" y1="0%" x2="100%" y2="0%">
+											<stop offset="0%" stopColor="var(--first-accent-color)" stopOpacity="1" />
+											<stop offset="100%" stopColor="var(--second-accent-color)" stopOpacity="1" />
+										</linearGradient>
+										<path d="M15 12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h1.172a3 3 0 0 0 2.12-.879l.83-.828A1 1 0 0 1 6.827 3h2.344a1 1 0 0 1 .707.293l.828.828A3 3 0 0 0 12.828 5H14a1 1 0 0 1 1 1v6z"></path>
+										<path d="M8 11a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5zm0 1a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7zM3 6.5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0z" fill="url(#linear-gradient)"></path>
+									</svg>
+								</div>
+							</Link>
 						</div>
-					</Link>
-					<div className="cards-grid">
-						{posts.map((item) => {
-							if (item.author_id === user[0].id) {
-								return (
-									<div className="card" key={item.post_id}>
-										<h3>{item.title}</h3>
-										<span className="post-action" data-post-id={item.post_id} onClick={confirmDelete}>
-											<AiOutlineDelete></AiOutlineDelete> Delete
-										</span>
-										<span className="post-action" data-post-id={item.post_id} data-post-title={item.title} data-post-content={item.content} onClick={handleEdit}>
-											<AiOutlineEdit></AiOutlineEdit> Edit
-										</span>
-										<p>{item.content}</p>
-										<p className="comments-count">
-											<VscComment></VscComment>
-											<span>{commentsQuantity.filter((comment) => comment.post_id === item.post_id).length}</span>
-										</p>
-										<div className="bottom">
-											<small>{getUsableDate(item.date_created)}</small>
-										</div>
-									</div>
-								)
-							}
-						})}
+						<div className="posts-container">
+							<p className='section-title'>Your Posts</p>
+							<div className="cards-grid">
+								{posts.map((item) => {
+									if (item.author_id === user[0].id) {
+										return (
+											<div className="card" key={item.post_id}>
+												<h3>{item.title}</h3>
+												<span className="post-action" data-post-id={item.post_id} onClick={confirmDelete}>
+													<AiOutlineDelete></AiOutlineDelete> Delete
+												</span>
+												<span className="post-action" data-post-id={item.post_id} data-post-title={item.title} data-post-content={item.content} onClick={handleEdit}>
+													<AiOutlineEdit></AiOutlineEdit> Edit
+												</span>
+												<p>{item.content}</p>
+												<p className="comments-count">
+													<VscComment></VscComment>
+													<span>{commentsQuantity.filter((comment) => comment.post_id === item.post_id).length}</span>
+												</p>
+												<div className="bottom">
+													<small>{getUsableDate(item.date_created)}</small>
+												</div>
+											</div>
+										)
+									}
+								})}
+							</div>
+						</div>
+
+						<div className="right-panel"></div>
 					</div>
 				</main>
 			</>

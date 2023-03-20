@@ -699,7 +699,12 @@ nav .dropdown ul li button {
   color: transparent;
   font-size: 3.5rem;
 }
-.home .user-pfp {
+.home .container {
+  display: flex;
+  width: min(100vw - 2rem, 1600px);
+  margin-inline: auto;
+}
+.home .container .user-pfp {
   width: min(100%, 400px);
   height: min(100%, 400px);
   margin-inline: auto;
@@ -707,17 +712,15 @@ nav .dropdown ul li button {
   display: flex;
   justify-content: center;
   align-items: center;
-  border-width: 2px;
-  border-style: solid;
-  -o-border-image: linear-gradient(60deg, var(--second-accent-color), var(--first-accent-color));
-     border-image: linear-gradient(60deg, var(--second-accent-color), var(--first-accent-color));
-  border-image-slice: 1;
   margin-bottom: 20px;
+  filter: drop-shadow(0px 0px 10px var(--shadow-color));
+  border: 2px solid var(--border-color);
+  border-radius: 6px;
 }
-.home .user-pfp:hover:before {
+.home .container .user-pfp:hover:before {
   opacity: 0.7;
 }
-.home .user-pfp:before {
+.home .container .user-pfp:before {
   content: "";
   z-index: -1;
   position: absolute;
@@ -733,7 +736,7 @@ nav .dropdown ul li button {
   transition: 250ms linear;
   transition-delay: 150ms;
 }
-.home .user-pfp::after {
+.home .container .user-pfp::after {
   content: "";
   z-index: -1;
   position: absolute;
@@ -744,11 +747,12 @@ nav .dropdown ul li button {
   background: inherit;
   border-radius: inherit;
 }
-.home .user-pfp img {
+.home .container .user-pfp img {
   width: 100% !important;
   height: 100% !important;
+  border-radius: 4px;
 }
-.home .user-pfp .overlay {
+.home .container .user-pfp .overlay {
   width: 100%;
   height: 100%;
   position: absolute;
@@ -758,8 +762,9 @@ nav .dropdown ul li button {
   align-items: center;
   filter: drop-shadow(0px 0px 10px var(--shadow-color));
   transition: 250ms linear;
+  border-radius: 4px;
 }
-.home .user-pfp .overlay svg {
+.home .container .user-pfp .overlay svg {
   width: 70%;
   position: absolute;
   padding: 0px;
@@ -768,22 +773,49 @@ nav .dropdown ul li button {
   opacity: 0;
   transition: 350ms linear;
 }
-.home .user-pfp .overlay:hover {
+.home .container .user-pfp .overlay:hover {
   background-color: rgba(0, 0, 0, 0.685);
   -webkit-backdrop-filter: blur(8px);
           backdrop-filter: blur(8px);
 }
-.home .user-pfp .overlay:hover svg {
+.home .container .user-pfp .overlay:hover svg {
   opacity: 1;
 }
-.home .cards-grid .card {
+.home .container .left-panel {
+  width: 450px;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: start;
+  padding-inline: 25px;
+}
+.home .container .section-title {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  font-size: 1.2rem;
+  word-wrap: break-word;
+  background: linear-gradient(60deg, var(--first-accent-color), var(--second-accent-color));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  padding-bottom: 10px;
+}
+.home .container .posts-container {
+  width: min(100vw - 2rem, 1100px);
+  margin-top: 0px;
+  padding: 0px;
+}
+.home .container .cards-grid {
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 505px), 1fr));
+}
+.home .container .cards-grid .card {
   position: relative;
 }
-.home .cards-grid .card:hover .post-action {
+.home .container .cards-grid .card:hover .post-action {
   opacity: 1;
   pointer-events: all;
 }
-.home .cards-grid .post-action {
+.home .container .cards-grid .post-action {
   display: flex;
   align-items: center;
   gap: 10px;
@@ -806,7 +838,7 @@ nav .dropdown ul li button {
   transition: 150ms linear;
   cursor: pointer;
 }
-.home .cards-grid .post-action:last-of-type {
+.home .container .cards-grid .post-action:last-of-type {
   top: 42px;
 }
 
