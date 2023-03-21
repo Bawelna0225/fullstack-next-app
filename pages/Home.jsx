@@ -9,7 +9,8 @@ import { AiOutlineDelete, AiOutlineEdit } from 'react-icons/ai'
 import Link from 'next/link'
 import Image from 'next/image'
 
-const Home = ({ posts, commentsQuantity, authors }) => {
+const Home = ({ posts, commentsQuantity, authors, details }) => {
+	// console.log(details)
 	const [deleteID, setDeleteID] = useState(null)
 	const [showModal, setShowModal] = useState(false)
 	const [isLoading, setIsLoading] = useState(false)
@@ -18,6 +19,11 @@ const Home = ({ posts, commentsQuantity, authors }) => {
 
 	useEffect(() => {
 		if (status === 'unauthenticated') Router.replace('/auth/signin')
+		if (data) {
+			const user = authors.filter((author) => author.email === data.user.email)
+			const userDetails = details.filter((detail) => detail.id === user[0].id)
+			setUserDetails({ introduction: userDetails[0].introduction, github: userDetails[0].github, website: userDetails[0].website })
+		}
 	}, [status])
 
 	if (status === 'authenticated') {
@@ -59,10 +65,12 @@ const Home = ({ posts, commentsQuantity, authors }) => {
 			const formattedDate = new Intl.DateTimeFormat('en-us', options).format(dateObj)
 			return formattedDate
 		}
-		const handleSubmitDetails = () => {}
+		const handleSubmitDetails = (e) => {
+			e.preventDefault()
+		}
 
 		const user = authors.filter((author) => author.email === data.user.email)
-		console.log(user)
+		// console.log(user)
 		return (
 			<>
 				<Head>
@@ -164,7 +172,7 @@ const Home = ({ posts, commentsQuantity, authors }) => {
 									/>
 								</div>
 								<div className="buttons">
-									<input type='reset' value='Reset'/>
+									<input type="reset" value="Reset" />
 									<button className="button">
 										<span>Save</span>
 									</button>
@@ -209,16 +217,19 @@ const Home = ({ posts, commentsQuantity, authors }) => {
 }
 export async function getStaticProps() {
 	const [usersPosts] = await connection.promise().query('SELECT * FROM userposts ORDER BY post_id desc')
+	const [usersDetails] = await connection.promise().query('SELECT * FROM userdetails')
 	const [postsCommentsQuantity] = await connection.promise().query(`SELECT * FROM postcomments`)
 	const [postsAuthors] = await connection.promise().query(`SELECT * FROM userdata`)
 
 	const posts = JSON.parse(JSON.stringify(usersPosts))
+	const details = JSON.parse(JSON.stringify(usersDetails))
 	const commentsQuantity = JSON.parse(JSON.stringify(postsCommentsQuantity))
 	const authors = JSON.parse(JSON.stringify(postsAuthors))
 
 	return {
 		props: {
 			posts,
+			details,
 			commentsQuantity,
 			authors,
 		},

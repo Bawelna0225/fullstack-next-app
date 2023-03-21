@@ -72,10 +72,10 @@
 		display: flex;
 		width: min(calc(100vw - 2rem), 1600px);
 		margin-inline: auto;
-		flex-wrap: wrap;
+		// flex-wrap: wrap;
 		.user-pfp {
 			width: min(100%, 400px);
-			height: min(100%, 400px);
+			aspect-ratio: 1;
 			margin-inline: auto;
 			position: relative;
 			display: flex;
