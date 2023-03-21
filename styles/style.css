@@ -703,6 +703,7 @@ nav .dropdown ul li button {
   display: flex;
   width: min(100vw - 2rem, 1600px);
   margin-inline: auto;
+  flex-wrap: wrap;
 }
 .home .container .user-pfp {
   width: min(100%, 400px);

@@ -72,6 +72,7 @@
 		display: flex;
 		width: min(calc(100vw - 2rem), 1600px);
 		margin-inline: auto;
+		flex-wrap: wrap;
 		.user-pfp {
 			width: min(100%, 400px);
 			height: min(100%, 400px);

@@ -13,6 +13,7 @@ const Home = ({ posts, commentsQuantity, authors }) => {
 	const [deleteID, setDeleteID] = useState(null)
 	const [showModal, setShowModal] = useState(false)
 	const [isLoading, setIsLoading] = useState(false)
+	const [userDetails, setUserDetails] = useState({ introduction: '', github: '', website: '' })
 	const { status, data } = useSession()
 
 	useEffect(() => {
@@ -58,6 +59,7 @@ const Home = ({ posts, commentsQuantity, authors }) => {
 			const formattedDate = new Intl.DateTimeFormat('en-us', options).format(dateObj)
 			return formattedDate
 		}
+		const handleSubmitDetails = () => {}
 
 		const user = authors.filter((author) => author.email === data.user.email)
 		console.log(user)
@@ -108,7 +110,7 @@ const Home = ({ posts, commentsQuantity, authors }) => {
 					</h1>
 					<div className=" container">
 						<div className="left-panel">
-							<p className='section-title'>Change Your Picture</p>
+							<p className="section-title">Change Your Picture</p>
 							<Link href="/change-picture" onClick={() => setIsLoading(true)} className="user-pfp">
 								{user[0].picture === null ? (
 									<Image src={`/images/Default_pfp.png`} width={400} height={400} alt={user[0].name}></Image>
@@ -126,9 +128,30 @@ const Home = ({ posts, commentsQuantity, authors }) => {
 									</svg>
 								</div>
 							</Link>
+							<form onSubmit={handleSubmitDetails}>
+								<p>About You</p>
+								<div className="input">
+									<span className="email"></span>
+									<label htmlFor="">Introduction</label>
+									<input value={userDetails.introduction} onChange={({ target }) => setUserDetails({ ...userDetails, introduction: target.value })} type="text" required />
+								</div>
+								<div className="input">
+									<span className="pass"></span>
+									<label htmlFor="">Github</label>
+									<input value={userDetails.github} onChange={({ target }) => setUserDetails({ ...userDetails, github: target.value })} type="text" />
+								</div>
+								<div className="input">
+									<span className="pass"></span>
+									<label htmlFor="">Website</label>
+									<input value={userDetails.website} onChange={({ target }) => setUserDetails({ ...userDetails, website: target.value })} type="text" />
+								</div>
+								<div className="button">
+									<input className="button" type="submit" value="Save" />
+								</div>
+							</form>
 						</div>
 						<div className="posts-container">
-							<p className='section-title'>Your Posts</p>
+							<p className="section-title">Your Posts</p>
 							<div className="cards-grid">
 								{posts.map((item) => {
 									if (item.author_id === user[0].id) {
