@@ -1040,6 +1040,7 @@ nav .dropdown ul li button {
   border: 1px solid var(--border-color);
   box-shadow: 0px 0px 10px var(--shadow-color);
   background-color: var(--secondary-color);
+  color: var(--text-color);
 }
 .create-post form .input input:focus,
 .create-post form .input textarea:focus {
