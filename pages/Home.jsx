@@ -138,12 +138,12 @@ const Home = ({ posts, commentsQuantity, authors }) => {
 								<div className="input">
 									<span className="pass"></span>
 									<label htmlFor="">Github</label>
-									<input value={userDetails.github} onChange={({ target }) => setUserDetails({ ...userDetails, github: target.value })} type="text" />
+									<input value={userDetails.github} onChange={({ target }) => setUserDetails({ ...userDetails, github: target.value })} type="text" pattern="^https:\/\/github\.com\/[a-zA-Z0-9](?:[a-zA-Z0-9]|-(?=[a-zA-Z0-9])){0,38}[a-zA-Z0-9]$"/>
 								</div>
 								<div className="input">
 									<span className="pass"></span>
 									<label htmlFor="">Website</label>
-									<input value={userDetails.website} onChange={({ target }) => setUserDetails({ ...userDetails, website: target.value })} type="text" />
+									<input value={userDetails.website} onChange={({ target }) => setUserDetails({ ...userDetails, website: target.value })} type="text" pattern="^(?:https?:\/\/)[\w\-]+(?:\.[\w\-]+)+[\w\-\.,@?^=%&:\/~\+#]*$"/>
 								</div>
 								<div className="button">
 									<input className="button" type="submit" value="Save" />
