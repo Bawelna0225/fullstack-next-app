@@ -790,6 +790,154 @@ nav .dropdown ul li button {
   align-items: start;
   padding-inline: 25px;
 }
+.home .container .left-panel form {
+  z-index: 0;
+  background-color: var(--secondary-color);
+  box-shadow: 0px 0px 10px var(--shadow-color);
+  border-radius: 4px;
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  padding: 25px 20px;
+}
+.home .container .left-panel form p {
+  background: linear-gradient(60deg, var(--first-accent-color), var(--second-accent-color));
+  -webkit-background-clip: text;
+          background-clip: text;
+  color: transparent;
+}
+.home .container .left-panel form .input {
+  --border-width: 1px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  border-radius: 4px;
+  background-color: var(--secondary-color);
+}
+.home .container .left-panel form .input::after {
+  position: absolute;
+  content: "";
+  top: calc(-1 * var(--border-width));
+  left: calc(-1 * var(--border-width));
+  z-index: -1;
+  width: calc(100% + var(--border-width) * 2);
+  height: calc(100% + var(--border-width) * 2);
+  background-color: var(--border-color);
+  background-size: 300% 300%;
+  background-position: 0 50%;
+  border-radius: calc(2 * var(--border-width));
+}
+.home .container .left-panel form .input:has(input:focus, textarea:focus):after {
+  background: linear-gradient(60deg, var(--first-accent-color), var(--second-accent-color));
+}
+.home .container .left-panel form .input span {
+  position: absolute;
+  left: 6px;
+  top: -15px;
+  height: 20px;
+  background-color: var(--secondary-color);
+}
+.home .container .left-panel form .input span.introduction {
+  width: 10.5rem;
+}
+.home .container .left-panel form .input span.github {
+  width: 3.5rem;
+}
+.home .container .left-panel form .input span.website {
+  width: 4.2rem;
+}
+.home .container .left-panel form .input label {
+  position: absolute;
+  left: 10px;
+  top: -15px;
+  padding: 3px;
+  font-size: 0.85rem;
+  background: linear-gradient(60deg, var(--first-accent-color), var(--second-accent-color));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.home .container .left-panel form .input input,
+.home .container .left-panel form .input textarea {
+  padding: 8px;
+  border-radius: 4px;
+  border: none;
+  background: none;
+  outline: none;
+  padding-left: 12px;
+  color: var(--text-color);
+}
+.home .container .left-panel form .input textarea {
+  resize: none;
+  height: 150px;
+}
+.home .container .left-panel form .buttons {
+  display: flex;
+  justify-content: space-between;
+}
+.home .container .left-panel form .buttons input {
+  padding: 6px;
+  background-color: transparent;
+  border: none;
+  background: linear-gradient(60deg, var(--first-accent-color), var(--second-accent-color));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.home .container .left-panel form .buttons input:hover {
+  background: linear-gradient(240deg, var(--first-accent-color), var(--second-accent-color));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  cursor: pointer;
+}
+.home .container .left-panel form .button {
+  padding: 6px;
+  width: 200px !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100px !important;
+  cursor: pointer;
+  border-width: 1px;
+  border-style: solid;
+  -o-border-image: linear-gradient(60deg, var(--first-accent-color), var(--second-accent-color));
+     border-image: linear-gradient(60deg, var(--first-accent-color), var(--second-accent-color));
+  border-image-slice: 1;
+  position: relative;
+  background-color: transparent;
+}
+.home .container .left-panel form .button span {
+  background: linear-gradient(60deg, var(--first-accent-color), var(--second-accent-color));
+  -webkit-background-clip: text;
+  color: transparent;
+  transition: 300ms linear;
+  z-index: 1;
+}
+.home .container .left-panel form .button::before {
+  position: absolute;
+  content: "";
+  width: 100%;
+  height: 100%;
+  background-image: linear-gradient(90deg, var(--first-accent-color), var(--second-accent-color));
+  top: 0;
+  left: 0;
+  scale: 0 1;
+  transition: 300ms linear;
+  transform-origin: left;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+}
+.home .container .left-panel form .button:hover {
+  background-color: transparent;
+}
+.home .container .left-panel form .button:hover span {
+  color: white;
+}
+.home .container .left-panel form .button:hover::before {
+  scale: 1 1;
+}
 .home .container .section-title {
   width: -webkit-fit-content;
   width: -moz-fit-content;

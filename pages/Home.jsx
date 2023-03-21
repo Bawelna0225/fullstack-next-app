@@ -128,26 +128,46 @@ const Home = ({ posts, commentsQuantity, authors }) => {
 									</svg>
 								</div>
 							</Link>
+							<p className="section-title">About You</p>
 							<form onSubmit={handleSubmitDetails}>
-								<p>About You</p>
 								<div className="input">
-									<span className="email"></span>
-									<label htmlFor="">Introduction *</label>
-									<input value={userDetails.introduction} onChange={({ target }) => setUserDetails({ ...userDetails, introduction: target.value })} type="text" required placeholder='Introduce Yourself'/>
+									<span className="introduction"></span>
+									<label htmlFor="">Introduction (required)</label>
+									<textarea
+										value={userDetails.introduction}
+										onChange={({ target }) => setUserDetails({ ...userDetails, introduction: target.value })}
+										type="text"
+										required
+										placeholder="Tell us something about you"
+									/>
 								</div>
 								<div className="input">
-									<span className="pass"></span>
+									<span className="github"></span>
 									<label htmlFor="">Github</label>
-									<input value={userDetails.github} onChange={({ target }) => setUserDetails({ ...userDetails, github: target.value })} type="text" pattern="^https:\/\/github\.com\/[a-zA-Z0-9](?:[a-zA-Z0-9]|-(?=[a-zA-Z0-9])){0,38}[a-zA-Z0-9]$" placeholder='https://github.com/your-profile'/>
+									<input
+										value={userDetails.github}
+										onChange={({ target }) => setUserDetails({ ...userDetails, github: target.value })}
+										type="text"
+										pattern="^https:\/\/github\.com\/[a-zA-Z0-9](?:[a-zA-Z0-9]|-(?=[a-zA-Z0-9])){0,38}[a-zA-Z0-9]$"
+										placeholder="https://github.com/your-profile"
+									/>
 								</div>
 								<div className="input">
-									<span className="pass"></span>
+									<span className="website"></span>
 									<label htmlFor="">Website</label>
-									<input value={userDetails.website} onChange={({ target }) => setUserDetails({ ...userDetails, website: target.value })} type="text" pattern="^(?:https?:\/\/)[\w\-]+(?:\.[\w\-]+)+[\w\-\.,@?^=%&:\/~\+#]*$" placeholder='http(s)://your-website.com'/>
+									<input
+										value={userDetails.website}
+										onChange={({ target }) => setUserDetails({ ...userDetails, website: target.value })}
+										type="text"
+										pattern="^(?:https?:\/\/)[\w\-]+(?:\.[\w\-]+)+[\w\-\.,@?^=%&:\/~\+#]*$"
+										placeholder="http(s)://your-website.com"
+									/>
 								</div>
-								<small>* - required fields</small>
-								<div className="button">
-									<input className="button" type="submit" value="Save" />
+								<div className="buttons">
+									<input type='reset' value='Reset'/>
+									<button className="button">
+										<span>Save</span>
+									</button>
 								</div>
 							</form>
 						</div>
