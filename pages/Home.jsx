@@ -15,6 +15,8 @@ const Home = ({ posts, commentsQuantity, authors, details }) => {
 	const [showModal, setShowModal] = useState(false)
 	const [isLoading, setIsLoading] = useState(false)
 	const [userDetails, setUserDetails] = useState({ introduction: '', github: '', website: '' })
+	const [updateStatus, setUpdateStatus] = useState(false)
+	const [updateMessage, setUpdateMessage] = useState('')
 	const { status, data } = useSession()
 
 	useEffect(() => {
@@ -76,20 +78,44 @@ const Home = ({ posts, commentsQuantity, authors, details }) => {
 				body: JSON.stringify({ userDetails, email }),
 			})
 			const info = await response.json()
-			console.log(info)
 			if (response.ok) {
+				setUpdateMessage(`Your details, got updated!`)
+				setUpdateStatus(true)
+				setTimeout(() => {
+					setUpdateStatus(null)
+					setUpdateMessage(``)
+				}, 3000)
 			} else {
-				console.log(info)
+				setUpdateMessage(`Something went wrong`)
+				setUpdateStatus(false)
+				setTimeout(() => {
+					setUpdateStatus(null)
+					setUpdateMessage(``)
+				}, 3000)
 			}
 		}
 
 		const user = authors.filter((author) => author.email === data.user.email)
-		// console.log(user)
 		return (
 			<>
 				<Head>
 					<title>Home | {data.user.name}</title>
 				</Head>
+				{updateMessage ? (
+					updateStatus == false ? (
+						<p className="error">
+							{updateMessage}
+							<span></span>
+						</p>
+					) : (
+						<p className="success">
+							{updateMessage}
+							<span></span>
+						</p>
+					)
+				) : (
+					<></>
+				)}
 				{isLoading && (
 					<div className="loader">
 						<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 38 38">

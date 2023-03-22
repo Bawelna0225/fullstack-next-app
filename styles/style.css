@@ -680,6 +680,11 @@ nav .dropdown ul li button {
   color: var(--text-color);
 }
 
+.error, .success {
+  z-index: 10;
+  top: 100px;
+}
+
 .home {
   position: relative;
 }
