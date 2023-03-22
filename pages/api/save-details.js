@@ -31,5 +31,11 @@ async function saveDetailsInDatabase(details) {
 	const { introduction, github, website, userId } = details
 	const sql = 'UPDATE userdetails SET introduction = ?, github = ?, website = ? WHERE id = ?'
 	const values = [introduction, github, website, userId]
-	return values
+    try {
+		const [result] = await connection.promise().execute(sql, values)
+		return details
+	} catch (error) {
+		console.error(`Error updating details: ${error}`)
+		return null
+	}
 }
