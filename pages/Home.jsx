@@ -67,18 +67,19 @@ const Home = ({ posts, commentsQuantity, authors, details }) => {
 		}
 		const handleSubmitDetails = async (e) => {
 			e.preventDefault()
+			const email = data.user.email
 			const response = await fetch('/api/save-details', {
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json',
 				},
-				body: JSON.stringify({ userDetails }),
+				body: JSON.stringify({ userDetails, email }),
 			})
-			const data = await response.json()
-			console.log(data)
+			const info = await response.json()
+			console.log(info)
 			if (response.ok) {
 			} else {
-				console.log(data)
+				console.log(info)
 			}
 		}
 
