@@ -29,5 +29,7 @@ async function findUserInDatabase(email) {
 
 async function saveDetailsInDatabase(details) {
 	const { introduction, github, website, userId } = details
-	return introduction
+	const sql = 'UPDATE userdetails SET introduction = ?, github = ?, website = ? WHERE id = ?'
+	const values = [introduction, github, website, userId]
+	return values
 }
