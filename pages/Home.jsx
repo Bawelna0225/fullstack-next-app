@@ -65,8 +65,21 @@ const Home = ({ posts, commentsQuantity, authors, details }) => {
 			const formattedDate = new Intl.DateTimeFormat('en-us', options).format(dateObj)
 			return formattedDate
 		}
-		const handleSubmitDetails = (e) => {
+		const handleSubmitDetails = async (e) => {
 			e.preventDefault()
+			const response = await fetch('/api/save-details', {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+				},
+				body: JSON.stringify({ userDetails }),
+			})
+			const data = await response.json()
+			console.log(data)
+			if (response.ok) {
+			} else {
+				console.log(data)
+			}
 		}
 
 		const user = authors.filter((author) => author.email === data.user.email)
