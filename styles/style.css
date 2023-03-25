@@ -1027,6 +1027,38 @@ nav .dropdown ul li button {
     height: 400px;
   }
 }
+@media (width < 768px) {
+  .container {
+    flex-direction: column;
+    gap: 30px;
+  }
+  .container .posts-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .container .posts-container .section-title {
+    text-align: center !important;
+  }
+  .container .left-panel {
+    flex-direction: column !important;
+  }
+  .container .left-panel .item {
+    justify-content: center;
+    align-items: center;
+    width: 100% !important;
+  }
+  .container .left-panel .item p {
+    text-align: center;
+  }
+  .container .left-panel .item .user-pfp {
+    margin: 0;
+    width: min(100%, 400px);
+    height: auto;
+    aspect-ratio: 1;
+  }
+}
 .create-post {
   width: min(100vw - 2rem, 1200px);
   min-height: 100vh;
