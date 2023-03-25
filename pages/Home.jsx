@@ -158,66 +158,70 @@ const Home = ({ posts, commentsQuantity, authors, details }) => {
 					</h1>
 					<div className=" container">
 						<div className="left-panel">
-							<p className="section-title">Change Your Picture</p>
-							<Link href="/change-picture" onClick={() => setIsLoading(true)} className="user-pfp">
-								{user[0].picture === null ? (
-									<Image src={`/images/Default_pfp.png`} width={400} height={400} alt={user[0].name}></Image>
-								) : (
-									<Image src={`/images/${user[0].picture}`} width={400} height={400} alt={user[0].name}></Image>
-								)}
-								<div className="overlay">
-									<svg className="camera" stroke="" strokeWidth="0" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
-										<linearGradient id="linear-gradient" gradientUnits="userSpaceOnUse" x1="0%" y1="0%" x2="100%" y2="0%">
-											<stop offset="0%" stopColor="var(--first-accent-color)" stopOpacity="1" />
-											<stop offset="100%" stopColor="var(--second-accent-color)" stopOpacity="1" />
-										</linearGradient>
-										<path d="M15 12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h1.172a3 3 0 0 0 2.12-.879l.83-.828A1 1 0 0 1 6.827 3h2.344a1 1 0 0 1 .707.293l.828.828A3 3 0 0 0 12.828 5H14a1 1 0 0 1 1 1v6z"></path>
-										<path d="M8 11a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5zm0 1a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7zM3 6.5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0z" fill="url(#linear-gradient)"></path>
-									</svg>
-								</div>
-							</Link>
-							<p className="section-title">About You</p>
-							<form onSubmit={handleSubmitDetails}>
-								<div className="input">
-									<span className="introduction"></span>
-									<label htmlFor="">Introduction (required)</label>
-									<textarea
-										value={userDetails.introduction}
-										onChange={({ target }) => setUserDetails({ ...userDetails, introduction: target.value })}
-										type="text"
-										required
-										placeholder="Tell us something about you"
-									/>
-								</div>
-								<div className="input">
-									<span className="github"></span>
-									<label htmlFor="">Github</label>
-									<input
-										value={userDetails.github}
-										onChange={({ target }) => setUserDetails({ ...userDetails, github: target.value })}
-										type="text"
-										pattern="^https:\/\/github\.com\/[a-zA-Z0-9](?:[a-zA-Z0-9]|-(?=[a-zA-Z0-9])){0,38}[a-zA-Z0-9]$"
-										placeholder="https://github.com/your-profile"
-									/>
-								</div>
-								<div className="input">
-									<span className="website"></span>
-									<label htmlFor="">Website</label>
-									<input
-										value={userDetails.website}
-										onChange={({ target }) => setUserDetails({ ...userDetails, website: target.value })}
-										type="text"
-										pattern="^(?:https?:\/\/)[\w\-]+(?:\.[\w\-]+)+[\w\-\.,@?^=%&:\/~\+#]*$"
-										placeholder="http(s)://your-website.com"
-									/>
-								</div>
-								<div className="buttons">
-									<input type="reset" value="Reset" />
-									<button className="button">
-										<span>Save</span>
-									</button>
-								</div>
-							</form>
+							<div className="item">
+								<p className="section-title">Change Your Picture</p>
+								<Link href="/change-picture" onClick={() => setIsLoading(true)} className="user-pfp">
+									{user[0].picture === null ? (
+										<Image src={`/images/Default_pfp.png`} width={400} height={400} alt={user[0].name}></Image>
+									) : (
+										<Image src={`/images/${user[0].picture}`} width={400} height={400} alt={user[0].name}></Image>
+									)}
+									<div className="overlay">
+										<svg className="camera" stroke="" strokeWidth="0" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+											<linearGradient id="linear-gradient" gradientUnits="userSpaceOnUse" x1="0%" y1="0%" x2="100%" y2="0%">
+												<stop offset="0%" stopColor="var(--first-accent-color)" stopOpacity="1" />
+												<stop offset="100%" stopColor="var(--second-accent-color)" stopOpacity="1" />
+											</linearGradient>
+											<path d="M15 12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h1.172a3 3 0 0 0 2.12-.879l.83-.828A1 1 0 0 1 6.827 3h2.344a1 1 0 0 1 .707.293l.828.828A3 3 0 0 0 12.828 5H14a1 1 0 0 1 1 1v6z"></path>
+											<path d="M8 11a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5zm0 1a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7zM3 6.5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0z" fill="url(#linear-gradient)"></path>
+										</svg>
+									</div>
+								</Link>
+							</div>
+							<div className="item">
+								<p className="section-title">About You</p>
+								<form onSubmit={handleSubmitDetails}>
+									<div className="input">
+										<span className="introduction"></span>
+										<label htmlFor="">Introduction (required)</label>
+										<textarea
+											value={userDetails.introduction}
+											onChange={({ target }) => setUserDetails({ ...userDetails, introduction: target.value })}
+											type="text"
+											required
+											placeholder="Tell us something about you"
+										/>
+									</div>
+									<div className="input">
+										<span className="github"></span>
+										<label htmlFor="">Github</label>
+										<input
+											value={userDetails.github}
+											onChange={({ target }) => setUserDetails({ ...userDetails, github: target.value })}
+											type="text"
+											pattern="^https:\/\/github\.com\/[a-zA-Z0-9](?:[a-zA-Z0-9]|-(?=[a-zA-Z0-9])){0,38}[a-zA-Z0-9]$"
+											placeholder="https://github.com/your-profile"
+										/>
+									</div>
+									<div className="input">
+										<span className="website"></span>
+										<label htmlFor="">Website</label>
+										<input
+											value={userDetails.website}
+											onChange={({ target }) => setUserDetails({ ...userDetails, website: target.value })}
+											type="text"
+											pattern="^(?:https?:\/\/)[\w\-]+(?:\.[\w\-]+)+[\w\-\.,@?^=%&:\/~\+#]*$"
+											placeholder="http(s)://your-website.com"
+										/>
+									</div>
+									<div className="buttons">
+										<input type="reset" value="Reset" />
+										<button className="button">
+											<span>Save</span>
+										</button>
+									</div>
+								</form>
+							</div>
 						</div>
 						<div className="posts-container">
 							<p className="section-title">Your Posts</p>
