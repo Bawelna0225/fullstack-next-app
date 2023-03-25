@@ -692,7 +692,7 @@ nav .dropdown ul li button {
 .home h1 {
   text-align: center;
   margin-block: 50px;
-  font-size: 3.5rem;
+  font-size: clamp(2rem, 3.5vw, 4rem);
 }
 .home h1 span {
   width: -webkit-fit-content;
@@ -703,7 +703,7 @@ nav .dropdown ul li button {
   -webkit-background-clip: text;
           background-clip: text;
   color: transparent;
-  font-size: 3.5rem;
+  font-size: clamp(2rem, 3.5vw, 4rem);
 }
 .home .container {
   display: flex;

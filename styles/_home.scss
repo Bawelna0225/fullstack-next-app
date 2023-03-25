@@ -63,21 +63,20 @@
 	h1 {
 		text-align: center;
 		margin-block: 50px;
-		font-size: 3.5rem;
+		font-size: clamp(2rem, 3.5vw, 4rem);
 		span {
 			width: fit-content;
 			word-wrap: break-word;
 			background: linear-gradient(60deg, var(--first-accent-color), var(--second-accent-color));
 			background-clip: text;
 			color: transparent;
-			font-size: 3.5rem;
+			font-size: clamp(2rem, 3.5vw, 4rem);
 		}
 	}
 	.container {
 		display: flex;
 		width: min(calc(100vw - 2rem), 1600px);
 		margin-inline: auto;
-		// flex-wrap: wrap;
 		.user-pfp {
 			width: min(100%, 400px);
 			aspect-ratio: 1;
