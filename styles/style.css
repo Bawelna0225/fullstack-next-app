@@ -1140,7 +1140,7 @@ nav .dropdown ul li button {
 }
 .create-post form .buttons .button {
   padding: 6px;
-  width: 200px !important;
+  width: 200px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -1187,6 +1187,17 @@ nav .dropdown ul li button {
   scale: 1 1;
 }
 
+@media (width < 500px) {
+  .create-post .buttons {
+    flex-direction: column;
+  }
+  .create-post .buttons .button,
+.create-post .buttons a {
+    display: flex;
+    text-align: center;
+    width: 100% !important;
+  }
+}
 .crop-container {
   background-color: var(--secondary-color);
   display: flex;
