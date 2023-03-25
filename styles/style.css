@@ -1614,6 +1614,7 @@ nav .dropdown ul li button {
   position: relative;
   padding-top: 80px;
   text-align: center;
+  margin-bottom: 30px;
 }
 .user-introduction img {
   position: absolute;
@@ -1632,12 +1633,22 @@ nav .dropdown ul li button {
   display: flex;
   gap: 10px;
   flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+.user-introduction span {
+  text-align: center;
+  display: flex;
+  align-items: center;
+  gap: 5px;
 }
 .user-introduction p {
   text-align: center;
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 5px;
+  flex-wrap: wrap;
 }
 .user-introduction p a {
   background: linear-gradient(60deg, var(--first-accent-color), var(--second-accent-color));

@@ -56,18 +56,20 @@ export default function UserPage({ user, allUsers, posts, details, id }) {
 	const loggedUser = allUsers.filter((user) => user.email === data?.user.email)
 	return (
 		<>
-		<Head>
+			<Head>
 				<title>User | {user[0].name}</title>
 			</Head>
 			<Navbar userData={loggedUser} />
-			<div className='user-introduction'>
+			<div className="user-introduction">
 				{user[0].picture === null ? (
 					<Image src={`/images/Default_pfp.png`} width={150} height={150} alt={user[0].name}></Image>
 				) : (
 					<Image src={`/images/${user[0].picture}`} width={150} height={150} alt={user[0].name}></Image>
 				)}
 				<h1>{user[0].name}</h1>
-				<p>Joined on: <b>{getUsableDate(user[0].date_joined)}</b></p>
+				<p>
+					Joined on: <b>{getUsableDate(user[0].date_joined)}</b>
+				</p>
 				<p>{details[0].introduction}</p>
 				<p>
 					<RiArticleLine></RiArticleLine> Posts: <b>{posts.length}</b>
@@ -75,25 +77,31 @@ export default function UserPage({ user, allUsers, posts, details, id }) {
 				<div className="socials">
 					{details[0].github && (
 						<p>
-							<RiGithubFill></RiGithubFill>
-							Github: <Link href={details[0].github}>{details[0].github}</Link>
+							<span>
+								<RiGithubFill></RiGithubFill>
+								Github:
+							</span>
+							<Link href={details[0].github}>{details[0].github}</Link>
 						</p>
 					)}
 					{details[0].website && (
 						<p>
-							<svg stroke="currentColor" fill="none" strokeWidth="2" viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
-								<path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-								<path d="M19.5 7a9 9 0 0 0 -7.5 -4a8.991 8.991 0 0 0 -7.484 4"></path>
-								<path d="M11.5 3a16.989 16.989 0 0 0 -1.826 4"></path>
-								<path d="M12.5 3a16.989 16.989 0 0 1 1.828 4"></path>
-								<path d="M19.5 17a9 9 0 0 1 -7.5 4a8.991 8.991 0 0 1 -7.484 -4"></path>
-								<path d="M11.5 21a16.989 16.989 0 0 1 -1.826 -4"></path>
-								<path d="M12.5 21a16.989 16.989 0 0 0 1.828 -4"></path>
-								<path d="M2 10l1 4l1.5 -4l1.5 4l1 -4"></path>
-								<path d="M17 10l1 4l1.5 -4l1.5 4l1 -4"></path>
-								<path d="M9.5 10l1 4l1.5 -4l1.5 4l1 -4"></path>
-							</svg>
-							Website: <Link href={details[0].website}>{details[0].website}</Link>
+							<span>
+								<svg stroke="currentColor" fill="none" strokeWidth="2" viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
+									<path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+									<path d="M19.5 7a9 9 0 0 0 -7.5 -4a8.991 8.991 0 0 0 -7.484 4"></path>
+									<path d="M11.5 3a16.989 16.989 0 0 0 -1.826 4"></path>
+									<path d="M12.5 3a16.989 16.989 0 0 1 1.828 4"></path>
+									<path d="M19.5 17a9 9 0 0 1 -7.5 4a8.991 8.991 0 0 1 -7.484 -4"></path>
+									<path d="M11.5 21a16.989 16.989 0 0 1 -1.826 -4"></path>
+									<path d="M12.5 21a16.989 16.989 0 0 0 1.828 -4"></path>
+									<path d="M2 10l1 4l1.5 -4l1.5 4l1 -4"></path>
+									<path d="M17 10l1 4l1.5 -4l1.5 4l1 -4"></path>
+									<path d="M9.5 10l1 4l1.5 -4l1.5 4l1 -4"></path>
+								</svg>
+								Website:
+							</span>
+							<Link href={details[0].website}>{details[0].website}</Link>
 						</p>
 					)}
 				</div>
