@@ -1123,6 +1123,7 @@ nav .dropdown ul li button {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 10px;
 }
 .create-post form .buttons a {
   width: -webkit-fit-content;
@@ -1228,6 +1229,8 @@ nav .dropdown ul li button {
   left: 0;
   top: 0;
   pointer-events: none;
+  text-align: center;
+  padding: 10px;
 }
 .crop-container .drop-zone svg {
   opacity: 0.1;
