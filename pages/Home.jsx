@@ -10,7 +10,6 @@ import Link from 'next/link'
 import Image from 'next/image'
 
 const Home = ({ posts, commentsQuantity, authors, details }) => {
-	// console.log(details)
 	const [deleteID, setDeleteID] = useState(null)
 	const [showModal, setShowModal] = useState(false)
 	const [isLoading, setIsLoading] = useState(false)
@@ -214,12 +213,9 @@ const Home = ({ posts, commentsQuantity, authors, details }) => {
 											placeholder="http(s)://your-website.com"
 										/>
 									</div>
-									<div className="buttons">
-										<input type="reset" value="Reset" />
 										<button className="button">
 											<span>Save</span>
 										</button>
-									</div>
 								</form>
 							</div>
 						</div>
